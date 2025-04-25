@@ -1,4 +1,4 @@
-# Group 7 Project: Xây dựng ứng dụng đặt vé máy bay. 
+# Group 1 Project: Xây dựng ứng dụng đặt vé máy bay. 
 
 # Member
 
