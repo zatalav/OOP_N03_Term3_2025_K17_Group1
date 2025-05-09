@@ -1,43 +1,40 @@
-# Group 7 Project: Xây dựng ứng dụng đặt vé máy bay. 
+GIỚI THIỆU ỨNG DỤNG QUẢN LÝ ĐẶT VÉ MÁY BAY
+Ứng dụng Quản lý đặt vé máy bay được thiết kế nhằm hỗ trợ các hãng hàng không, nhân viên phòng vé hoặc người dùng đặt vé một cách nhanh chóng, chính xác và thuận tiện. Dưới đây là các tính năng chính:
+ 1. Quản lý chuyến bay
+Thêm, sửa, xóa các chuyến bay.
 
-# Member
+Kiểm tra tính hợp lệ của mã chuyến bay (VD: VN123, VJ456...).
 
+Lưu thông tin như: mã chuyến bay, tên tuyến bay, ngày giờ khởi hành, số lượng ghế.
 
-# Introduction
+🔹 2. Tìm kiếm và tra cứu chuyến bay
+Tìm kiếm chuyến bay theo mã, tuyến bay, hoặc thời gian khởi hành.
 
-## Technology
+Hiển thị thông tin chi tiết từng chuyến bay.
 
+🔹 3. Đặt vé
+Nhập thông tin hành khách (tên, số CMND, số điện thoại...).
 
-# Structural Diagram (Sơ đồ cấu trúc)
+Chọn chuyến bay và ghế ngồi.
 
-# Behavioural Diagram (Sơ đồ chức năng/ Sơ đồ thuật toán)
+Kiểm tra ghế còn trống và xác nhận đặt vé.
 
+🔹 4. Quản lý hành khách và vé
+Lưu trữ thông tin vé đã đặt.
 
-# Stage 1: 
+Hủy vé, cập nhật thông tin hành khách.
 
-1. User (Thông tin liên quan đến người dùng)
-   Class User{
-   String UserID;
-   
+Xem danh sách hành khách trên từng chuyến bay.
 
-   }
+🔹 5. Giao diện thân thiện & dễ sử dụng
+Nhập dữ liệu đơn giản qua bàn phím (ở bản console).
 
-AirlineTicket (Thông tin liên quan đến vé)
+Có thể mở rộng thành giao diện đồ họa (Java Swing hoặc JavaFX) hoặc web.
 
-Class Ticket{
-String TicketNumber;
+🔹 6. Mở rộng (nếu có)
+Tích hợp tính năng in vé.
 
-}
+Gửi thông báo email (khi nâng cấp lên bản thương mại).
 
+Phân quyền người dùng: nhân viên, quản trị...
 
-User-Ticket (Người dùng đặt vé)
-Class UserTicket{
-
-String UserID;
-String TicketNumber;
-}
-
-# Stage 2
-
-# Stage 3
-nhóm 7_N03
