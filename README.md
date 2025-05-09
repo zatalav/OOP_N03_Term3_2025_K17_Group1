@@ -1,6 +1,6 @@
 GIỚI THIỆU ỨNG DỤNG QUẢN LÝ ĐẶT VÉ MÁY BAY Ứng dụng Quản lý đặt vé máy bay được thiết kế nhằm hỗ trợ các hãng hàng không, nhân viên phòng vé hoặc người dùng đặt vé một cách nhanh chóng, chính xác và thuận tiện. Dưới đây là các tính năng chính:
 
-Quản lý chuyến bay Thêm, sửa, xóa các chuyến bay.
+🔹1.Quản lý chuyến bay Thêm, sửa, xóa các chuyến bay.
 Kiểm tra tính hợp lệ của mã chuyến bay (VD: VN123, VJ456...).
 
 Lưu thông tin như: mã chuyến bay, tên tuyến bay, ngày giờ khởi hành, số lượng ghế.
