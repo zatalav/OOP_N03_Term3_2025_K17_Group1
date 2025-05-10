@@ -1,14 +1,19 @@
 public class Test_KhachHang {
     public static void main(String[] args) {
-        String maKhachHang = "KH999";
-        String hoVaTen = "Chu Văn An";
-        String email = "chuvanan@gmail.com";
-        String soDienThoai = "0123456789";
+        try {
+            // Tao du lieu mau
+            String maKhachHang = "KH001";
+            String hoVaTen = "Chu Van An";
+            String email = "chuvanan@gmail.com";
+            String soDienThoai = "0123456789";
 
-        System.out.println("== THÔNG TIN KHÁCH HÀNG ==");
-        System.out.println("Mã khách hàng     : " + maKhachHang);
-        System.out.println("Họ và tên         : " + hoVaTen);
-        System.out.println("Email đăng ký     : " + email);
-        System.out.println("Số điện thoại     : " + soDienThoai);
+            // Tao doi tuong KhachHang
+            KhachHang kh = new KhachHang(maKhachHang, hoVaTen, email, soDienThoai);
+
+            // Hien thi thong tin de kiem tra
+            kh.hienThiThongTin();
+        } catch (Exception e) {
+            System.out.println("Test that bai: Co loi xay ra - " + e.getMessage());
+        }
     }
 }
