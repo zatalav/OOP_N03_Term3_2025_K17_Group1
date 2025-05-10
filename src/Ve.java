@@ -1,25 +1,30 @@
 package src;
-import java.io.Serial;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 class Ma_ve implements Serializable {
     private String ma;
+
     public Ma_ve(String ma) {
         if (ma == null || ma.isEmpty()) {
             throw new IllegalArgumentException("Mã vé không được để trống.");
         }
         this.ma = ma;
     }
+
     public String lay_ma() {
         return ma;
     }
+
     public void dat_ma(String ma) {
         if (ma != null && !ma.isEmpty()) {
             this.ma = ma;
         }
     }
+
     public String toString() {
         return ma;
     }
@@ -70,12 +75,11 @@ class Gia_ve implements Serializable {
     }
 
     public String toString() {
-        return so_tien + " VND";
+        return String.format("%.0f VND", so_tien);
     }
 }
 
 public class Ve implements Serializable {
-    @Serial
     private static final long serialVersionUID = 6529685098267757690L;
 
     private Ma_ve ma_ve;
@@ -102,35 +106,48 @@ public class Ve implements Serializable {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Nhập mã vé: ");
-        Ma_ve ma_ve = new Ma_ve(sc.nextLine());
+        try {
+            System.out.print("Nhập mã vé: ");
+            Ma_ve ma_ve = new Ma_ve(sc.nextLine());
 
-        System.out.print("Nhập mã chuyến bay: ");
-        String ma_cb = sc.nextLine();
-        System.out.print("Nhập tên chuyến bay: ");
-        String ten_cb = sc.nextLine();
-        System.out.print("Nhập điểm đến: ");
-        String diem_den = sc.nextLine();
-        System.out.print("Nhập thời gian khởi hành (yyyy-MM-ddTHH:mm): ");
-        String thoigian = sc.nextLine();
-        LocalDateTime thoi_gian_khoi_hanh = LocalDateTime.parse(thoigian);
-        Chuyen_bay cb = new Chuyen_bay(ma_cb, ten_cb, diem_den, thoi_gian_khoi_hanh);
+            System.out.print("Nhập mã chuyến bay: ");
+            String ma_cb = sc.nextLine();
+            System.out.print("Nhập tên chuyến bay: ");
+            String ten_cb = sc.nextLine();
+            System.out.print("Nhập điểm đến: ");
+            String diem_den = sc.nextLine();
 
-        System.out.print("Nhập mã hành khách: ");
-        String ma_kh = sc.nextLine();
-        System.out.print("Nhập họ tên hành khách: ");
-        String ten_kh = sc.nextLine();
-        System.out.print("Nhập email hành khách: ");
-        String email = sc.nextLine();
-        Hanh_khach hk = new Hanh_khach(ma_kh, ten_kh, email);
+            LocalDateTime thoi_gian_khoi_hanh = null;
+            while (thoi_gian_khoi_hanh == null) {
+                try {
+                    System.out.print("Nhập thời gian khởi hành (yyyy-MM-ddTHH:mm): ");
+                    thoi_gian_khoi_hanh = LocalDateTime.parse(sc.nextLine());
+                } catch (DateTimeParseException e) {
+                    System.out.println("Định dạng không đúng, hãy nhập lại.");
+                }
+            }
 
-        System.out.print("Nhập giá vé: ");
-        double gia = sc.nextDouble();
-        Gia_ve gv = new Gia_ve(gia);
+            Chuyen_bay cb = new Chuyen_bay(ma_cb, ten_cb, diem_den, thoi_gian_khoi_hanh);
 
-        Ve ve = new Ve(ma_ve, cb, hk, gv);
-        ve.in_thong_tin_ve();
+            System.out.print("Nhập mã hành khách: ");
+            String ma_kh = sc.nextLine();
+            System.out.print("Nhập họ tên hành khách: ");
+            String ten_kh = sc.nextLine();
+            System.out.print("Nhập email hành khách: ");
+            String email = sc.nextLine();
+            Hanh_khach hk = new Hanh_khach(ma_kh, ten_kh, email);
 
-        sc.close();
+            System.out.print("Nhập giá vé: ");
+            double gia = sc.nextDouble();
+            sc.nextLine();
+            Gia_ve gv = new Gia_ve(gia);
+
+            Ve ve = new Ve(ma_ve, cb, hk, gv);
+            ve.in_thong_tin_ve();
+        } catch (Exception e) {
+            System.out.println("Đã xảy ra lỗi: " + e.getMessage());
+        } finally {
+            sc.close();
+        }
     }
 }
