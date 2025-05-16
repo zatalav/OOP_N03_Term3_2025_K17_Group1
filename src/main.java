@@ -6,5 +6,9 @@ public class main {
         CB.nhap_thong_tin();
         CB.hienThiThongTin();
         System.out.println("Thông tin chuyến bay đã được nhập thành công.");
+
+         Ve v= new Ve();
+        v.nhapThongTin();
+        v.hienThiThongTin();
     }
 }
