@@ -7,8 +7,13 @@ public class main {
         CB.hienThiThongTin();
         System.out.println("Thông tin chuyến bay đã được nhập thành công.");
 
+        KhachHang kh = new KhachHang();
+        kh.nhapThongTin();
+        kh.hienThiThongTin();
+
          Ve v= new Ve();
         v.nhapThongTin();
         v.hienThiThongTin();
+
     }
 }

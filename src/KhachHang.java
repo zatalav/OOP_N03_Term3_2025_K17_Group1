@@ -1,122 +1,85 @@
-import java.io.*;
+package src;
+
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
-// Lop ma khach hang
-class Ma_khach_hang implements Serializable {
-    private String ma;
-
-    public Ma_khach_hang(String ma) {
-        if (ma == null || ma.isEmpty()) {
-            throw new IllegalArgumentException("Ma khach hang khong duoc de trong.");
-        }
-        this.ma = ma;
-    }
-
-    public String toString() {
-        return ma;
+class MaKhachHang {
+    public static boolean kiemTraMaHopLe(String ma) {
+        // Mã khách hàng có thể là KH123 hoặc KH00123, KHAB123
+        return ma.matches("^KH\\w{3,}$");
     }
 }
 
-// Lop ho ten
-class Ho_ten implements Serializable {
-    private String ho_ten;
-
-    public Ho_ten(String ho_ten) {
-        if (ho_ten == null || ho_ten.isEmpty()) {
-            throw new IllegalArgumentException("Ho ten khong duoc de trong.");
-        }
-        this.ho_ten = ho_ten;
+class nhap_thong_tin_khach_hang {
+    public static String nhapHoTen(Scanner scanner) {
+        System.out.print("Nhập họ tên khách hàng: ");
+        return scanner.nextLine();
     }
 
-    public String toString() {
-        return ho_ten;
+    public static String nhapEmail(Scanner scanner) {
+        System.out.print("Nhập email: ");
+        while (true) {
+            String email = scanner.nextLine();
+            if (kiemTraEmail(email)) return email;
+            System.out.print("Email không hợp lệ. Nhập lại: ");
+        }
+    }
+
+    public static String nhapSoDienThoai(Scanner scanner) {
+        System.out.print("Nhập số điện thoại: ");
+        while (true) {
+            String sdt = scanner.nextLine();
+            if (kiemTraSoDienThoai(sdt)) return sdt;
+            System.out.print("SĐT không hợp lệ. Nhập lại: ");
+        }
+    }
+
+    private static boolean kiemTraEmail(String email) {
+        String emailRegex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        return Pattern.matches(emailRegex, email);
+    }
+
+    private static boolean kiemTraSoDienThoai(String sdt) {
+        return sdt.matches("^0\\d{9}$"); // ví dụ: 0987654321
     }
 }
 
-// Lop lien lac
-class Lien_lac implements Serializable {
+public class KhachHang {
+    private String maKhachHang;
+    private String hoTen;
     private String email;
-    private String so_dien_thoai;
+    private String soDienThoai;
 
-    public Lien_lac(String email, String so_dien_thoai) {
-        if (email == null || email.isEmpty() || so_dien_thoai == null || so_dien_thoai.isEmpty()) {
-            throw new IllegalArgumentException("Email va so dien thoai khong duoc de trong.");
-        }
+    public KhachHang() {}
+
+    public KhachHang(String ma, String ten, String email, String sdt) {
+        this.maKhachHang = ma;
+        this.hoTen = ten;
         this.email = email;
-        this.so_dien_thoai = so_dien_thoai;
+        this.soDienThoai = sdt;
     }
 
-    public String toString() {
-        return "Email: " + email + ", So dien thoai: " + so_dien_thoai;
-    }
-}
+    public void nhapThongTin() {
+        Scanner scanner = new Scanner(System.in);
 
-// Lop chinh
-public class KhachHang implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private Ma_khach_hang ma_khach_hang;
-    private Ho_ten ho_ten;
-    private Lien_lac lien_lac;
-
-    public KhachHang(Ma_khach_hang ma, Ho_ten ten, Lien_lac lien_lac) {
-        this.ma_khach_hang = ma;
-        this.ho_ten = ten;
-        this.lien_lac = lien_lac;
-    }
-
-    public void in_thong_tin_khach_hang() {
-        System.out.println("===== THONG TIN KHACH HANG =====");
-        System.out.println("Ma khach hang : " + ma_khach_hang);
-        System.out.println("Ho va ten     : " + ho_ten);
-        System.out.println("Lien lac      : " + lien_lac);
-        System.out.println("================================");
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        try {
-            // Nhap thong tin
-            System.out.print("Nhap ma khach hang: ");
-            Ma_khach_hang ma = new Ma_khach_hang(sc.nextLine());
-
-            System.out.print("Nhap ho va ten: ");
-            Ho_ten ten = new Ho_ten(sc.nextLine());
-
-            System.out.print("Nhap email: ");
-            String email = sc.nextLine();
-
-            System.out.print("Nhap so dien thoai: ");
-            String sdt = sc.nextLine();
-
-            Lien_lac lien_lac = new Lien_lac(email, sdt);
-
-            KhachHang khach = new KhachHang(ma, ten, lien_lac);
-
-            // Ghi ra file
-            FileOutputStream fos = new FileOutputStream("khachhang.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(khach);
-            oos.close();
-            fos.close();
-
-            System.out.println("\nDa luu thong tin vao file khachhang.dat\n");
-
-            // Doc tu file
-            FileInputStream fis = new FileInputStream("khachhang.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            KhachHang khach_doc = (KhachHang) ois.readObject();
-            ois.close();
-            fis.close();
-
-            // In thong tin
-            khach_doc.in_thong_tin_khach_hang();
-
-        } catch (Exception e) {
-            System.out.println("Loi: " + e.getMessage());
+        while (true) {
+            System.out.print("Nhập mã khách hàng (VD: KH001): ");
+            maKhachHang = scanner.nextLine();
+            if (MaKhachHang.kiemTraMaHopLe(maKhachHang)) break;
+            System.out.println("Mã khách hàng không hợp lệ. Vui lòng nhập lại.");
         }
 
-        sc.close();
+        hoTen = nhap_thong_tin_khach_hang.nhapHoTen(scanner);
+        email = nhap_thong_tin_khach_hang.nhapEmail(scanner);
+        soDienThoai = nhap_thong_tin_khach_hang.nhapSoDienThoai(scanner);
+    }
+
+    public void hienThiThongTin() {
+        System.out.println("\n=============== THÔNG TIN KHÁCH HÀNG ===============");
+        System.out.printf("| %-20s | %-30s |\n", "Mã khách hàng", maKhachHang);
+        System.out.printf("| %-20s | %-30s |\n", "Họ tên", hoTen);
+        System.out.printf("| %-20s | %-30s |\n", "Email", email);
+        System.out.printf("| %-20s | %-30s |\n", "Số điện thoại", soDienThoai);
+        System.out.println("====================================================");
     }
 }
