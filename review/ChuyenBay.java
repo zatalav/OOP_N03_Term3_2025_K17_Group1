@@ -1,4 +1,3 @@
-package src;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,23 +11,28 @@ class MaChuyenBay {
     }
 }
 
-class nhap_thong_tin{
+// Lớp hỗ trợ nhập tên chuyến bay
+class TenChuyenBay {
     public static String nhapTenChuyenBay(Scanner scanner) {
         System.out.print("Nhập tên chuyến bay: ");
         return scanner.nextLine();
     }
+}
 
+// Lớp hỗ trợ nhập số lượng ghế
+class SoLuongGhe {
     public static int nhapSoLuongGhe(Scanner scanner) {
         System.out.print("Nhập số lượng ghế: ");
         while (!scanner.hasNextInt()) {
             System.out.println("Vui lòng nhập một số nguyên hợp lệ.");
             scanner.next(); // Bỏ qua giá trị không hợp lệ
         }
-        int soLuong = scanner.nextInt();
-        scanner.nextLine(); // Bỏ qua ký tự xuống dòng còn lại
-        return soLuong;
+        return scanner.nextInt();
     }
+}
 
+// Lớp hỗ trợ nhập ngày giờ khởi hành
+class NgayGioKhoiHanh {
     public static Date nhapNgayGioKhoiHanh(Scanner scanner) {
         System.out.print("Nhập ngày giờ khởi hành (dd-MM-yyyy HH:mm): ");
         while (true) {
@@ -39,26 +43,6 @@ class nhap_thong_tin{
             } else {
                 System.out.println("Định dạng ngày giờ không hợp lệ. Vui lòng nhập lại (dd-MM-yyyy HH:mm): ");
             }
-        }
-    }
-
-    public static String nhapDiemKhoiHanh(Scanner scanner) {
-        String diem;
-        while (true) {
-            System.out.print("Nhập điểm khởi hành: ");
-            diem = scanner.nextLine();
-            if (!diem.trim().isEmpty()) return diem;
-            System.out.println("Điểm khởi hành không được để trống. Vui lòng nhập lại.");
-        }
-    }
-
-    public static String nhapDiemDen(Scanner scanner) {
-        String diem;
-        while (true) {
-            System.out.print("Nhập điểm đến: ");
-            diem = scanner.nextLine();
-            if (!diem.trim().isEmpty()) return diem;
-            System.out.println("Điểm đến không được để trống. Vui lòng nhập lại.");
         }
     }
 
@@ -73,7 +57,8 @@ class nhap_thong_tin{
     }
 }
 
-class ChuyenBay {
+// Lớp chính quản lý chuyến bay
+public class ChuyenBay {
     private String maChuyenBay;
     private String tenChuyenBay;
     private Date ngayGioKhoiHanh;
@@ -81,9 +66,7 @@ class ChuyenBay {
     private String diemKhoiHanh;
     private String diemDen;
 
-    public ChuyenBay() {
-    }
-
+    // Constructor
     public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe, String diemKhoiHanh, String diemDen) {
         this.maChuyenBay = maChuyenBay;
         this.tenChuyenBay = tenChuyenBay;
@@ -93,25 +76,7 @@ class ChuyenBay {
         this.diemDen = diemDen;
     }
 
-    public void nhap_thong_tin() {
-    Scanner scanner = new Scanner(System.in);
-
-    // Nhập mã chuyến bay
-    while (true) {
-        System.out.print("Nhập mã chuyến bay (VD: VN123): ");
-        maChuyenBay = scanner.nextLine();
-        if (MaChuyenBay.kiemTraMaHopLe(maChuyenBay)) break;
-        System.out.println("Mã chuyến bay không hợp lệ. Vui lòng nhập lại.");
-    }
-
-    tenChuyenBay = nhap_thong_tin.nhapTenChuyenBay(scanner);
-    ngayGioKhoiHanh = nhap_thong_tin.nhapNgayGioKhoiHanh(scanner);
-    soLuongGhe = nhap_thong_tin.nhapSoLuongGhe(scanner);
-    diemKhoiHanh = nhap_thong_tin.nhapDiemKhoiHanh(scanner);
-    diemDen = nhap_thong_tin.nhapDiemDen(scanner);
-    // Không đóng scanner ở đây để tránh đóng System.in
-}
-
+    // Phương thức hiển thị thông tin chuyến bay
     public void hienThiThongTin() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         System.out.println("\n================= THÔNG TIN CHUYẾN BAY =================");
@@ -122,5 +87,72 @@ class ChuyenBay {
         System.out.printf("| %-20s | %-30s |\n", "Điểm khởi hành", diemKhoiHanh);
         System.out.printf("| %-20s | %-30s |\n", "Điểm đến", diemDen);
         System.out.println("========================================================");
+    }
+
+    // Phương thức main để chạy chương trình
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Nhập mã chuyến bay
+        String maChuyenBay;
+        while (true) {
+            System.out.print("Nhập mã chuyến bay (VD: VN123): ");
+            maChuyenBay = scanner.nextLine();
+            if (MaChuyenBay.kiemTraMaHopLe(maChuyenBay)) {
+                break;
+            } else {
+                System.out.println("Mã chuyến bay không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
+
+        // Nhập tên chuyến bay
+        String tenChuyenBay = TenChuyenBay.nhapTenChuyenBay(scanner);
+
+        // Nhập ngày giờ khởi hành
+        Date ngayGioKhoiHanh = NgayGioKhoiHanh.nhapNgayGioKhoiHanh(scanner);
+
+        // Nhập số lượng ghế
+        int soLuongGhe;
+        while (true) {
+            soLuongGhe = SoLuongGhe.nhapSoLuongGhe(scanner);
+            if (soLuongGhe > 0) {
+                break;
+            } else {
+                System.out.println("Số lượng ghế phải lớn hơn 0. Vui lòng nhập lại.");
+            }
+        }
+        scanner.nextLine(); // Bỏ qua ký tự xuống dòng sau khi nhập số
+
+        // Nhập điểm khởi hành
+        String diemKhoiHanh;
+        while (true) {
+            System.out.print("Nhập điểm khởi hành: ");
+            diemKhoiHanh = scanner.nextLine();
+            if (!diemKhoiHanh.isEmpty()) {
+                break;
+            } else {
+                System.out.println("Điểm khởi hành không được để trống. Vui lòng nhập lại.");
+            }
+        }
+
+        // Nhập điểm đến
+        String diemDen;
+        while (true) {
+            System.out.print("Nhập điểm đến: ");
+            diemDen = scanner.nextLine();
+            if (!diemDen.isEmpty()) {
+                break;
+            } else {
+                System.out.println("Điểm đến không được để trống. Vui lòng nhập lại.");
+            }
+        }
+
+        // Tạo đối tượng chuyến bay
+        ChuyenBay chuyenBay = new ChuyenBay(maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen);
+
+        // Hiển thị thông tin chuyến bay
+        chuyenBay.hienThiThongTin();
+
+        scanner.close();
     }
 }
