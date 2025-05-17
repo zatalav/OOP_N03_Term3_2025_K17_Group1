@@ -1,56 +1,84 @@
-# ✈️ Ứng Dụng Đặt Vé Máy Bay
+<h1 align="center">✈️ ỨNG DỤNG ĐẶT VÉ MÁY BAY</h1>
 
-![Plane flying](https://cdn-icons-png.flaticon.com/512/34/34627.png)
+<p align="center">
+  <img src="https://cdn-icons-png.flaticon.com/512/34/34627.png" width="100" alt="plane icon" />
+</p>
 
-> **Trải nghiệm đặt vé nhanh chóng và tiện lợi**
+<p align="center"><strong>Trải nghiệm đặt vé nhanh chóng – chính xác – tiện lợi</strong></p>
+
+<p align="center">
+  <a href="#giới-thiệu">📘 Giới thiệu</a> • 
+  <a href="#chức-năng">⚙️ Chức năng</a> • 
+  <a href="#công-nghệ">💻 Công nghệ</a> • 
+  <a href="#hướng-dẫn">📥 Hướng dẫn</a> • 
+  <a href="#tác-giả">👤 Tác giả</a>
+</p>
 
 ---
 
 ## 📘 Giới thiệu
 
-**Ứng dụng Đặt Vé Máy Bay** hỗ trợ quản lý hành khách, chuyến bay và vé một cách hiện đại, nhanh chóng.  
-Giao diện đơn giản, dễ sử dụng và dễ mở rộng cho các hãng hàng không.
+**Ứng dụng Đặt Vé Máy Bay** là phần mềm hỗ trợ quản lý hành khách, chuyến bay, tuyến bay và vé máy bay một cách **hiện đại, chính xác, dễ sử dụng**.  
+Hệ thống phù hợp với các hãng hàng không nhỏ, phòng vé hoặc hệ thống demo học tập tại trường đại học.
 
 ---
 
-## ⚙️ Các chức năng chính
+## ⚙️ Các chức năng chính <a name="chức-năng"></a>
 
-- 🔹 **Quản lý hành khách:** Thêm, sửa, xoá, tìm kiếm hành khách.
-- 🔹 **Quản lý chuyến bay:** Mã chuyến, giờ khởi hành, tuyến bay, số ghế, giá vé.
-- 🔹 **Quản lý tuyến bay:** Quãng đường, nơi đi - nơi đến, thời gian bay.
-- 🔹 **Quản lý vé:** Tạo, huỷ, tra cứu vé; in vé cho hành khách.
-- 🔹 **Quản lý nhân viên:** Phân quyền, cập nhật thông tin cá nhân.
-- 🔹 **Thống kê:** Doanh thu, lượt đặt vé, biểu đồ trực quan.
+✅ **Quản lý hành khách**
+- Thêm, sửa, xoá, tìm kiếm thông tin hành khách.
+
+✅ **Quản lý chuyến bay**
+- Nhập mã chuyến, thời gian khởi hành, tuyến bay, số lượng và giá vé.
+
+✅ **Quản lý tuyến bay**
+- Quản lý nơi đi, nơi đến, quãng đường và thời gian bay.
+
+✅ **Quản lý vé**
+- Tạo vé, huỷ vé, tìm kiếm vé đã đặt, in vé cho hành khách.
+
+✅ **Quản lý nhân viên**
+- Phân quyền người dùng (admin/nhân viên), cập nhật thông tin cá nhân.
+
+✅ **Thống kê**
+- Xem biểu đồ doanh thu, tổng số lượt đặt vé, số vé còn trống theo từng chuyến.
 
 ---
 
-## 💻 Công nghệ sử dụng
+## 💻 Công nghệ sử dụng <a name="công-nghệ"></a>
 
-- Ngôn ngữ: **Java**
-- Giao diện: **JavaFX**, sử dụng **SceneBuilder**
-- Cơ sở dữ liệu: **MySQL**
-- Kết nối DB: **JDBC**
-- Biểu tượng: **FontAwesome**
+| Thành phần       | Công nghệ sử dụng       |
+|------------------|-------------------------|
+| Ngôn ngữ chính   | `Java`                  |
+| Giao diện người dùng | `JavaFX`, `SceneBuilder` |
+| Cơ sở dữ liệu     | `MySQL`                 |
+| Kết nối CSDL      | `JDBC`                  |
+| Biểu tượng       | `FontAwesome`, `Icons8` |
 
 ---
 
-## 📥 Hướng dẫn sử dụng
+## 📥 Hướng dẫn sử dụng <a name="hướng-dẫn"></a>
 
-1. Tải source từ GitHub hoặc bản phát hành `.jar`.
-2. Mở dự án bằng **IntelliJ** hoặc **Eclipse**.
-3. Chạy file `Main.java` hoặc thực thi file `.jar`.
-4. Dùng menu để quản lý vé, chuyến bay, hành khách, thống kê.
+1. Clone project từ GitHub:
+   ```bash
+   git clone https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git
+
+2. Tải source từ GitHub hoặc bản phát hành `.jar`.
+3. Mở dự án bằng **IntelliJ** hoặc **Eclipse** hoặc **Visual Studio Code**.
+4. Chạy file `Main.java` hoặc thực thi file `.jar`.
+5. Dùng menu để quản lý vé, chuyến bay, hành khách, thống kê.
 
 ---
 
 ## 👤 Tác giả
 
-Phát triển bởi **Nhóm 1 – OOP N03**  
+Phát triển bởi **OOP_N03_Term3_2025_K17_Group1**  
+Thành viên gồm:
+- 23010772-Lê Đức Duy
+- 23010123-Lê Mạnh Hùng
+- 23016112-Nguyễn Thị Khánh Linh
+
 📍 Đại học Phenikaa  
-📧 Mọi phản hồi xin gửi qua email hoặc [GitHub](https://github.com)
+📧 Mọi phản hồi xin gửi qua email hoặc [GitHub](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
 
 ---
-
-## 🛒 Giao diện biểu tượng
-
-![Cart Icon](https://img.icons8.com/fluency/48/shopping-cart.png)
