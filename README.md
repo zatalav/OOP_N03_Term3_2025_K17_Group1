@@ -82,3 +82,4 @@ Thành viên gồm:
 📧 Mọi phản hồi xin gửi qua email hoặc [GitHub](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
 
 ---
+![Ảnh chụp màn hình 2025-05-22 102109](https://github.com/user-attachments/assets/8ec9c2b3-4e11-4e75-b55a-0190a3172520)
