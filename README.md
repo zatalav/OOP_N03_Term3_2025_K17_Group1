@@ -82,3 +82,5 @@ Thành viên gồm:
 📧 Mọi phản hồi xin gửi qua email hoặc [GitHub](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
 
 ---
+
+[UML Class Diagram](https://drive.google.com/file/d/1AdNSn0t0GZLcNHukZIyyleTbvSc6tee1/view?usp=sharing)
