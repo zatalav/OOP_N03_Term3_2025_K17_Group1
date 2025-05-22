@@ -83,3 +83,7 @@ Thành viên gồm:
 
 ---
 ![Ảnh chụp màn hình 2025-05-22 102109](https://github.com/user-attachments/assets/8ec9c2b3-4e11-4e75-b55a-0190a3172520)
+
+[Sơ đồ sửa](https://drive.google.com/file/d/1wWEWp5gT8EUz6TdOXoTYt9dqgmrdWQR1/view?usp=drive_link)
+[Sơ đồ thêm](https://drive.google.com/file/d/1-zc5yNEELfkSW9RiB_8P6Y6LwS8_7VW4/view?usp=drive_link)
+[Sơ đồ xóa](https://drive.google.com/file/d/1x2onAiPsNnB2EdKroLfCNlgy0hcJik-5/view?usp=drive_link)
