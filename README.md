@@ -15,6 +15,7 @@
 </p>
 
 ---
+## Mục tiêu chính:
 
 ## 📘 Giới thiệu
 
@@ -82,11 +83,14 @@ Thành viên gồm:
 📧 Mọi phản hồi xin gửi qua email hoặc [GitHub](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
 
 ---
-![Ảnh chụp màn hình 2025-05-22 102109](https://github.com/user-attachments/assets/8ec9c2b3-4e11-4e75-b55a-0190a3172520)
 
-[UML Class Diagram](https://drive.google.com/file/d/1AdNSn0t0GZLcNHukZIyyleTbvSc6tee1/view?usp=sharing)
+![UML Class Diagram](<Ảnh chụp màn hình 2025-05-23 080633.png>)
 
-[Sơ đồ sửa](https://drive.google.com/file/d/1wWEWp5gT8EUz6TdOXoTYt9dqgmrdWQR1/view?usp=drive_link)
-[Sơ đồ thêm](https://drive.google.com/file/d/1-zc5yNEELfkSW9RiB_8P6Y6LwS8_7VW4/view?usp=drive_link)
-[Sơ đồ xóa](https://drive.google.com/file/d/1x2onAiPsNnB2EdKroLfCNlgy0hcJik-5/view?usp=drive_link)
+![Sơ đồ Activity Diagram thêm](<Ảnh chụp màn hình 2025-05-23 080430.png>)
+
+![Sơ đồ Activity Diagram sửa](<Ảnh chụp màn hình 2025-05-23 080347-1.png>)
+
+![Sơ đồ Activity Diagram xóa](<Ảnh chụp màn hình 2025-05-23 080600.png>)
+
+
 
