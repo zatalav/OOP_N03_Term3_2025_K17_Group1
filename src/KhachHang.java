@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 class MaKhachHang {
     public static boolean kiemTraMaHopLe(String ma) {
-      
         return ma.matches("^KH\\w{3,}$");
     }
 }
@@ -40,7 +39,7 @@ class nhap_thong_tin_khach_hang {
     }
 
     private static boolean kiemTraSoDienThoai(String sdt) {
-        return sdt.matches("^0\\d{9}$"); 
+        return sdt.matches("^0\\d{9}$");
     }
 }
 
@@ -81,5 +80,25 @@ public class KhachHang {
         System.out.printf("| %-20s | %-30s |\n", "Email", email);
         System.out.printf("| %-20s | %-30s |\n", "Số điện thoại", soDienThoai);
         System.out.println("====================================================");
+    }
+
+    public String getMaKhachHang() {
+        return maKhachHang;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 }
