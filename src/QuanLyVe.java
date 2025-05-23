@@ -2,7 +2,7 @@ package src;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class VeList {
+public class QuanLyVe {
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
 
     public void addVe(Scanner sc){

@@ -1,37 +1,26 @@
-import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TestKhachHang {
     public static void main(String[] args) {
+        String maKH = "KH001";
+        String hoTen = "Chu Văn An";
+        String email = "chuvanan@gmail.com";
+        String soDienThoai = "0123456789";
+        String ngayDangKyStr = "23-05-2025";
+
         try {
-            // Gán dữ liệu mẫu
-            Ma_khach_hang ma = new Ma_khach_hang("KH001");
-            Ho_ten ten = new Ho_ten("Chu Văn An");
-            Lien_lac lien_lac = new Lien_lac("chuvanan@gmail.com", "0123456789");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Date ngayDangKy = sdf.parse(ngayDangKyStr);
 
-            // Tạo đối tượng KhachHang
-            KhachHang khach = new KhachHang(ma, ten, lien_lac);
-
-            // Ghi ra file
-            FileOutputStream fos = new FileOutputStream("khachhang.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(khach);
-            oos.close();
-            fos.close();
-            System.out.println("✅ Đã ghi khách hàng vào file khachhang.dat\n");
-
-            // Đọc lại từ file
-            FileInputStream fis = new FileInputStream("khachhang.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            KhachHang khachDoc = (KhachHang) ois.readObject();
-            ois.close();
-            fis.close();
-
-            // In thông tin khách hàng
-            System.out.println("== THÔNG TIN KHÁCH HÀNG ĐƯỢC ĐỌC TỪ FILE ==");
-            khachDoc.in_thong_tin_khach_hang();
-
+            System.out.println("== THÔNG TIN KHÁCH HÀNG ==");
+            System.out.println("Mã khách hàng     : " + maKH);
+            System.out.println("Họ tên            : " + hoTen);
+            System.out.println("Email             : " + email);
+            System.out.println("Số điện thoại     : " + soDienThoai);
+            System.out.println("Ngày đăng ký      : " + sdf.format(ngayDangKy));
         } catch (Exception e) {
-            System.out.println("❌ Lỗi: " + e.getMessage());
+            System.out.println(" Lỗi xử lý ngày.");
         }
     }
 }
