@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 class MaKhachHang {
     public static boolean kiemTraMaHopLe(String ma) {
-        // Mã khách hàng có thể là KH123 hoặc KH00123, KHAB123
+      
         return ma.matches("^KH\\w{3,}$");
     }
 }
@@ -40,7 +40,7 @@ class nhap_thong_tin_khach_hang {
     }
 
     private static boolean kiemTraSoDienThoai(String sdt) {
-        return sdt.matches("^0\\d{9}$"); // ví dụ: 0987654321
+        return sdt.matches("^0\\d{9}$"); 
     }
 }
 
