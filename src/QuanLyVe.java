@@ -1,7 +1,6 @@
 package src;
 import java.util.ArrayList;
 import java.util.Scanner;
-import baitap3.Ve;
 
 public class QuanLyVe {
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
