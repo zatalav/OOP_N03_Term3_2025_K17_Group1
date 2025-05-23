@@ -1,27 +1,40 @@
 public class Flower {
     int petalCount = 0;
-    String s = new String("null");
+    String s = "null";
 
-    // Constructor 1: chỉ petalCount
-    Flower(int petals) {
-        petalCount = petals;
-    }
-
-    // Constructor 2: chỉ s
-    Flower(String ss) {
-        s = ss;
-    }
-
-    // Constructor 3: cả s và petalCount
-    Flower(String s, int petals) {
-        this(s);
+    public Flower(int petals) {
         this.petalCount = petals;
-        // hoặc: this.s = s;
-        // không thể gọi this() nhiều lần trong cùng constructor
     }
 
-    // Constructor mặc định không có tham số
-    Flower() {
-        this("hello", 47);
+
+    public Flower(String ss) {
+        this.s = ss;
+    }
+
+    public Flower(String s, int petals) {
+        this(petals);   
+        this.s = s;     
+    }
+
+    public Flower() {
+        this("hello", 47);  
+    }
+
+    public void show() {
+        System.out.println("s = " + s + ", petalCount = " + petalCount);
+    }
+
+    public static void main(String[] args) {
+        Flower f1 = new Flower();
+        f1.show();
+
+        Flower f2 = new Flower("Rose", 99);
+        f2.show();
+
+        Flower f3 = new Flower("Lily");
+        f3.show();
+
+        Flower f4 = new Flower(7);
+        f4.show();
     }
 }
