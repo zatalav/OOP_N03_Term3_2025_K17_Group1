@@ -10,7 +10,7 @@ public class QuanLyKhachHang {
         KhachHang kh = new KhachHang();
         kh.nhapThongTin();
         danhSachKH.add(kh);
-        System.out.println("✅ Đã thêm khách hàng thành công!");
+        System.out.println("Đã thêm khách hàng thành công!");
     }
 
     public void editKhachHang(Scanner sc) {

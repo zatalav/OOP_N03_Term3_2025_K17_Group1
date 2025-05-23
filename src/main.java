@@ -1,4 +1,5 @@
 package src;
+
 import java.util.Scanner;
 
 public class main {
@@ -8,10 +9,9 @@ public class main {
         ChuyenBay chuyenBay = new ChuyenBay();
         chuyenBay.nhap_thong_tin();  
 
-        KhachHang khachHang = new KhachHang();
-        khachHang.nhapThongTin(); 
-
         QuanLyVe quanLyVe = new QuanLyVe();
+        QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();
+
         int luaChon;
 
         do {
@@ -21,7 +21,7 @@ public class main {
             System.out.println("3. Sửa vé");
             System.out.println("4. Xóa vé");
             System.out.println("5. Hiển thị thông tin chuyến bay");
-            System.out.println("6. Hiển thị thông tin khách hàng");
+            System.out.println("6. Quản lý khách hàng");
             System.out.println("0. Thoát");
             System.out.print("Nhập lựa chọn của bạn: ");
             luaChon = sc.nextInt();
@@ -44,7 +44,7 @@ public class main {
                     chuyenBay.hienThiThongTin();
                     break;
                 case 6:
-                    khachHang.hienThiThongTin();
+                    menuKhachHang(sc, quanLyKhachHang);
                     break;
                 case 0:
                     System.out.println("Thoát chương trình.");
@@ -55,5 +55,40 @@ public class main {
         } while (luaChon != 0);
 
         sc.close();
+    }
+
+    public static void menuKhachHang(Scanner sc, QuanLyKhachHang qlkh) {
+        int chon;
+        do {
+            System.out.println("\n--- QUẢN LÝ KHÁCH HÀNG ---");
+            System.out.println("1. Thêm khách hàng");
+            System.out.println("2. Hiển thị tất cả khách hàng");
+            System.out.println("3. Sửa khách hàng");
+            System.out.println("4. Xóa khách hàng");
+            System.out.println("0. Quay lại menu chính");
+            System.out.print("Chọn chức năng: ");
+            chon = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (chon) {
+                case 1:
+                    qlkh.addKhachHang(sc);
+                    break;
+                case 2:
+                    qlkh.showKhachHang();
+                    break;
+                case 3:
+                    qlkh.editKhachHang(sc);
+                    break;
+                case 4:
+                    qlkh.deleteKhachHang(sc);
+                    break;
+                case 0:
+                    System.out.println("🔙 Trở lại menu chính.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ.");
+            }
+        } while (chon != 0);
     }
 }
