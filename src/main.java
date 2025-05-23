@@ -1,41 +1,60 @@
 package src;
-
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {     
+        Scanner sc = new Scanner(System.in);
 
-        ChuyenBay CB = new ChuyenBay();
-        CB.nhap_thong_tin();
-        CB.hienThiThongTin();
-        System.out.println("Thông tin chuyến bay đã được nhập thành công.");
+        // Nhập thông tin chuyến bay
+        ChuyenBay chuyenBay = new ChuyenBay();
+        chuyenBay.nhapThongTin(sc);
 
-        KhachHang kh = new KhachHang();
-        kh.nhapThongTin();
-        kh.hienThiThongTin();
+        // Nhập thông tin khách hàng
+        KhachHang khachHang = new KhachHang();
+        khachHang.nhapThongTin(sc);
 
-        VeList danhSachVe = new VeList();
+        QuanLyVe quanLyVe = new QuanLyVe();
+        int luaChon;
 
-        System.out.print("Nhập số lượng vé cần thêm: ");
-        int soLuongVe = Integer.parseInt(scanner.nextLine());
+        do {
+            System.out.println("\n===== MENU CHƯƠNG TRÌNH =====");
+            System.out.println("1. Thêm vé");
+            System.out.println("2. Hiển thị tất cả vé");
+            System.out.println("3. Sửa vé");
+            System.out.println("4. Xóa vé");
+            System.out.println("5. Hiển thị thông tin chuyến bay");
+            System.out.println("6. Hiển thị thông tin khách hàng");
+            System.out.println("0. Thoát");
+            System.out.print("Nhập lựa chọn của bạn: ");
+            luaChon = sc.nextInt();
+            sc.nextLine(); // Đọc dòng mới sau khi nhập số
+            switch (luaChon) {
+                case 1:
+                    quanLyVe.addVe(sc);
+                    break;
+                case 2:
+                    quanLyVe.showVe();
+                    break;
+                case 3:
+                    quanLyVe.editVe(sc);
+                    break;
+                case 4:
+                    quanLyVe.deleteVe(sc);
+                    break;
+                case 5:
+                    chuyenBay.hienThiThongTin();
+                    break;
+                case 6:
+                    khachHang.hienThiThongTin();
+                    break;
+                case 0:
+                    System.out.println("Thoát chương trình.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+            }
+        } while (luaChon != 0);
 
-        for (int i = 0; i < soLuongVe; i++) {
-            System.out.println("\n--- Nhập vé thứ " + (i + 1) + " ---");
-            Ve v = new Ve();
-            v.nhapThongTin();
-            danhSachVe.themVe(v);
-        }
-
-        System.out.println("\n--- Danh sách vé ---");
-        danhSachVe.inDanhSachVe();
-
-        Ve timVe = danhSachVe.timVeTheoMa("VE12345");
-        if (timVe != null) {
-            System.out.println("\n--- Thông tin vé tìm thấy ---");
-            timVe.hienThiThongTin();
-        } else {
-            System.out.println("\nKhông tìm thấy vé có mã VE12345.");
-        }
+        sc.close();
     }
 }
