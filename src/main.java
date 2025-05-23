@@ -5,13 +5,11 @@ public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Nhập thông tin chuyến bay
         ChuyenBay chuyenBay = new ChuyenBay();
-        chuyenBay.nhap_thong_tin();  // Đã sửa: không truyền Scanner
+        chuyenBay.nhap_thong_tin();  
 
-        // Nhập thông tin khách hàng
         KhachHang khachHang = new KhachHang();
-        khachHang.nhapThongTin();  // Đã sửa: không truyền Scanner
+        khachHang.nhapThongTin(); 
 
         QuanLyVe quanLyVe = new QuanLyVe();
         int luaChon;
@@ -27,7 +25,7 @@ public class main {
             System.out.println("0. Thoát");
             System.out.print("Nhập lựa chọn của bạn: ");
             luaChon = sc.nextInt();
-            sc.nextLine(); // Đọc bỏ dòng thừa
+            sc.nextLine(); 
 
             switch (luaChon) {
                 case 1:
