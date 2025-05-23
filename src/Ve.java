@@ -1,13 +1,12 @@
 package src;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 class MaVe {
     public static boolean kiemTraMaHopLe(String ma) {
-        return ma.matches("^[A-Z]{2}\\d{5}$"); 
+        return ma.matches("^[A-Z]{2}\\d{5}$");
     }
 }
 
@@ -34,10 +33,10 @@ class nhap_thong_tin_ve {
         System.out.print("Nhập giá vé: ");
         while (!scanner.hasNextDouble()) {
             System.out.println("Vui lòng nhập số hợp lệ.");
-            scanner.next(); 
+            scanner.next();
         }
         double gia = scanner.nextDouble();
-        scanner.nextLine(); 
+        scanner.nextLine();
         return gia;
     }
 
@@ -46,13 +45,13 @@ class nhap_thong_tin_ve {
         sdf.setLenient(false);
         try {
             return sdf.parse(dateStr);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             return null;
         }
     }
 }
 
-class Ve {
+public class Ve {
     private String maVe;
     private String tenHanhKhach;
     private Date ngayDatVe;
@@ -90,5 +89,32 @@ class Ve {
         System.out.printf("| %-20s | %-30s |\n", "Ngày đặt vé", sdf.format(ngayDatVe));
         System.out.printf("| %-20s | %-30.2f |\n", "Giá vé", giaVe);
         System.out.println("====================================================");
+    }
+
+    public String getMaVe() {
+        return maVe;
+    }
+
+    public String getTenHanhKhach() {
+        return tenHanhKhach;
+    }
+
+    public Date getNgayDatVe() {
+        return ngayDatVe;
+    }
+
+    public double getGiaVe() {
+        return giaVe;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        return "Vé{" +
+                "Mã vé='" + maVe + '\'' +
+                ", Tên hành khách='" + tenHanhKhach + '\'' +
+                ", Ngày đặt vé=" + sdf.format(ngayDatVe) +
+                ", Giá vé=" + giaVe +
+                '}';
     }
 }
