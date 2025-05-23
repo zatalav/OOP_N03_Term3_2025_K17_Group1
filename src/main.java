@@ -2,16 +2,16 @@ package src;
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) {     
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         // Nhập thông tin chuyến bay
         ChuyenBay chuyenBay = new ChuyenBay();
-        chuyenBay.nhapThongTin(sc);
+        chuyenBay.nhap_thong_tin();  // Đã sửa: không truyền Scanner
 
         // Nhập thông tin khách hàng
         KhachHang khachHang = new KhachHang();
-        khachHang.nhapThongTin(sc);
+        khachHang.nhapThongTin();  // Đã sửa: không truyền Scanner
 
         QuanLyVe quanLyVe = new QuanLyVe();
         int luaChon;
@@ -27,7 +27,8 @@ public class main {
             System.out.println("0. Thoát");
             System.out.print("Nhập lựa chọn của bạn: ");
             luaChon = sc.nextInt();
-            sc.nextLine(); // Đọc dòng mới sau khi nhập số
+            sc.nextLine(); // Đọc bỏ dòng thừa
+
             switch (luaChon) {
                 case 1:
                     quanLyVe.addVe(sc);
