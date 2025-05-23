@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-// Lớp hỗ trợ kiểm tra mã chuyến bay
 class MaChuyenBay {
     public static boolean kiemTraMaHopLe(String ma) {
         return ma.matches("^[A-Z]{2}\\d{3,4}$");
@@ -22,10 +21,10 @@ class nhap_thong_tin{
         System.out.print("Nhập số lượng ghế: ");
         while (!scanner.hasNextInt()) {
             System.out.println("Vui lòng nhập một số nguyên hợp lệ.");
-            scanner.next(); // Bỏ qua giá trị không hợp lệ
+            scanner.next(); 
         }
         int soLuong = scanner.nextInt();
-        scanner.nextLine(); // Bỏ qua ký tự xuống dòng còn lại
+        scanner.nextLine(); 
         return soLuong;
     }
 
@@ -96,7 +95,7 @@ class ChuyenBay {
     public void nhap_thong_tin() {
     Scanner scanner = new Scanner(System.in);
 
-    // Nhập mã chuyến bay
+   
     while (true) {
         System.out.print("Nhập mã chuyến bay (VD: VN123): ");
         maChuyenBay = scanner.nextLine();
@@ -109,7 +108,7 @@ class ChuyenBay {
     soLuongGhe = nhap_thong_tin.nhapSoLuongGhe(scanner);
     diemKhoiHanh = nhap_thong_tin.nhapDiemKhoiHanh(scanner);
     diemDen = nhap_thong_tin.nhapDiemDen(scanner);
-    // Không đóng scanner ở đây để tránh đóng System.in
+  
 }
 
     public void hienThiThongTin() {
