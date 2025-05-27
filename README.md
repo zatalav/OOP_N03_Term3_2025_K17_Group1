@@ -71,16 +71,18 @@ Hệ thống phù hợp với các hãng hàng không nhỏ, phòng vé hoặc h
 
 ---
 
-## 👤 Tác giả
+| 👤 **Tác giả**                                  |                          |
+|-----------------------------------------------|--------------------------|
+| **Phát triển bởi:**                           | *OOP_N03_Term3_2025_K17_Group1* |
+| **Thành viên gồm:**                           |                          |
+| **MSSV**                                      | **Tên thành viên**        |
+| 23010772                                     | Lê Đức Duy                |
+| 23010123                                     | Lê Mạnh Hùng              |
+| 23016112                                     | Nguyễn Thị Khánh Linh     |
+|                                               |                          |
+| 📍 **Đại học Phenikaa**                        |                          |
+| 📧 **Mọi phản hồi xin gửi qua email hoặc GitHub** | [Github Group](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)                         |
 
-Phát triển bởi **OOP_N03_Term3_2025_K17_Group1**  
-Thành viên gồm:
-- 23010772-Lê Đức Duy
-- 23010123-Lê Mạnh Hùng
-- 23016112-Nguyễn Thị Khánh Linh
-
-📍 Đại học Phenikaa  
-📧 Mọi phản hồi xin gửi qua email hoặc [GitHub](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
 
 ---
 
