@@ -6,8 +6,8 @@ public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        ChuyenBay chuyenBay = new ChuyenBay();
-        chuyenBay.nhap_thong_tin();  
+        ChuyenBay1 chuyenBay1 = new ChuyenBay1();
+        chuyenBay1.nhap_thong_tin();  
 
         QuanLyVe quanLyVe = new QuanLyVe();
         QuanLyKhachHang quanLyKhachHang = new QuanLyKhachHang();

@@ -95,7 +95,7 @@ class ChuyenBay {
     public void nhap_thong_tin() {
     Scanner scanner = new Scanner(System.in);
 
-   
+        
     while (true) {
         System.out.print("Nhập mã chuyến bay (VD: VN123): ");
         maChuyenBay = scanner.nextLine();
