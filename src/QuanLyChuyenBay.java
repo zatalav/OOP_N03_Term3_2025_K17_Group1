@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class QuanLyChuyenBay {
     private ArrayList<ChuyenBay> danhSachChuyenBay = new ArrayList<>();
+    
 
     public void addChuyenBay(Scanner sc) {
         ChuyenBay cb = new ChuyenBay();
