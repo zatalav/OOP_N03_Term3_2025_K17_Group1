@@ -52,4 +52,9 @@ public class QuanLyVe {
             System.out.println("------------------------------");
         }
     }
+
+ 
+    public ArrayList<Ve> getDanhSachVe() {
+        return danhSachVe;
+    }
 }

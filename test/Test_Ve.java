@@ -7,7 +7,7 @@ public class Test_Ve {
         String tenChuyenBay = "Đà Nẵng - Cần Thơ";
         String ngayGioStr = "09-05-2025 14:30"; 
         String hanhKhach = "Chu Văn An (chuvanan@gmail.com)";
-        double giaVe = 1590000;
+        double giaVe = 3000000;
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
