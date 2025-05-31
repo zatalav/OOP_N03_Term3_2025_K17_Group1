@@ -1,14 +1,21 @@
 package src;
 
-import java.util.Scanner;
+import test.TestQuanLyChuyenBay;
 
 public class App {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        System.out.println("----- Test Thêm Chuyến Bay -----");
+        TestQuanLyChuyenBay.testAddChuyenBay();
 
-        MenuController menu = new MenuController();
-        menu.showProgramSelection(sc);
+        System.out.println("\n----- Test Hiển Thị Chuyến Bay -----");
+        TestQuanLyChuyenBay.testShowChuyenBay();
 
-        sc.close();
+        System.out.println("\n----- Test Xóa Chuyến Bay -----");
+        TestQuanLyChuyenBay.testDeleteChuyenBay();
+
+        System.out.println("\n----- Test Xóa Chuyến Bay Không Tồn Tại -----");
+        TestQuanLyChuyenBay.testDeleteChuyenBayNotFound();
+
+        System.out.println("\n----- Tất cả test hoàn thành -----");
     }
 }

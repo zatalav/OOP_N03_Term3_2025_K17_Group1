@@ -72,7 +72,7 @@ class nhap_thong_tin{
     }
 }
 
-class ChuyenBay {
+public class ChuyenBay {
     private String maChuyenBay;
     private String tenChuyenBay;
     private Date ngayGioKhoiHanh;

@@ -100,8 +100,8 @@ public class MenuController {
             switch (chon) {
                 case 1 : quanLyChuyenBay.addChuyenBay(sc); break;
                 case 2 : quanLyChuyenBay.showChuyenBay();break;
-                case 3 : quanLyChuyenBay.editChuyenBay(sc);break;
-                case 4 : quanLyChuyenBay.deleteChuyenBay(sc);break;
+                case 3 : quanLyChuyenBay.deleteChuyenBay(sc);break;
+                case 4 : quanLyChuyenBay.editChuyenBay(sc);break;
                 case 0 : System.out.println("🔙 Trở lại menu chính.");break;
                 default : System.out.println("Lựa chọn không hợp lệ.");break;
             }
