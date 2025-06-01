@@ -1,8 +1,5 @@
 package src;
 
-import src.QuanLyVe;
-import java.util.ArrayList;
-
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
@@ -10,8 +7,7 @@ public class TestQuanLyVe {
     public static void testAddVe() {
         QuanLyVe qlv = new QuanLyVe();
 
-    
-        String input = "VE12345\nNguyen Van A\n01-06-2025\n2500000\n";
+        String input = "VE001\nVN123\nKH001\n2500000\n";
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         Scanner scanner = new Scanner(in);
 
@@ -23,7 +19,7 @@ public class TestQuanLyVe {
             System.out.println("=== Hiển thị thông tin vé ===");
             qlv.showVe();
         } else {
-            System.out.println(">> Thêm vé thất bại!");
+            System.out.println(" >> Thêm vé thất bại!");
         }
     }
 
