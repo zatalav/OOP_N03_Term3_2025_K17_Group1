@@ -1,0 +1,31 @@
+<!-- templates/layout.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Hệ Thống Đặt Vé Máy Bay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">🛫 AirBooking</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/flights">Chuyến Bay</a></li>
+                <li class="nav-item"><a class="nav-link" href="/customers">Khách Hàng</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tickets">Vé</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4" th:fragment="content">
+    <!-- Nội dung riêng -->
+</div>
+
+<footer class="text-center mt-5 mb-3">
+    <p>© 2025 AirBooking. All rights reserved.</p>
+</footer>
+</body>
+</html>
