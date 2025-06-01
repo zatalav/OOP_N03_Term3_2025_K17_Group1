@@ -1,4 +1,3 @@
-package test;
 
 import src.ChuyenBay;
 import src.QuanLyChuyenBay;
