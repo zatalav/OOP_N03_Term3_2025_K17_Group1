@@ -1,6 +1,4 @@
-
-import src.ChuyenBay;
-import src.QuanLyChuyenBay;
+package src;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
