@@ -15,84 +15,101 @@
 </p>
 
 ---
-## Mục tiêu chính:
+
+## 🎯 Mục tiêu chính
+
+* Xây dựng ứng dụng đặt vé máy bay thân thiện với người dùng.
+* Hỗ trợ quản lý chuyến bay, hành khách, và vé một cách dễ dàng.
+* Phù hợp với các hệ thống demo học tập hoặc phòng vé nhỏ.
+
+---
 
 ## 📘 Giới thiệu
 
-**Ứng dụng Đặt Vé Máy Bay** là phần mềm hỗ trợ quản lý hành khách, chuyến bay, tuyến bay và vé máy bay một cách **hiện đại, chính xác, dễ sử dụng**.  
-Hệ thống phù hợp với các hãng hàng không nhỏ, phòng vé hoặc hệ thống demo học tập tại trường đại học.
+**Ứng dụng Đặt Vé Máy Bay** là phần mềm được phát triển bằng Java Spring Boot nhằm hỗ trợ quản lý hành khách, chuyến bay, tuyến bay và vé máy bay một cách **hiện đại, chính xác, dễ sử dụng**.
+Hệ thống hướng đến người dùng tại các phòng vé vừa và nhỏ hoặc phục vụ mục tiêu học tập tại các trường đại học.
 
 ---
 
 ## ⚙️ Các chức năng chính <a name="chức-năng"></a>
 
 ✅ **Quản lý hành khách**
-- Thêm, sửa, xoá, tìm kiếm thông tin hành khách.
+
+* Nhập, sửa, xoá và hiển thị thông tin khách hàng (Họ tên, Email, SĐT, Mã KH).
+* Kiểm tra hợp lệ định dạng email, số điện thoại, mã khách hàng.
 
 ✅ **Quản lý chuyến bay**
-- Nhập mã chuyến, thời gian khởi hành, tuyến bay, số lượng và giá vé.
 
-✅ **Quản lý tuyến bay**
-- Quản lý nơi đi, nơi đến, quãng đường và thời gian bay.
+* Thêm, xoá, cập nhật chuyến bay (Mã, tên, ngày giờ, số ghế, điểm đi - đến).
+* Kiểm tra định dạng ngày giờ theo chuẩn `dd-MM-yyyy HH:mm`.
+* Hỗ trợ test đơn vị với `TestQuanLyChuyenBay`.
 
 ✅ **Quản lý vé**
-- Tạo vé, huỷ vé, tìm kiếm vé đã đặt, in vé cho hành khách.
 
-✅ **Quản lý nhân viên**
-- Phân quyền người dùng (admin/nhân viên), cập nhật thông tin cá nhân.
+* Tạo, sửa, xoá vé cho từng hành khách.
+* Thông tin vé gồm: Mã vé, tên hành khách, ngày đặt vé, giá vé.
+* Kiểm tra mã vé hợp lệ theo định dạng `^[A-Z]{2}\d{5}$`.
+* Hỗ trợ hiển thị vé với định dạng ngày và tiền Việt (`Locale vi_VN`).
 
-✅ **Thống kê**
-- Xem biểu đồ doanh thu, tổng số lượt đặt vé, số vé còn trống theo từng chuyến.
+✅ **Hiển thị & Test**
+
+* Mỗi đối tượng (Vé, Chuyến bay, Khách hàng) có lớp hiển thị định dạng rõ ràng.
+* Các test case `TestQuanLyVe`, `TestQuanLyChuyenBay`, `TestKhachHang`, `Test_Ve` đã triển khai kiểm thử chức năng thêm, hiển thị, và xóa dữ liệu.
 
 ---
 
 ## 💻 Công nghệ sử dụng <a name="công-nghệ"></a>
 
-| Thành phần       | Công nghệ sử dụng       |
-|------------------|-------------------------|
-| Ngôn ngữ chính   | `Java`                  |
-| Giao diện người dùng | `JavaFX`, `SceneBuilder` |
-| Cơ sở dữ liệu     | `MySQL`                 |
-| Kết nối CSDL      | `JDBC`                  |
-| Biểu tượng       | `FontAwesome`, `Icons8` |
+| Thành phần           | Công nghệ sử dụng              |
+| -------------------- | ------------------------------ |
+| Ngôn ngữ chính       | `Java`                         |
+| Framework Backend    | `Spring Boot`                  |
+| Giao diện người dùng | `Spring MVC + Thymeleaf`       |
+| Cơ sở dữ liệu        | `MySQL`                        |
+| Kết nối CSDL         | `Spring Data JPA`, `Hibernate` |
+| Unit Test            | `JUnit`, `Mockito`             |
+| Quản lý dự án        | `Maven`                        |
 
 ---
 
 ## 📥 Hướng dẫn sử dụng <a name="hướng-dẫn"></a>
 
 1. Clone project từ GitHub:
+
    ```bash
    git clone https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git
+   ```
 
-2. Tải source từ GitHub hoặc bản phát hành `.jar`.
-3. Mở dự án bằng **IntelliJ** hoặc **Eclipse** hoặc **Visual Studio Code**.
-4. Chạy file `Main.java` hoặc thực thi file `.jar`.
-5. Dùng menu để quản lý vé, chuyến bay, hành khách, thống kê.
+2. Import project vào **IntelliJ IDEA** hoặc **Eclipse**.
+
+3. Cài đặt MySQL và cấu hình `application.properties`.
+
+4. Chạy project bằng Spring Boot (`App.java` hoặc `MainController`).
+
+5. Sử dụng trình duyệt để truy cập các chức năng: `/khachhang`, `/chuyenbay`, `/ve`...
+
+---
+
+## 👤 Tác giả <a name="tác-giả"></a>
+
+| MSSV     | Họ và Tên             | Vai trò           |
+| -------- | --------------------- | ----------------- |
+| 23010772 | Lê Đức Duy            |  |
+| 23010123 | Lê Mạnh Hùng          |     |
+| 23016112 | Nguyễn Thị Khánh Linh |     |
+
+📍 **Đại học Phenikaa**
+📧 Mọi góp ý vui lòng gửi về: [Github Group](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
 
 ---
 
-| 👤 **Tác giả**                                  |                          |
-|-----------------------------------------------|--------------------------|
-| **Phát triển bởi:**                           | *OOP_N03_Term3_2025_K17_Group1* |
-| **Thành viên gồm:**                           |                          |
-| **MSSV**                                      | **Tên thành viên**        |
-| 23010772                                     | Lê Đức Duy                |
-| 23010123                                     | Lê Mạnh Hùng              |
-| 23016112                                     | Nguyễn Thị Khánh Linh     |
-|                                               |                          |
-| 📍 **Đại học Phenikaa**                        |                          |
-| 📧 **Mọi phản hồi xin gửi qua email hoặc GitHub** | [Github Group](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)                         |
-
-
----
+## 📊 Hình ảnh hệ thống
 
 ![UML Class Diagram](<Ảnh chụp màn hình 2025-05-23 080633.png>)
 
-![Sơ đồ Activity Diagram thêm](<Ảnh chụp màn hình 2025-05-23 080430.png>)
+![Activity Diagram - Thêm](<Ảnh chụp màn hình 2025-05-23 080430.png>)
 
-![Sơ đồ Activity Diagram sửa](<Ảnh chụp màn hình 2025-05-23 080347-1.png>)
+![Activity Diagram - Sửa](<Ảnh chụp màn hình 2025-05-23 080347-1.png>)
 
-![Sơ đồ Activity Diagram xóa](<Ảnh chụp màn hình 2025-05-23 080600.png>)
-
-
+![Activity Diagram - Xóa](<Ảnh chụp màn hình 2025-05-23 080600.png>)
 
