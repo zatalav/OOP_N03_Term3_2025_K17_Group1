@@ -86,7 +86,7 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 4. Chạy project bằng Spring Boot (`App.java` hoặc `MainController`).
 
-5. Sử dụng trình duyệt để truy cập các chức năng: `/khachhang`, `/chuyenbay`, `/ve`...
+5. Sử dụng trình duyệt để truy cập các chức năng: `/KhachHang`, `/ChuyenBay`, `/Ve`...
 
 ---
 
