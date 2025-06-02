@@ -11,33 +11,35 @@ class MaChuyenBay {
     }
 }
 
-class nhap_thong_tin{
+class NhapThongTin {
     public static String nhapTenChuyenBay(Scanner scanner) {
         System.out.print("Nhập tên chuyến bay: ");
         return scanner.nextLine();
     }
 
     public static int nhapSoLuongGhe(Scanner scanner) {
-        System.out.print("Nhập số lượng ghế: ");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Vui lòng nhập một số nguyên hợp lệ.");
-            scanner.next(); 
+        int soLuong;
+        while (true) {
+            System.out.print("Nhập số lượng ghế: ");
+            if (scanner.hasNextInt()) {
+                soLuong = scanner.nextInt();
+                scanner.nextLine();
+                if (soLuong > 0) return soLuong;
+                System.out.println("Số lượng ghế phải lớn hơn 0.");
+            } else {
+                System.out.println("Vui lòng nhập một số nguyên hợp lệ.");
+                scanner.next();
+            }
         }
-        int soLuong = scanner.nextInt();
-        scanner.nextLine(); 
-        return soLuong;
     }
 
     public static Date nhapNgayGioKhoiHanh(Scanner scanner) {
         System.out.print("Nhập ngày giờ khởi hành (dd-MM-yyyy HH:mm): ");
         while (true) {
-            String ngayGioKhoiHanhStr = scanner.nextLine();
-            Date ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
-            if (ngayGioKhoiHanh != null) {
-                return ngayGioKhoiHanh;
-            } else {
-                System.out.println("Định dạng ngày giờ không hợp lệ. Vui lòng nhập lại (dd-MM-yyyy HH:mm): ");
-            }
+            String input = scanner.nextLine();
+            Date date = parseDate(input);
+            if (date != null) return date;
+            System.out.println("Định dạng ngày giờ không hợp lệ. Vui lòng nhập lại (dd-MM-yyyy HH:mm): ");
         }
     }
 
@@ -45,8 +47,8 @@ class nhap_thong_tin{
         String diem;
         while (true) {
             System.out.print("Nhập điểm khởi hành: ");
-            diem = scanner.nextLine();
-            if (!diem.trim().isEmpty()) return diem;
+            diem = scanner.nextLine().trim();
+            if (!diem.isEmpty()) return diem;
             System.out.println("Điểm khởi hành không được để trống. Vui lòng nhập lại.");
         }
     }
@@ -55,8 +57,8 @@ class nhap_thong_tin{
         String diem;
         while (true) {
             System.out.print("Nhập điểm đến: ");
-            diem = scanner.nextLine();
-            if (!diem.trim().isEmpty()) return diem;
+            diem = scanner.nextLine().trim();
+            if (!diem.isEmpty()) return diem;
             System.out.println("Điểm đến không được để trống. Vui lòng nhập lại.");
         }
     }
@@ -80,8 +82,7 @@ public class ChuyenBay {
     private String diemKhoiHanh;
     private String diemDen;
 
-    public ChuyenBay() {
-    }
+    public ChuyenBay() {}
 
     public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe, String diemKhoiHanh, String diemDen) {
         this.maChuyenBay = maChuyenBay;
@@ -93,23 +94,23 @@ public class ChuyenBay {
     }
 
     public void nhap_thong_tin() {
-    Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        
-    while (true) {
-        System.out.print("Nhập mã chuyến bay (VD: VN123): ");
-        maChuyenBay = scanner.nextLine();
-        if (MaChuyenBay.kiemTraMaHopLe(maChuyenBay)) break;
-        System.out.println("Mã chuyến bay không hợp lệ. Vui lòng nhập lại.");
+        while (true) {
+            System.out.print("Nhập mã chuyến bay (VD: VN123): ");
+            maChuyenBay = scanner.nextLine().trim();
+            if (MaChuyenBay.kiemTraMaHopLe(maChuyenBay)) break;
+            System.out.println("Mã chuyến bay không hợp lệ. Vui lòng nhập lại.");
+        }
+
+        tenChuyenBay = NhapThongTin.nhapTenChuyenBay(scanner);
+        ngayGioKhoiHanh = NhapThongTin.nhapNgayGioKhoiHanh(scanner);
+        soLuongGhe = NhapThongTin.nhapSoLuongGhe(scanner);
+        diemKhoiHanh = NhapThongTin.nhapDiemKhoiHanh(scanner);
+        diemDen = NhapThongTin.nhapDiemDen(scanner);
+
+       
     }
-
-    tenChuyenBay = nhap_thong_tin.nhapTenChuyenBay(scanner);
-    ngayGioKhoiHanh = nhap_thong_tin.nhapNgayGioKhoiHanh(scanner);
-    soLuongGhe = nhap_thong_tin.nhapSoLuongGhe(scanner);
-    diemKhoiHanh = nhap_thong_tin.nhapDiemKhoiHanh(scanner);
-    diemDen = nhap_thong_tin.nhapDiemDen(scanner);
-  
-}
 
     public void hienThiThongTin() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -122,7 +123,6 @@ public class ChuyenBay {
         System.out.printf("| %-20s | %-30s |\n", "Điểm đến", diemDen);
         System.out.println("========================================================");
     }
-
 
     public String getMaChuyenBay() {
         return maChuyenBay;
