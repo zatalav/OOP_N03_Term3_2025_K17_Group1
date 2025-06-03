@@ -107,9 +107,9 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 ![UML Class Diagram](<Ảnh chụp màn hình 2025-05-23 080633.png>)
 
-![Activity Diagram - Thêm](<Ảnh chụp màn hình 2025-05-23 080430.png>)
+![Activity Diagram - Thêm](<add.png>)
 
-![Activity Diagram - Sửa](<Ảnh chụp màn hình 2025-05-23 080347-1.png>)
+![Activity Diagram - Sửa](<edit.png>)
 
-![Activity Diagram - Xóa](<Ảnh chụp màn hình 2025-05-23 080600.png>)
+![Activity Diagram - Xóa](<delete.png>)
 
