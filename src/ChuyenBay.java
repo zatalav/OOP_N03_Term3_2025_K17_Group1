@@ -4,8 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.io.Serializable;
+import java.io.Serial;
 
-public class ChuyenBay implements Identifiable{
+public class ChuyenBay implements Identifiable, Serializable {
+    private static final long serialVersionUID = 6529685098267757690L;
     @Override
     public String getMa() {
         return maChuyenBay;

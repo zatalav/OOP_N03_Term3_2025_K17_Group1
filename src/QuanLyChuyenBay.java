@@ -73,17 +73,61 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
     }
 
     public void hienThiThongTin() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        System.out.println("\n================= THÔNG TIN CHUYẾN BAY =================");
-        for (ChuyenBay cb : ds) {
-        System.out.printf("| %-20s | %-30s |\n", "Mã chuyến bay", cb.getMaChuyenBay());
-        System.out.printf("| %-20s | %-30s |\n", "Tên chuyến bay", cb.getTenChuyenBay());
-        System.out.printf("| %-20s | %-30s |\n", "Ngày giờ khởi hành", sdf.format(cb.getNgayGioKhoiHanh()));
-        System.out.printf("| %-20s | %-30d |\n", "Số lượng ghế", cb.getSoLuongGhe());
-        System.out.printf("| %-20s | %-30s |\n", "Điểm khởi hành", cb.getDiemKhoiHanh());
-        System.out.printf("| %-20s | %-30s |\n", "Điểm đến", cb.getDiemDen());
-        System.out.println("--------------------------------------------------------");
+        for (ChuyenBay chuyenBay : ds) {
+            System.out.println(chuyenBay.toString());
     }
-        System.out.println("========================================================");
+
+    public void luuDuLieu() {
+        File file = new File("./btl/chuyenbay.dat");
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream outputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            outputStream = new ObjectOutputStream(fileOutputStream);
+            // ghi danh sách chuyến bay vao file
+            outputStream.writeObject(ds);
+        } catch (IOException e) {
+            System.out.println("Ghi dữ liệu chuyến bay xảy ra lỗi");
+            e.printStackTrace();
+        }
+    }
+
+    public void docDuLieu() {
+        File file = new File("./btl/chuyenbay.dat");
+        // class hỗ trợ ghi file
+        FileInputStream fileinputStream = null;
+        ObjectInputStream inputStream = null;
+
+        // Kiểm tra file có tồn tại hay không
+        if (!file.exists()) {
+            System.out.println("File không tồn tại");
+            return;
+        }
+
+        try {
+            fileinputStream = new FileInputStream(file);
+            inputStream = new ObjectInputStream(fileinputStream);
+            // đọc danh sách chuyến bay từ file
+            List<ChuyenBay> dsChuyenBay = (List<ChuyenBay>) inputStream.readObject();
+//            danhSachChuyenBay.clear();
+            ds.addAll(dsChuyenBay);
+        } catch (Exception e) {
+            System.out.println("Đọc dữ liệu chuyến bay xảy ra lỗi");
+            e.printStackTrace();
+        }
+    }
+
+    public void xuatFileText() {
+        File file = new File("./btl/chuyenbay.txt");
+        file.getParentFile().mkdirs();
+        try (java.io.PrintWriter pw = new java.io.PrintWriter(file)) {
+            for (ChuyenBay cb : ds) {
+                pw.println(cb); // dùng toString() của ChuyenBay
+            }
+            System.out.println("Đã xuất dữ liệu chuyến bay ra file chuyenbay.txt!");
+        } catch (Exception e) {
+            System.out.println("Xuất file text thất bại!");
+            e.printStackTrace();
+        }
     }
 }
