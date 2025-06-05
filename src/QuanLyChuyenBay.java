@@ -7,85 +7,83 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class QuanLyChuyenBay {
-    private List<ChuyenBay> danhSachChuyenBay = new ArrayList<>();
+public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
-    public List<ChuyenBay> getDanhSachChuyenBay() {
-        return danhSachChuyenBay;
-    }
-
-    public void addChuyenBay(Scanner scanner) {
-        String ma = scanner.nextLine();
-        String ten = scanner.nextLine();
-        String ngayGioStr = scanner.nextLine();
-        int soGhe = Integer.parseInt(scanner.nextLine());
-        String diemKH = scanner.nextLine();
-        String diemDen = scanner.nextLine();
-
-        Date ngayGio = null;
+    // hàm định dạng giờ
+    private Date parseDate(String dateString) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         try {
-            ngayGio = new SimpleDateFormat("dd-MM-yyyy HH:mm").parse(ngayGioStr);
+            return formatter.parse(dateString);
         } catch (ParseException e) {
-            System.out.println("Sai định dạng ngày giờ!");
-        }
-
-        ChuyenBay cb = new ChuyenBay(ma, ten, ngayGio, soGhe, diemKH, diemDen);
-        danhSachChuyenBay.add(cb);
-        System.out.println("Đã thêm chuyến bay thành công!");
-    }
-
-    public void deleteChuyenBay(Scanner scanner) {
-        String ma = scanner.nextLine();
-        boolean removed = danhSachChuyenBay.removeIf(cb -> cb.getMaChuyenBay().equals(ma));
-        if (removed) {
-            System.out.println("Đã xóa chuyến bay thành công!");
-        } else {
-            System.out.println("Không tìm thấy mã chuyến bay này!");
+            System.out.println("Loi dinh dang ngay thang: " + e.getMessage());
+            return null;
         }
     }
-
-    public void showChuyenBay() {
-        if (danhSachChuyenBay.isEmpty()) {
-            System.out.println("Danh sách chuyến bay rỗng.");
-        } else {
-            int i = 1;
-            for (ChuyenBay cb : danhSachChuyenBay) {
-                System.out.println("Chuyến bay số " + i++ + ":");
-                cb.hienThiThongTin();
+// hàm nhập thông tin chuyến baybay
+    public ChuyenBay nhap(){
+        String maChuyenBay;
+        while(true){
+            System.out.println("nhap ma chuyen bay:");
+            maChuyenBay = sc.nextLine();
+            if(kiemTraMaTrung(maChuyenBay)){
+                System.out.println("Ma chuyen bay da ton tai, vui long nhap lai.");
+            } else {
+                break;
             }
         }
-    }
-
-    // Sửa chuyến bay: chỉ cập nhật thông tin, không thêm mới
-    public void editChuyenBay(Scanner scanner) {
-        String ma = scanner.nextLine();
-        for (ChuyenBay cb : danhSachChuyenBay) {
-            if (cb.getMaChuyenBay().equals(ma)) {
-                System.out.print("Nhập tên chuyến bay mới: ");
-                cb.setTenChuyenBay(scanner.nextLine());
-
-                System.out.print("Nhập ngày giờ khởi hành mới (dd-MM-yyyy HH:mm): ");
-                String ngayGioStr = scanner.nextLine();
-                try {
-                    Date ngayGio = new SimpleDateFormat("dd-MM-yyyy HH:mm").parse(ngayGioStr);
-                    cb.setNgayGioKhoiHanh(ngayGio);
-                } catch (ParseException e) {
-                    System.out.println("Sai định dạng ngày giờ! Giữ nguyên cũ.");
+        System.out.println("Nhap ten chuyen bay: ");
+        String tenChuyenbay = sc.nextLine();
+        Date ngayGioKhoiHanh=null;
+        do {
+            System.out.println("Nhap ngay gio khoi hanh (dd/MM/yyyy hh:mm): ");
+            String ngayGioKhoiHanhStr = sc.nextLine();
+            ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
+        } while (ngayGioKhoiHanh == null);
+        System.out.println("Nhap so ghe trong: ");
+        int soLuongGhe;
+        while (true) {
+            try {
+                soLuongGhe = Integer.parseInt(sc.nextLine());
+                if (soLuongGhe < 0) {
+                    System.out.println("So ghe trong phai la so duong. Vui long nhap lai.");
+                } else {
+                    break;
                 }
-
-                System.out.print("Nhập số lượng ghế mới: ");
-                cb.setSoLuongGhe(Integer.parseInt(scanner.nextLine()));
-
-                System.out.print("Nhập điểm khởi hành mới: ");
-                cb.setDiemKhoiHanh(scanner.nextLine());
-
-                System.out.print("Nhập điểm đến mới: ");
-                cb.setDiemDen(scanner.nextLine());
-
-                System.out.println("Đã cập nhật chuyến bay thành công!");
-                return;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhap sai dinh dang, vui long nhap lai so ghe trong: ");
             }
         }
-        System.out.println("Không tìm thấy mã chuyến bay này để cập nhật.");
+        System.out.println("Nhap diem khoi hanh: ");
+        String diemKhoiHanh = sc.nextLine();
+        System.out.println("Nhap diem den: ");
+        String diemDen = sc.nextLine();
+        return new ChuyenBay(maChuyenBay, tenChuyenbay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen);
+    }
+
+    public void them(){
+        add();
+    }
+
+    public void sua(String maChuyenBay){
+        edit();
+    }
+
+    public void xoa(String maChuyenBay){
+        delete();
+    }
+
+    public void hienThiThongTin() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        System.out.println("\n================= THÔNG TIN CHUYẾN BAY =================");
+        for (ChuyenBay cb : ds) {
+        System.out.printf("| %-20s | %-30s |\n", "Mã chuyến bay", cb.getMaChuyenBay());
+        System.out.printf("| %-20s | %-30s |\n", "Tên chuyến bay", cb.getTenChuyenBay());
+        System.out.printf("| %-20s | %-30s |\n", "Ngày giờ khởi hành", sdf.format(cb.getNgayGioKhoiHanh()));
+        System.out.printf("| %-20s | %-30d |\n", "Số lượng ghế", cb.getSoLuongGhe());
+        System.out.printf("| %-20s | %-30s |\n", "Điểm khởi hành", cb.getDiemKhoiHanh());
+        System.out.printf("| %-20s | %-30s |\n", "Điểm đến", cb.getDiemDen());
+        System.out.println("--------------------------------------------------------");
+    }
+        System.out.println("========================================================");
     }
 }
