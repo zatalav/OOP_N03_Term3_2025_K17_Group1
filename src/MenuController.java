@@ -74,10 +74,10 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : QuanLyKhachHang.add(sc);break;
-                case 2 : QuanLyKhachHang.show();break;
-                case 3 : quanLyKhachHang.editKhachHang(sc);break;
-                case 4 : quanLyKhachHang.deleteKhachHang(sc);break;
+                case 1 : quanLyKhachHang.add();break;
+                case 2 : quanLyKhachHang.show();break;
+                case 3 : quanLyKhachHang.edit();break;
+                case 4 : quanLyKhachHang.delete();break;
                 case 0 : System.out.println("🔙 Trở lại menu chính.");break;
                 default : System.out.println("Lựa chọn không hợp lệ.");break;
             }
@@ -98,10 +98,10 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : quanLyChuyenBay.addChuyenBay(sc); break;
-                case 2 : quanLyChuyenBay.showChuyenBay();break;
-                case 3 : quanLyChuyenBay.deleteChuyenBay(sc);break;
-                case 4 : quanLyChuyenBay.editChuyenBay(sc);break;
+                case 1 : quanLyChuyenBay.them(); break;
+                case 2 : quanLyChuyenBay.hienThiThongTin();break;
+                case 3 : quanLyChuyenBay.xoa(null);;break;
+                case 4 : quanLyChuyenBay.sua(null);;break;
                 case 0 : System.out.println("🔙 Trở lại menu chính.");break;
                 default : System.out.println("Lựa chọn không hợp lệ.");break;
             }
