@@ -74,8 +74,8 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : quanLyKhachHang.addKhachHang(sc);break;
-                case 2 : quanLyKhachHang.showKhachHang();break;
+                case 1 : QuanLyKhachHang.add(sc);break;
+                case 2 : QuanLyKhachHang.show();break;
                 case 3 : quanLyKhachHang.editKhachHang(sc);break;
                 case 4 : quanLyKhachHang.deleteKhachHang(sc);break;
                 case 0 : System.out.println("🔙 Trở lại menu chính.");break;

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import src.KhachHang;
+
 public class KhachHangList {
 
     ArrayList<KhachHang> kh = new ArrayList<>();
@@ -9,7 +11,7 @@ public class KhachHangList {
         return kh;
     }
 
-    public ArrayList<KhachHang> getEditKhachHang(String hoTenMoi, int maKhachHang) {
+    public ArrayList<KhachHang> getEditKhachHang(String hoTenMoi, String maKhachHang) {
         for (int i = 0; i < kh.size(); i++) {
             if (kh.get(i).maKhachHang == maKhachHang) {
                 System.out.println("true");
@@ -19,7 +21,7 @@ public class KhachHangList {
         return kh;
     }
 
-    public ArrayList<KhachHang> getDeleteKhachHang(int maKhachHang) {
+    public ArrayList<KhachHang> getDeleteKhachHang(String maKhachHang) {
         for (int i = 0; i < kh.size(); i++) {
             if (kh.get(i).maKhachHang == maKhachHang) {
                 kh.remove(i);

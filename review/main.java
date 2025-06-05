@@ -1,4 +1,4 @@
-package baitap1;
+
 public class main {
     public static void main(String[] args) {
         Flower f1 = new Flower();

@@ -19,7 +19,8 @@ class nhap_thong_tin_khach_hang {
         System.out.print("Nhập email: ");
         while (true) {
             String email = scanner.nextLine();
-            if (kiemTraEmail(email)) return email;
+            if (kiemTraEmail(email))
+                return email;
             System.out.print("Email không hợp lệ. Nhập lại: ");
         }
     }
@@ -28,7 +29,8 @@ class nhap_thong_tin_khach_hang {
         System.out.print("Nhập số điện thoại: ");
         while (true) {
             String sdt = scanner.nextLine();
-            if (kiemTraSoDienThoai(sdt)) return sdt;
+            if (kiemTraSoDienThoai(sdt))
+                return sdt;
             System.out.print("SĐT không hợp lệ. Nhập lại: ");
         }
     }
@@ -43,13 +45,19 @@ class nhap_thong_tin_khach_hang {
     }
 }
 
-public class KhachHang {
-    private String maKhachHang;
-    private String hoTen;
+public class KhachHang implements Identifiable {
+    @Override
+    public String getMa() {
+        return maKhachHang;
+    }
+
+    public String maKhachHang;
+    public String hoTen;
     private String email;
     private String soDienThoai;
 
-    public KhachHang() {}
+    public KhachHang() {
+    }
 
     public KhachHang(String ma, String ten, String email, String sdt) {
         this.maKhachHang = ma;
@@ -64,7 +72,8 @@ public class KhachHang {
         while (true) {
             System.out.print("Nhập mã khách hàng (VD: KH001): ");
             maKhachHang = scanner.nextLine();
-            if (MaKhachHang.kiemTraMaHopLe(maKhachHang)) break;
+            if (MaKhachHang.kiemTraMaHopLe(maKhachHang))
+                break;
             System.out.println("Mã khách hàng không hợp lệ. Vui lòng nhập lại.");
         }
 
@@ -101,4 +110,9 @@ public class KhachHang {
     public void setHoTen(String hoTen) {
         this.hoTen = hoTen;
     }
+
+    public void setMaKhachHang() {
+        this.maKhachHang = maKhachHang;
+    }
+
 }
