@@ -9,6 +9,12 @@ public abstract class manager<M extends Identifiable> {
     protected Scanner sc = new Scanner(System.in);
     protected abstract M nhap();
     
+    public void show() {
+        for(M m : ds) {
+            System.out.println(m);
+        }
+    }
+
     public void add(){
     System.out.println("Nhap thong tin moi:");
     M m = nhap();
