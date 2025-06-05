@@ -111,8 +111,18 @@ public class KhachHang implements Identifiable {
         this.hoTen = hoTen;
     }
 
-    public void setMaKhachHang() {
+    public void setMaKhachHang(String maKhachHang) {
         this.maKhachHang = maKhachHang;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
+    }
+
+    
 
 }

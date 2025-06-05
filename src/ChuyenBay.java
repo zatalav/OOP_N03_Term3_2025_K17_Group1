@@ -5,7 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class ChuyenBay {
+public class ChuyenBay implements Identifiable{
+    @Override
+    public String getMa() {
+        return maChuyenBay;
+    }
+
     private String maChuyenBay;
     private String tenChuyenBay;
     private Date ngayGioKhoiHanh;
