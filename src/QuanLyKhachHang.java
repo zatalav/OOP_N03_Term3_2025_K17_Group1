@@ -1,52 +1,92 @@
 package src;
 
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class QuanLyKhachHang extends manager<KhachHang> {
 
-    @Override
-    protected KhachHang nhap() {
-        KhachHang kh = new KhachHang();
-        kh.nhapThongTin();
-        return kh;
+    public KhachHang nhap() {
+        String ma;
+        while (true) {
+            System.out.print("Nhập mã khách hàng: ");
+            ma = sc.nextLine();
+            if (kiemTraMaTrung(ma)) {
+                System.out.println("Mã khách hàng đã tồn tại, vui lòng nhập lại.");
+            } else {
+                break;
+            }
+        }
+
+        System.out.print("Nhập họ tên khách hàng: ");
+        String hoTen = sc.nextLine();
+
+        System.out.print("Nhập email: ");
+        String email = sc.nextLine();
+
+        System.out.print("Nhập số điện thoại: ");
+        String sdt = sc.nextLine();
+
+        return new KhachHang(ma, hoTen, email, sdt);
     }
 
-    public static void main(String[] args) {
-        QuanLyKhachHang ql = new QuanLyKhachHang();
-        Scanner sc = new Scanner(System.in);
-        int chon;
+    public void them() {
+        add();
+    }
 
-        do {
-            System.out.println("\n===== MENU =====");
-            System.out.println("1. Thêm khách hàng");
-            System.out.println("2. Sửa khách hàng");
-            System.out.println("3. Xóa khách hàng");
-            System.out.println("0. Thoát");
-            System.out.print("Chọn: ");
-            chon = Integer.parseInt(sc.nextLine());
+    public void sua(String ma) {
+        edit();
+    }
 
-            switch (chon) {
-                case 1:
-                    ql.add();
-                    break;
-                case 2:
-                    System.out.print("Nhập mã khách hàng cần sửa: ");
-                    ql.edit();
-                    break;
-                case 3:
-                    System.out.print("Nhập mã khách hàng cần xóa: ");
-                    ql.delete();
-                    break;
-                case 0:
-                    System.out.println("Thoát chương trình.");
-                    break;
-                default:
-                    System.out.println("Lựa chọn không hợp lệ!");
+    public void xoa(String ma) {
+        delete();
+    }
+
+    public void hienThiThongTin() {
+        for (KhachHang kh : ds) {
+            System.out.println(kh.toString());
+        }
+    }
+
+    public void luuDuLieu() {
+        File file = new File("./btl/khachhang.dat");
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(ds);
+            System.out.println("Đã lưu danh sách khách hàng thành công!");
+        } catch (IOException e) {
+            System.out.println("Lỗi khi lưu dữ liệu khách hàng:");
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void docDuLieu() {
+        File file = new File("./btl/khachhang.dat");
+        if (!file.exists()) {
+            System.out.println("File không tồn tại!");
+            return;
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            List<KhachHang> dsDoc = (List<KhachHang>) ois.readObject();
+            ds.clear();
+            ds.addAll(dsDoc);
+            System.out.println("Đã đọc dữ liệu khách hàng thành công!");
+        } catch (Exception e) {
+            System.out.println("Lỗi khi đọc dữ liệu khách hàng:");
+            e.printStackTrace();
+        }
+    }
+
+    public void xuatFileText() {
+        File file = new File("./btl/khachhang.txt");
+        file.getParentFile().mkdirs();
+        try (PrintWriter pw = new PrintWriter(file)) {
+            for (KhachHang kh : ds) {
+                pw.println(kh); // dùng toString()
             }
-
-        } while (chon != 0);
-
-        ql.close();
-        sc.close();
+            System.out.println("Đã xuất dữ liệu khách hàng ra file khachhang.txt!");
+        } catch (IOException e) {
+            System.out.println("Xuất file text thất bại!");
+            e.printStackTrace();
+        }
     }
 }
