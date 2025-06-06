@@ -23,13 +23,14 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             return null;
         }
     }
-// hàm nhập thông tin chuyến baybay
-    public ChuyenBay nhap(){
+
+    // hàm nhập thông tin chuyến bay
+    public ChuyenBay nhap() {
         String maChuyenBay;
-        while(true){
+        while (true) {
             System.out.println("nhap ma chuyen bay:");
             maChuyenBay = sc.nextLine();
-            if(kiemTraMaTrung(maChuyenBay)){
+            if (kiemTraMaTrung(maChuyenBay)) {
                 System.out.println("Ma chuyen bay da ton tai, vui long nhap lai.");
             } else {
                 break;
@@ -37,7 +38,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         }
         System.out.println("Nhap ten chuyen bay: ");
         String tenChuyenbay = sc.nextLine();
-        Date ngayGioKhoiHanh=null;
+        Date ngayGioKhoiHanh = null;
         do {
             System.out.println("Nhap ngay gio khoi hanh (dd/MM/yyyy hh:mm): ");
             String ngayGioKhoiHanhStr = sc.nextLine();
@@ -64,15 +65,15 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         return new ChuyenBay(maChuyenBay, tenChuyenbay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen);
     }
 
-    public void them(){
+    public void them() {
         add();
     }
 
-    public void sua(String maChuyenBay){
+    public void sua(String maChuyenBay) {
         edit();
     }
 
-    public void xoa(String maChuyenBay){
+    public void xoa(String maChuyenBay) {
         delete();
     }
 
@@ -82,6 +83,15 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         }
     }
 
+    public ChuyenBay timTheoMa(String ma) {
+        for (ChuyenBay cb : ds) {
+            if (cb.getMaChuyenBay().equalsIgnoreCase(ma)) {
+                return cb;
+            }
+        }
+        return null;
+    }
+
     public void luuDuLieu() {
         File file = new File("./btl/chuyenbay.dat");
         FileOutputStream fileOutputStream = null;
@@ -89,7 +99,6 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         try {
             fileOutputStream = new FileOutputStream(file);
             outputStream = new ObjectOutputStream(fileOutputStream);
-            // ghi danh sách chuyến bay vao file
             outputStream.writeObject(ds);
         } catch (IOException e) {
             System.out.println("Ghi dữ liệu chuyến bay xảy ra lỗi");
@@ -97,14 +106,12 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         }
     }
 
-    @SuppressWarnings({ "unchecked", "resource" })
+    @SuppressWarnings({"unchecked", "resource"})
     public void docDuLieu() {
         File file = new File("./btl/chuyenbay.dat");
-        // class hỗ trợ ghi file
         FileInputStream fileinputStream = null;
         ObjectInputStream inputStream = null;
 
-        // Kiểm tra file có tồn tại hay không
         if (!file.exists()) {
             System.out.println("File không tồn tại");
             return;
@@ -113,9 +120,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         try {
             fileinputStream = new FileInputStream(file);
             inputStream = new ObjectInputStream(fileinputStream);
-            // đọc danh sách chuyến bay từ file
             List<ChuyenBay> dsChuyenBay = (List<ChuyenBay>) inputStream.readObject();
-//            danhSachChuyenBay.clear();
             ds.addAll(dsChuyenBay);
         } catch (Exception e) {
             System.out.println("Đọc dữ liệu chuyến bay xảy ra lỗi");
@@ -128,7 +133,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         file.getParentFile().mkdirs();
         try (java.io.PrintWriter pw = new java.io.PrintWriter(file)) {
             for (ChuyenBay cb : ds) {
-                pw.println(cb); // dùng toString() của ChuyenBay
+                pw.println(cb);
             }
             System.out.println("Đã xuất dữ liệu chuyến bay ra file chuyenbay.txt!");
         } catch (Exception e) {

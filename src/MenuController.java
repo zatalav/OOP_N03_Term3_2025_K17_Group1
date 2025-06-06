@@ -9,8 +9,8 @@ public class MenuController {
     private QuanLyKhachHang quanLyKhachHang;
 
     public MenuController() {
-        quanLyVe = new QuanLyVe();
-        quanLyChuyenBay = new QuanLyChuyenBay();
+        quanLyChuyenBay = new QuanLyChuyenBay(); // 🟢 Tạo trước
+        quanLyVe = new QuanLyVe(quanLyChuyenBay); // 🟢 Truyền vào QuanLyVe
         quanLyKhachHang = new QuanLyKhachHang();
     }
 
@@ -51,23 +51,17 @@ public class MenuController {
 
             switch (chon) {
                 case 1 : 
-                    quanLyVe.addVe(sc); // Thêm vé
-                    break;
+                    quanLyVe.addVe(sc); break;
                 case 2 : 
-                    quanLyVe.showVe(); // Hiển thị tất cả vé
-                    break;
+                    quanLyVe.showVe(); break;
                 case 3 : 
-                    quanLyVe.editVe(sc); // Sửa vé
-                    break;
+                    quanLyVe.editVe(sc); break;
                 case 4 : 
-                    quanLyVe.deleteVe(sc); // Xóa vé
-                    break;
+                    quanLyVe.deleteVe(sc); break;
                 case 0 : 
-                    System.out.println("🔙 Trở lại menu chính.");
-                    break;
+                    System.out.println("🔙 Trở lại menu chính."); break;
                 default : 
-                    System.out.println("Lựa chọn không hợp lệ.");
-                    break;
+                    System.out.println("Lựa chọn không hợp lệ."); break;
             }
         } while (chon != 0);
     }
@@ -86,24 +80,12 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : 
-                    quanLyKhachHang.add(); // Thêm khách hàng
-                    break;
-                case 2 : 
-                    quanLyKhachHang.show(); // Hiển thị khách hàng
-                    break;
-                case 3 : 
-                    quanLyKhachHang.edit(); // Sửa khách hàng
-                    break;
-                case 4 : 
-                    quanLyKhachHang.delete(); // Xóa khách hàng
-                    break;
-                case 0 : 
-                    System.out.println("🔙 Trở lại menu chính.");
-                    break;
-                default : 
-                    System.out.println("Lựa chọn không hợp lệ.");
-                    break;
+                case 1 : quanLyKhachHang.add(); break;
+                case 2 : quanLyKhachHang.show(); break;
+                case 3 : quanLyKhachHang.edit(); break;
+                case 4 : quanLyKhachHang.delete(); break;
+                case 0 : System.out.println("🔙 Trở lại menu chính."); break;
+                default : System.out.println("Lựa chọn không hợp lệ."); break;
             }
         } while (chon != 0);
     }
@@ -122,24 +104,12 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : 
-                    quanLyChuyenBay.them(); // Thêm chuyến bay
-                    break;
-                case 2 : 
-                    quanLyChuyenBay.hienThiThongTin(); // Hiển thị tất cả chuyến bay
-                    break;
-                case 3 : 
-                    quanLyChuyenBay.edit(); // Sửa chuyến bay
-                    break;
-                case 4 : 
-                    quanLyChuyenBay.delete(); // Xóa chuyến bay
-                    break;
-                case 0 : 
-                    System.out.println("🔙 Trở lại menu chính.");
-                    break;
-                default : 
-                    System.out.println("Lựa chọn không hợp lệ.");
-                    break;
+                case 1 : quanLyChuyenBay.them(); break;
+                case 2 : quanLyChuyenBay.hienThiThongTin(); break;
+                case 3 : quanLyChuyenBay.edit(); break;
+                case 4 : quanLyChuyenBay.delete(); break;
+                case 0 : System.out.println("🔙 Trở lại menu chính."); break;
+                default : System.out.println("Lựa chọn không hợp lệ."); break;
             }
         } while (chon != 0);
     }

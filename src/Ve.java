@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 class MaVe {
     public static boolean kiemTraMaHopLe(String ma) {
-        return ma.matches("^[A-Z]{2}\\d{5}$"); 
+        return ma.matches("^[A-Z]{2}\\d{5}$");
     }
 }
 
@@ -47,17 +47,11 @@ public class Ve {
     private String tenHanhKhach;
     private Date ngayDatVe;
     private double giaVe;
+    private ChuyenBay chuyenBay;
     private double giaGoc;
     private int soLuongGhe;
 
     public Ve() {}
-
-    public Ve(String maVe, String tenHanhKhach, Date ngayDatVe, double giaVe) {
-        this.maVe = maVe;
-        this.tenHanhKhach = tenHanhKhach;
-        this.ngayDatVe = ngayDatVe;
-        this.giaVe = giaVe;
-    }
 
     public String getMaVe() {
         return maVe;
@@ -99,9 +93,16 @@ public class Ve {
         return soLuongGhe;
     }
 
-    public void nhapThongTin() {
-        Scanner scanner = new Scanner(System.in);
+    public ChuyenBay getChuyenBay() {
+        return chuyenBay;
+    }
 
+    public void setChuyenBay(ChuyenBay chuyenBay) {
+        this.chuyenBay = chuyenBay;
+    }
+
+    // ✅ Sửa: Thêm Scanner và QuanLyChuyenBay để nhập đúng liên kết
+    public void nhapThongTin(Scanner scanner, QuanLyChuyenBay qlChuyenBay) {
         while (true) {
             System.out.print("Nhập mã vé (VD: VE12345): ");
             maVe = scanner.nextLine();
@@ -112,7 +113,16 @@ public class Ve {
         tenHanhKhach = nhap_thong_tin_ve.nhapTenHanhKhach(scanner);
         ngayDatVe = nhap_thong_tin_ve.nhapNgayDatVe(scanner);
 
-        // Nhập giá gốc
+        // ✅ Nhập mã chuyến bay và tìm chuyến bay tương ứng
+        while (true) {
+            System.out.print("Nhập mã chuyến bay: ");
+            String maChuyenBay = scanner.nextLine();
+            chuyenBay = qlChuyenBay.timTheoMa(maChuyenBay);
+            if (chuyenBay != null) break;
+            System.out.println("Không tìm thấy chuyến bay. Vui lòng nhập lại.");
+        }
+
+        // ✅ Nhập giá gốc
         System.out.print("Nhập giá gốc cho 1 ghế: ");
         while (!scanner.hasNextDouble()) {
             System.out.println("Vui lòng nhập số hợp lệ.");
@@ -120,16 +130,15 @@ public class Ve {
         }
         giaGoc = scanner.nextDouble();
 
-        // Nhập số lượng ghế
+        // ✅ Nhập số lượng ghế
         System.out.print("Nhập số lượng ghế cần đặt: ");
         while (!scanner.hasNextInt()) {
             System.out.println("Vui lòng nhập số nguyên hợp lệ.");
             scanner.next();
         }
         soLuongGhe = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine(); // clear buffer
 
-        
         giaVe = TinhGiaVe.tinhTongGiaVe(giaGoc, soLuongGhe);
     }
 
@@ -142,6 +151,16 @@ public class Ve {
         System.out.printf("| %-20s | %-30.2f |\n", "Giá gốc mỗi ghế", giaGoc);
         System.out.printf("| %-20s | %-30d |\n", "Số lượng ghế", soLuongGhe);
         System.out.printf("| %-20s | %-30.2f |\n", "Tổng giá vé", giaVe);
+
+        if (chuyenBay != null) {
+            System.out.println("--------------- THÔNG TIN CHUYẾN BAY ---------------");
+            System.out.printf("| %-20s | %-30s |\n", "Tên chuyến bay", chuyenBay.getTenChuyenBay());
+            System.out.printf("| %-20s | %-30s |\n", "Khởi hành", chuyenBay.getDiemKhoiHanh());
+            System.out.printf("| %-20s | %-30s |\n", "Điểm đến", chuyenBay.getDiemDen());
+        } else {
+            System.out.println("❗ Không có thông tin chuyến bay.");
+        }
+
         System.out.println("====================================================");
     }
 }
