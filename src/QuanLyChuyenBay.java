@@ -1,8 +1,6 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -81,6 +79,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
     public void hienThiThongTin() {
         for (ChuyenBay chuyenBay : ds) {
             System.out.println(chuyenBay.toString());
+        }
     }
 
     public void luuDuLieu() {
@@ -98,6 +97,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         }
     }
 
+    @SuppressWarnings({ "unchecked", "resource" })
     public void docDuLieu() {
         File file = new File("./btl/chuyenbay.dat");
         // class hỗ trợ ghi file
