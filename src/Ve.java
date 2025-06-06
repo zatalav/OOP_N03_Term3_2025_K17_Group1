@@ -1,5 +1,6 @@
 package src;
 
+import src.TinhGiaVe;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,17 +31,6 @@ class nhap_thong_tin_ve {
         }
     }
 
-    public static double nhapGiaVe(Scanner scanner) {
-        System.out.print("Nhập giá vé: ");
-        while (!scanner.hasNextDouble()) {
-            System.out.println("Vui lòng nhập số hợp lệ.");
-            scanner.next(); 
-        }
-        double gia = scanner.nextDouble();
-        scanner.nextLine(); 
-        return gia;
-    }
-
     private static Date parseDate(String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setLenient(false);
@@ -57,6 +47,8 @@ public class Ve {
     private String tenHanhKhach;
     private Date ngayDatVe;
     private double giaVe;
+    private double giaGoc;
+    private int soLuongGhe;
 
     public Ve() {}
 
@@ -99,6 +91,14 @@ public class Ve {
         this.giaVe = giaVe;
     }
 
+    public double getGiaGoc() {
+        return giaGoc;
+    }
+
+    public int getSoLuongGhe() {
+        return soLuongGhe;
+    }
+
     public void nhapThongTin() {
         Scanner scanner = new Scanner(System.in);
 
@@ -111,7 +111,26 @@ public class Ve {
 
         tenHanhKhach = nhap_thong_tin_ve.nhapTenHanhKhach(scanner);
         ngayDatVe = nhap_thong_tin_ve.nhapNgayDatVe(scanner);
-        giaVe = nhap_thong_tin_ve.nhapGiaVe(scanner);
+
+        // Nhập giá gốc
+        System.out.print("Nhập giá gốc cho 1 ghế: ");
+        while (!scanner.hasNextDouble()) {
+            System.out.println("Vui lòng nhập số hợp lệ.");
+            scanner.next();
+        }
+        giaGoc = scanner.nextDouble();
+
+        // Nhập số lượng ghế
+        System.out.print("Nhập số lượng ghế cần đặt: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Vui lòng nhập số nguyên hợp lệ.");
+            scanner.next();
+        }
+        soLuongGhe = scanner.nextInt();
+        scanner.nextLine(); 
+
+        
+        giaVe = TinhGiaVe.tinhTongGiaVe(giaGoc, soLuongGhe);
     }
 
     public void hienThiThongTin() {
@@ -120,7 +139,9 @@ public class Ve {
         System.out.printf("| %-20s | %-30s |\n", "Mã vé", maVe);
         System.out.printf("| %-20s | %-30s |\n", "Tên hành khách", tenHanhKhach);
         System.out.printf("| %-20s | %-30s |\n", "Ngày đặt vé", sdf.format(ngayDatVe));
-        System.out.printf("| %-20s | %-30.2f |\n", "Giá vé", giaVe);
+        System.out.printf("| %-20s | %-30.2f |\n", "Giá gốc mỗi ghế", giaGoc);
+        System.out.printf("| %-20s | %-30d |\n", "Số lượng ghế", soLuongGhe);
+        System.out.printf("| %-20s | %-30.2f |\n", "Tổng giá vé", giaVe);
         System.out.println("====================================================");
     }
 }
