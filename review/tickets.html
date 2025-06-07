@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách vé</title>
+</head>
+<body>
+<h1>Danh sách vé</h1>
+<table border="1">
+    <tr><th>Mã vé</th><th>Tên KH</th><th>Mã chuyến bay</th></tr>
+    <tr th:each="t : ${tickets}">
+        <td th:text="${t.id}"></td>
+        <td th:text="${t.customerName}"></td>
+        <td th:text="${t.flight.code}"></td>
+    </tr>
+</table>
+</body>
+</html>

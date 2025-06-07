@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt vé máy bay</title>
+</head>
+<body>
+<h1>Đặt vé máy bay</h1>
+<form th:action="@{/tickets/save}" th:object="${ticket}" method="post">
+    Tên khách hàng: <input type="text" th:field="*{customerName}"/><br/>
+    Chuyến bay:
+    <select th:field="*{flight.id}">
+        <option th:each="f : ${flights}" th:value="${f.id}" th:text="${f.code}"></option>
+    </select><br/>
+    <button type="submit">Xác nhận đặt vé</button>
+</form>
+</body>
+</html>

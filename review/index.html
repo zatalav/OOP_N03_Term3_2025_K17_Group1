@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý đặt vé máy bay</title>
+</head>
+<body>
+    <h1>Trang chủ quản lý đặt vé máy bay</h1>
+    <ul>
+        <li><a th:href="@{/flights}">Danh sách chuyến bay</a></li>
+        <li><a th:href="@{/tickets}">Danh sách vé</a></li>
+        <li><a th:href="@{/flights/add}">Thêm chuyến bay</a></li>
+        <li><a th:href="@{/tickets/book}">Đặt vé</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý đặt vé máy bay</title>
+</head>
+<body>
+    <h1>Trang chủ quản lý đặt vé máy bay</h1>
+    <ul>
+        <li><a th:href="@{/flights}">Danh sách chuyến bay</a></li>
+        <li><a th:href="@{/tickets}">Danh sách vé</a></li>
+        <li><a th:href="@{/flights/add}">Thêm chuyến bay</a></li>
+        <li><a th:href="@{/tickets/book}">Đặt vé</a></li>
+    </ul>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách chuyến bay</title>
+</head>
+<body>
+<h1>Danh sách chuyến bay</h1>
+<a th:href="@{/flights/add}">+ Thêm chuyến bay</a>
+<table border="1">
+    <tr><th>Mã</th><th>Điểm đi</th><th>Điểm đến</th><th>Ngày</th></tr>
+    <tr th:each="f : ${flights}">
+        <td th:text="${f.code}"></td>
+        <td th:text="${f.origin}"></td>
+        <td th:text="${f.destination}"></td>
+        <td th:text="${f.date}"></td>
+    </tr>
+</table>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm chuyến bay</title>
+</head>
+<body>
+<h1>Thêm chuyến bay</h1>
+<form th:action="@{/flights/save}" th:object="${flight}" method="post">
+    Mã: <input type="text" th:field="*{code}"/><br/>
+    Điểm đi: <input type="text" th:field="*{origin}"/><br/>
+    Điểm đến: <input type="text" th:field="*{destination}"/><br/>
+    Ngày: <input type="date" th:field="*{date}"/><br/>
+    <button type="submit">Lưu</button>
+</form>
+</body>
+</html>
+
+<!-- templates/tickets.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách vé</title>
+</head>
+<body>
+<h1>Danh sách vé</h1>
+<table border="1">
+    <tr><th>Mã vé</th><th>Tên KH</th><th>Mã chuyến bay</th></tr>
+    <tr th:each="t : ${tickets}">
+        <td th:text="${t.id}"></td>
+        <td th:text="${t.customerName}"></td>
+        <td th:text="${t.flight.code}"></td>
+    </tr>
+</table>
+</body>
+</html>
+
+<!-- templates/book_ticket.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt vé máy bay</title>
+</head>
+<body>
+<h1>Đặt vé máy bay</h1>
+<form th:action="@{/tickets/save}" th:object="${ticket}" method="post">
+    Tên khách hàng: <input type="text" th:field="*{customerName}"/><br/>
+    Chuyến bay:
+    <select th:field="*{flight.id}">
+        <option th:each="f : ${flights}" th:value="${f.id}" th:text="${f.code}"></option>
+    </select><br/>
+    <button type="submit">Xác nhận đặt vé</button>
+</form>
+</body>
+</html>

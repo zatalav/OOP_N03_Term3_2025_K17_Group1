@@ -1,36 +1,20 @@
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>📋 Danh sách chuyến bay</h2>
-    <a class="btn btn-success" href="/flights/add">+ Thêm chuyến bay</a>
-</div>
-
-<table class="table table-bordered table-striped">
-    <thead class="table-primary">
-        <tr>
-            <th>Mã</th>
-            <th>Tên</th>
-            <th>Khởi hành</th>
-            <th>Điểm đi</th>
-            <th>Điểm đến</th>
-            <th>Ghế</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="f : ${flights}">
-            <td th:text="${f.id}"></td>
-            <td th:text="${f.name}"></td>
-            <td th:text="${#dates.format(f.departureTime, 'dd-MM-yyyy HH:mm')}"></td>
-            <td th:text="${f.origin}"></td>
-            <td th:text="${f.destination}"></td>
-            <td th:text="${f.seats}"></td>
-            <td>
-                <a class="btn btn-warning btn-sm" th:href="@{'/flights/edit/' + ${f.id}}">✏️</a>
-                <a class="btn btn-danger btn-sm" th:href="@{'/flights/delete/' + ${f.id}}">🗑️</a>
-            </td>
-        </tr>
-    </tbody>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách chuyến bay</title>
+</head>
+<body>
+<h1>Danh sách chuyến bay</h1>
+<a th:href="@{/flights/add}">+ Thêm chuyến bay</a>
+<table border="1">
+    <tr><th>Mã</th><th>Điểm đi</th><th>Điểm đến</th><th>Ngày</th></tr>
+    <tr th:each="f : ${flights}">
+        <td th:text="${f.code}"></td>
+        <td th:text="${f.origin}"></td>
+        <td th:text="${f.destination}"></td>
+        <td th:text="${f.date}"></td>
+    </tr>
 </table>
+</body>
 </html>
