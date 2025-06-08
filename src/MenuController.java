@@ -27,11 +27,21 @@ public class MenuController {
             sc.nextLine();
 
             switch (luaChon) {
-                case 1 : showChuyenBayMenu(sc); break;
-                case 2 : showVeMenu(sc); break;
-                case 3 : showKhachHangMenu(sc); break;
-                case 0 : System.out.println("Thoát chương trình."); break;
-                default : System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại."); break;
+                case 1:
+                    showChuyenBayMenu(sc);
+                    break;
+                case 2:
+                    showVeMenu(sc);
+                    break;
+                case 3:
+                    showKhachHangMenu(sc);
+                    break;
+                case 0:
+                    System.out.println("Thoát chương trình.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+                    break;
             }
         } while (luaChon != 0);
     }
@@ -50,18 +60,24 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : 
-                    quanLyVe.addVe(sc); break;
-                case 2 : 
-                    quanLyVe.showVe(); break;
-                case 3 : 
-                    quanLyVe.editVe(sc); break;
-                case 4 : 
-                    quanLyVe.deleteVe(sc); break;
-                case 0 : 
-                    System.out.println("🔙 Trở lại menu chính."); break;
-                default : 
-                    System.out.println("Lựa chọn không hợp lệ."); break;
+                case 1:
+                    quanLyVe.addVe(sc);
+                    break;
+                case 2:
+                    quanLyVe.showVe();
+                    break;
+                case 3:
+                    quanLyVe.editVe(sc);
+                    break;
+                case 4:
+                    quanLyVe.deleteVe(sc);
+                    break;
+                case 0:
+                    System.out.println("🔙 Trở lại menu chính.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ.");
+                    break;
             }
         } while (chon != 0);
     }
@@ -77,15 +93,31 @@ public class MenuController {
             System.out.println("0. Quay lại menu chính");
             System.out.print("Chọn chức năng: ");
             chon = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); // bỏ dòng thừa sau nextInt
 
             switch (chon) {
-                case 1 : quanLyKhachHang.add(); break;
-                case 2 : quanLyKhachHang.show(); break;
-                case 3 : quanLyKhachHang.edit(); break;
-                case 4 : quanLyKhachHang.delete(); break;
-                case 0 : System.out.println("🔙 Trở lại menu chính."); break;
-                default : System.out.println("Lựa chọn không hợp lệ."); break;
+                case 1:
+                    quanLyKhachHang.add();
+                    break;
+                case 2:
+                    quanLyKhachHang.show();
+                    break;
+                case 3:
+                    System.out.print("Nhập mã khách hàng cần sửa: ");
+                    String maSua = sc.nextLine();
+                    quanLyKhachHang.sua(maSua);
+                    break;
+                case 4:
+                    System.out.print("Nhập mã khách hàng cần xoá: ");
+                    String maXoa = sc.nextLine();
+                    quanLyKhachHang.xoa(maXoa);
+                    break;
+                case 0:
+                    System.out.println("🔙 Trở lại menu chính.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ.");
+                    break;
             }
         } while (chon != 0);
     }
@@ -104,12 +136,24 @@ public class MenuController {
             sc.nextLine();
 
             switch (chon) {
-                case 1 : quanLyChuyenBay.them(); break;
-                case 2 : quanLyChuyenBay.hienThiThongTin(); break;
-                case 3 : quanLyChuyenBay.edit(); break;
-                case 4 : quanLyChuyenBay.delete(); break;
-                case 0 : System.out.println("🔙 Trở lại menu chính."); break;
-                default : System.out.println("Lựa chọn không hợp lệ."); break;
+                case 1:
+                    quanLyChuyenBay.them();
+                    break;
+                case 2:
+                    quanLyChuyenBay.hienThiThongTin();
+                    break;
+                case 3:
+                    quanLyChuyenBay.edit();
+                    break;
+                case 4:
+                    quanLyChuyenBay.delete();
+                    break;
+                case 0:
+                    System.out.println("🔙Trở lại menu chính.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ.");
+                    break;
             }
         } while (chon != 0);
     }
