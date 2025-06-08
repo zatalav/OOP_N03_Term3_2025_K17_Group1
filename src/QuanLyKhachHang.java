@@ -26,7 +26,18 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         System.out.print("Nhập số điện thoại: ");
         String sdt = sc.nextLine();
 
-        return new KhachHang(ma, hoTen, email, sdt);
+        String cccd;
+        while (true) {
+            System.out.print("Nhập căn cước công dân (12 chữ số): ");
+            cccd = sc.nextLine();
+            if (cccd.matches("^\\d{12}$")) {
+                break;
+            } else {
+                System.out.println("CCCD không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
+
+        return new KhachHang(ma, hoTen, email, sdt, cccd);
     }
 
     public void them() {
@@ -34,11 +45,45 @@ public class QuanLyKhachHang extends manager<KhachHang> {
     }
 
     public void sua(String ma) {
-        edit();
+        for (KhachHang kh : ds) {
+            if (kh.getMaKhachHang().equals(ma)) {
+                System.out.println("Nhập thông tin mới cho khách hàng có mã: " + ma);
+
+                System.out.print("Nhập họ tên mới: ");
+                kh.setHoTen(sc.nextLine());
+
+                System.out.print("Nhập email mới: ");
+                kh.setEmail(sc.nextLine());
+
+                System.out.print("Nhập số điện thoại mới: ");
+                kh.setSoDienThoai(sc.nextLine());
+
+                String cccd;
+                while (true) {
+                    System.out.print("Nhập CCCD mới (12 chữ số): ");
+                    cccd = sc.nextLine();
+                    if (cccd.matches("^\\d{12}$")) {
+                        break;
+                    } else {
+                        System.out.println("CCCD không hợp lệ. Vui lòng nhập lại.");
+                    }
+                }
+                kh.setCanCuocCongDan(cccd);
+
+                System.out.println("Đã cập nhật thông tin khách hàng.");
+                return;
+            }
+        }
+        System.out.println("Không tìm thấy khách hàng có mã: " + ma);
     }
 
     public void xoa(String ma) {
-        delete();
+        boolean removed = ds.removeIf(kh -> kh.getMaKhachHang().equals(ma));
+        if (removed) {
+            System.out.println("Đã xoá khách hàng có mã: " + ma);
+        } else {
+            System.out.println("Không tìm thấy khách hàng để xoá.");
+        }
     }
 
     public void hienThiThongTin() {
@@ -81,7 +126,7 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         file.getParentFile().mkdirs();
         try (PrintWriter pw = new PrintWriter(file)) {
             for (KhachHang kh : ds) {
-                pw.println(kh); // dùng toString()
+                pw.println(kh);
             }
             System.out.println("Đã xuất dữ liệu khách hàng ra file khachhang.txt!");
         } catch (IOException e) {

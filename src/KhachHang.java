@@ -35,6 +35,16 @@ class nhap_thong_tin_khach_hang {
         }
     }
 
+    public static String nhapCanCuocCongDan(Scanner scanner) {
+        System.out.print("Nhập căn cước công dân (12 chữ số): ");
+        while (true) {
+            String cccd = scanner.nextLine();
+            if (cccd.matches("^\\d{12}$"))
+                return cccd;
+            System.out.print("CCCD không hợp lệ. Nhập lại: ");
+        }
+    }
+
     private static boolean kiemTraEmail(String email) {
         String emailRegex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
         return Pattern.matches(emailRegex, email);
@@ -55,15 +65,17 @@ public class KhachHang implements Identifiable {
     public String hoTen;
     private String email;
     private String soDienThoai;
+    private String canCuocCongDan;
 
     public KhachHang() {
     }
 
-    public KhachHang(String ma, String ten, String email, String sdt) {
+    public KhachHang(String ma, String ten, String email, String sdt, String canCuocCongDan) {
         this.maKhachHang = ma;
         this.hoTen = ten;
         this.email = email;
         this.soDienThoai = sdt;
+        this.canCuocCongDan = canCuocCongDan;
     }
 
     public void nhapThongTin() {
@@ -80,6 +92,7 @@ public class KhachHang implements Identifiable {
         hoTen = nhap_thong_tin_khach_hang.nhapHoTen(scanner);
         email = nhap_thong_tin_khach_hang.nhapEmail(scanner);
         soDienThoai = nhap_thong_tin_khach_hang.nhapSoDienThoai(scanner);
+        canCuocCongDan = nhap_thong_tin_khach_hang.nhapCanCuocCongDan(scanner);
     }
 
     public void hienThiThongTin() {
@@ -88,9 +101,18 @@ public class KhachHang implements Identifiable {
         System.out.printf("| %-20s | %-30s |\n", "Họ tên", hoTen);
         System.out.printf("| %-20s | %-30s |\n", "Email", email);
         System.out.printf("| %-20s | %-30s |\n", "Số điện thoại", soDienThoai);
+        System.out.printf("| %-20s | %-30s |\n", "CCCD", canCuocCongDan);
         System.out.println("====================================================");
     }
 
+    // ✅ Thêm toString() để hiển thị thông tin khi in object
+    @Override
+    public String toString() {
+        return String.format("Mã KH: %-8s | Họ tên: %-20s | Email: %-25s | SĐT: %-11s | CCCD: %-12s",
+                maKhachHang, hoTen, email, soDienThoai, canCuocCongDan);
+    }
+
+    // Getters & Setters
     public String getMaKhachHang() {
         return maKhachHang;
     }
@@ -105,6 +127,10 @@ public class KhachHang implements Identifiable {
 
     public String getSoDienThoai() {
         return soDienThoai;
+    }
+
+    public String getCanCuocCongDan() {
+        return canCuocCongDan;
     }
 
     public void setHoTen(String hoTen) {
@@ -123,6 +149,7 @@ public class KhachHang implements Identifiable {
         this.soDienThoai = soDienThoai;
     }
 
-    
-
+    public void setCanCuocCongDan(String canCuocCongDan) {
+        this.canCuocCongDan = canCuocCongDan;
+    }
 }
