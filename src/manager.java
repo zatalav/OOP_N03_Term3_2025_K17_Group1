@@ -16,13 +16,13 @@ public abstract class manager<M extends Identifiable> {
     }
 
     public void add(){
-    System.out.println("Nhap thong tin moi:");
+    System.out.println("Nhập thông tin mới:");
     M m = nhap();
     if (m != null) {
         ds.add(m);
-        System.out.println("Da them thanh cong!");
+        System.out.println("Đã thêm thành công!");
     } else {
-        System.out.println("Them that bai!");
+        System.out.println("Thêm thất bại!");
     }
 }
 

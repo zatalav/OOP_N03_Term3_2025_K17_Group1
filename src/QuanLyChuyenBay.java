@@ -19,7 +19,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         try {
             return formatter.parse(dateString);
         } catch (ParseException e) {
-            System.out.println("Loi dinh dang ngay thang: " + e.getMessage());
+            System.out.println("Lỗi định dạng ngày tháng: " + e.getMessage());
             return null;
         }
     }
@@ -28,19 +28,19 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
     public ChuyenBay nhap() {
         String maChuyenBay;
         while (true) {
-            System.out.println("nhap ma chuyen bay:");
+            System.out.println("Nhập mã chuyến bay:");
             maChuyenBay = sc.nextLine();
             if (kiemTraMaTrung(maChuyenBay)) {
-                System.out.println("Ma chuyen bay da ton tai, vui long nhap lai.");
+                System.out.println("Mã chuyến bay đã tồn tại, vui lòng nhập lại.");
             } else {
                 break;
             }
         }
-        System.out.println("Nhap ten chuyen bay: ");
+        System.out.println("Nhập tên chuyến bay: ");
         String tenChuyenbay = sc.nextLine();
         Date ngayGioKhoiHanh = null;
         do {
-            System.out.println("Nhap ngay gio khoi hanh (dd/MM/yyyy hh:mm): ");
+            System.out.println("Nhập ngày giờ khởi hành (dd/MM/yyyy hh:mm): ");
             String ngayGioKhoiHanhStr = sc.nextLine();
             ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
         } while (ngayGioKhoiHanh == null);
@@ -50,17 +50,17 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             try {
                 soLuongGhe = Integer.parseInt(sc.nextLine());
                 if (soLuongGhe < 0) {
-                    System.out.println("So ghe trong phai la so duong. Vui long nhap lai.");
+                    System.out.println("Số ghế trống phải là số dương. Vui lòng nhập lại.");
                 } else {
                     break;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Nhap sai dinh dang, vui long nhap lai so ghe trong: ");
+                System.out.println("Nhập sai định dạng, vui lòng nhập lại số ghế trống: ");
             }
         }
-        System.out.println("Nhap diem khoi hanh: ");
+        System.out.println("Nhập điểm khởi hành: ");
         String diemKhoiHanh = sc.nextLine();
-        System.out.println("Nhap diem den: ");
+        System.out.println("Nhập điểm đến: ");
         String diemDen = sc.nextLine();
         return new ChuyenBay(maChuyenBay, tenChuyenbay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen);
     }
