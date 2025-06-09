@@ -70,12 +70,57 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
     }
 
     public void sua(String maChuyenBay) {
-        edit();
+        ChuyenBay cb = timTheoMa(maChuyenBay);
+        if (cb == null) {
+            System.out.println("Không tìm thấy chuyến bay có mã: " + maChuyenBay);
+            return;
+        }
+
+        System.out.println("Nhập thông tin mới cho chuyến bay [" + maChuyenBay + "]");
+
+        System.out.print("Tên chuyến bay mới: ");
+        cb.setTenChuyenBay(sc.nextLine());
+
+        Date ngayGioMoi;
+        do {
+            System.out.print("Ngày giờ khởi hành mới (dd/MM/yyyy hh:mm): ");
+            String input = sc.nextLine();
+            ngayGioMoi = parseDate(input);
+        } while (ngayGioMoi == null);
+        cb.setNgayGioKhoiHanh(ngayGioMoi);
+
+        System.out.print("Số lượng ghế mới: ");
+        int soGheMoi;
+        while (true) {
+            try {
+                soGheMoi = Integer.parseInt(sc.nextLine());
+                if (soGheMoi > 0) break;
+                else System.out.println("Số ghế phải > 0. Nhập lại:");
+            } catch (NumberFormatException e) {
+                System.out.println("Sai định dạng. Nhập lại:");
+            }
+        }
+        cb.setSoGheTrong(soGheMoi);
+
+        System.out.print("Điểm khởi hành mới: ");
+        cb.setDiemKhoiHanh(sc.nextLine());
+
+        System.out.print("Điểm đến mới: ");
+        cb.setDiemDen(sc.nextLine());
+
+        System.out.println("✅ Đã cập nhật chuyến bay thành công!");
     }
 
+
     public void xoa(String maChuyenBay) {
-        delete();
+        boolean removed = ds.removeIf(cb -> cb.getMaChuyenBay().equalsIgnoreCase(maChuyenBay));
+        if (removed) {
+            System.out.println("✅ Đã xoá chuyến bay có mã: " + maChuyenBay);
+        } else {
+            System.out.println("❌ Không tìm thấy chuyến bay để xoá.");
+        }
     }
+
 
     public void hienThiThongTin() {
         for (ChuyenBay chuyenBay : ds) {

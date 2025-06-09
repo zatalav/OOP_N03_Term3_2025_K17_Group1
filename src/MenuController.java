@@ -143,13 +143,17 @@ public class MenuController {
                     quanLyChuyenBay.hienThiThongTin();
                     break;
                 case 3:
-                    quanLyChuyenBay.edit();
+                    System.out.print("Nhập mã chuyến bay cần sửa: ");
+                    String maSua = sc.nextLine();
+                    quanLyChuyenBay.sua(maSua);
                     break;
                 case 4:
-                    quanLyChuyenBay.delete();
+                    System.out.print("Nhập mã chuyến bay cần xoá: ");
+                    String maXoa = sc.nextLine();
+                    quanLyChuyenBay.xoa(maXoa);
                     break;
                 case 0:
-                    System.out.println("🔙Trở lại menu chính.");
+                    System.out.println("🔙 Trở lại menu chính.");
                     break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ.");
@@ -157,4 +161,5 @@ public class MenuController {
             }
         } while (chon != 0);
     }
+
 }

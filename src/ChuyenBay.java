@@ -2,9 +2,11 @@ package src;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 public class ChuyenBay implements Identifiable, Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
+
     @Override
     public String getMa() {
         return maChuyenBay;
@@ -77,7 +79,20 @@ public class ChuyenBay implements Identifiable, Serializable {
     }
 
     @Override
-    public String toString(){
-        return "ChuyenBay [maChuyenBay=" + maChuyenBay + ",tenChuyenBay=" + tenChuyenBay + ",ngayGioKhoiHanh=" + ngayGioKhoiHanh + ",soLuongGhe=" + soLuongGhe + ",diemKhoiHanh=" + diemKhoiHanh +",diemDen=" + diemDen +"]";
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return String.format(
+            "Mã: %-8s | Tên: %-15s | Ngày giờ: %-16s | Ghế trống: %-3d | Điểm đi: %-10s | Điểm đến: %-10s",
+            maChuyenBay,
+            tenChuyenBay,
+            (ngayGioKhoiHanh != null ? sdf.format(ngayGioKhoiHanh) : "N/A"),
+            soLuongGhe,
+            diemKhoiHanh,
+            diemDen
+        );
+    }
+
+    public void setSoGheTrong(int soGheMoi) {
+        this.soLuongGhe = soGheMoi;
     }
 }
