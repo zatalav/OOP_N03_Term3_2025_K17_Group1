@@ -9,9 +9,12 @@ public class MenuController {
     private QuanLyKhachHang quanLyKhachHang;
 
     public MenuController() {
-        quanLyChuyenBay = new QuanLyChuyenBay(); // 🟢 Tạo trước
-        quanLyVe = new QuanLyVe(quanLyChuyenBay); // 🟢 Truyền vào QuanLyVe
+        quanLyChuyenBay = new QuanLyChuyenBay();
+        quanLyVe = new QuanLyVe(quanLyChuyenBay); // liên kết chặt
         quanLyKhachHang = new QuanLyKhachHang();
+
+        // Đọc dữ liệu chuyến bay từ file khi khởi động
+        quanLyChuyenBay.docDuLieu();
     }
 
     public void showProgramSelection(Scanner sc) {
@@ -21,7 +24,7 @@ public class MenuController {
             System.out.println("1. Quản lý chuyến bay");
             System.out.println("2. Quản lý vé");
             System.out.println("3. Quản lý khách hàng");
-            System.out.println("0. Thoát");
+            System.out.println("0. Thoát và lưu dữ liệu");
             System.out.print("Nhập lựa chọn của bạn: ");
             luaChon = sc.nextInt();
             sc.nextLine();
@@ -37,7 +40,9 @@ public class MenuController {
                     showKhachHangMenu(sc);
                     break;
                 case 0:
-                    System.out.println("Thoát chương trình.");
+                    // Ghi dữ liệu khi thoát
+                    quanLyChuyenBay.luuDuLieu();
+                    System.out.println("Dữ liệu đã được lưu. Hẹn gặp lại!");
                     break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
@@ -67,13 +72,17 @@ public class MenuController {
                     quanLyVe.showVe();
                     break;
                 case 3:
+                    System.out.print("Nhập mã vé cần sửa: ");
+                    String maSua = sc.nextLine();
                     quanLyVe.editVe(sc);
                     break;
                 case 4:
+                    System.out.print("Nhập mã vé cần xoá: ");
+                    String maXoa = sc.nextLine();
                     quanLyVe.deleteVe(sc);
                     break;
                 case 0:
-                    System.out.println("🔙 Trở lại menu chính.");
+                    System.out.println("Trở lại menu chính.");
                     break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ.");
@@ -93,7 +102,7 @@ public class MenuController {
             System.out.println("0. Quay lại menu chính");
             System.out.print("Chọn chức năng: ");
             chon = sc.nextInt();
-            sc.nextLine(); // bỏ dòng thừa sau nextInt
+            sc.nextLine();
 
             switch (chon) {
                 case 1:
@@ -113,10 +122,10 @@ public class MenuController {
                     quanLyKhachHang.xoa(maXoa);
                     break;
                 case 0:
-                    System.out.println("🔙 Trở lại menu chính.");
+                    System.out.println(" Trở lại menu chính.");
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ.");
+                    System.out.println(" Lựa chọn không hợp lệ.");
                     break;
             }
         } while (chon != 0);
@@ -130,7 +139,7 @@ public class MenuController {
             System.out.println("2. Hiển thị tất cả các chuyến bay");
             System.out.println("3. Sửa chuyến bay");
             System.out.println("4. Xóa chuyến bay");
-            System.out.println("0. Quay lại menu chính");
+            System.out.println("0.  Quay lại menu chính");
             System.out.print("Chọn chức năng: ");
             chon = sc.nextInt();
             sc.nextLine();
@@ -153,7 +162,7 @@ public class MenuController {
                     quanLyChuyenBay.xoa(maXoa);
                     break;
                 case 0:
-                    System.out.println("🔙 Trở lại menu chính.");
+                    System.out.println(" Trở lại menu chính.");
                     break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ.");
@@ -161,5 +170,4 @@ public class MenuController {
             }
         } while (chon != 0);
     }
-
 }

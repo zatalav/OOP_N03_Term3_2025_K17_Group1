@@ -1,21 +1,17 @@
 package src;
 
 import java.util.List;
+import java.util.Date;
+import java.util.Scanner;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
 
 public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
-    // hàm định dạng giờ
+    // Định dạng ngày
     private Date parseDate(String dateString) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         try {
             return formatter.parse(dateString);
         } catch (ParseException e) {
@@ -24,51 +20,58 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         }
     }
 
-    // hàm nhập thông tin chuyến bay
+    // Nhập 1 chuyến bay
     public ChuyenBay nhap() {
         String maChuyenBay;
         while (true) {
-            System.out.println("Nhập mã chuyến bay:");
+            System.out.print("Nhập mã chuyến bay: ");
             maChuyenBay = sc.nextLine();
             if (kiemTraMaTrung(maChuyenBay)) {
                 System.out.println("Mã chuyến bay đã tồn tại, vui lòng nhập lại.");
-            } else {
+            } else
                 break;
-            }
         }
-        System.out.println("Nhập tên chuyến bay: ");
-        String tenChuyenbay = sc.nextLine();
-        Date ngayGioKhoiHanh = null;
-        do {
-            System.out.println("Nhập ngày giờ khởi hành (dd/MM/yyyy hh:mm): ");
-            String ngayGioKhoiHanhStr = sc.nextLine();
-            ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
-        } while (ngayGioKhoiHanh == null);
-        System.out.println("Nhap so ghe trong: ");
+
+        System.out.print("Nhập tên chuyến bay: ");
+        String tenChuyenBay = sc.nextLine();
+
+        Date ngayGioKhoiHanh;
+        while (true) {
+            System.out.print("Nhập ngày giờ khởi hành (dd/MM/yyyy HH:mm): ");
+            ngayGioKhoiHanh = parseDate(sc.nextLine());
+            if (ngayGioKhoiHanh != null)
+                break;
+        }
+
         int soLuongGhe;
         while (true) {
+            System.out.print("Nhập số ghế trống: ");
             try {
                 soLuongGhe = Integer.parseInt(sc.nextLine());
-                if (soLuongGhe < 0) {
-                    System.out.println("Số ghế trống phải là số dương. Vui lòng nhập lại.");
-                } else {
+                if (soLuongGhe >= 0)
                     break;
-                }
+                else
+                    System.out.println("Số ghế phải >= 0.");
             } catch (NumberFormatException e) {
-                System.out.println("Nhập sai định dạng, vui lòng nhập lại số ghế trống: ");
+                System.out.println(" Nhập sai định dạng. Vui lòng nhập số nguyên.");
             }
         }
-        System.out.println("Nhập điểm khởi hành: ");
+
+        System.out.print("Nhập điểm khởi hành: ");
         String diemKhoiHanh = sc.nextLine();
-        System.out.println("Nhập điểm đến: ");
+
+        System.out.print("Nhập điểm đến: ");
         String diemDen = sc.nextLine();
-        return new ChuyenBay(maChuyenBay, tenChuyenbay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen);
+
+        return new ChuyenBay(maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen);
     }
 
+    // Thêm chuyến bay
     public void them() {
         add();
     }
 
+    // Sửa chuyến bay theo mã
     public void sua(String maChuyenBay) {
         ChuyenBay cb = timTheoMa(maChuyenBay);
         if (cb == null) {
@@ -76,26 +79,29 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             return;
         }
 
-        System.out.println("Nhập thông tin mới cho chuyến bay [" + maChuyenBay + "]");
+        System.out.println("=== Cập nhật thông tin chuyến bay [" + maChuyenBay + "] ===");
 
         System.out.print("Tên chuyến bay mới: ");
         cb.setTenChuyenBay(sc.nextLine());
 
         Date ngayGioMoi;
-        do {
-            System.out.print("Ngày giờ khởi hành mới (dd/MM/yyyy hh:mm): ");
-            String input = sc.nextLine();
-            ngayGioMoi = parseDate(input);
-        } while (ngayGioMoi == null);
+        while (true) {
+            System.out.print("Ngày giờ khởi hành mới (dd/MM/yyyy HH:mm): ");
+            ngayGioMoi = parseDate(sc.nextLine());
+            if (ngayGioMoi != null)
+                break;
+        }
         cb.setNgayGioKhoiHanh(ngayGioMoi);
 
-        System.out.print("Số lượng ghế mới: ");
         int soGheMoi;
         while (true) {
+            System.out.print("Số lượng ghế mới: ");
             try {
                 soGheMoi = Integer.parseInt(sc.nextLine());
-                if (soGheMoi > 0) break;
-                else System.out.println("Số ghế phải > 0. Nhập lại:");
+                if (soGheMoi > 0)
+                    break;
+                else
+                    System.out.println("Số ghế phải > 0.");
             } catch (NumberFormatException e) {
                 System.out.println("Sai định dạng. Nhập lại:");
             }
@@ -108,26 +114,32 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         System.out.print("Điểm đến mới: ");
         cb.setDiemDen(sc.nextLine());
 
-        System.out.println("✅ Đã cập nhật chuyến bay thành công!");
+        System.out.println("Đã cập nhật chuyến bay thành công!");
     }
 
-
+    // Xoá chuyến bay
     public void xoa(String maChuyenBay) {
         boolean removed = ds.removeIf(cb -> cb.getMaChuyenBay().equalsIgnoreCase(maChuyenBay));
         if (removed) {
-            System.out.println("✅ Đã xoá chuyến bay có mã: " + maChuyenBay);
+            System.out.println(" Đã xoá chuyến bay: " + maChuyenBay);
         } else {
-            System.out.println("❌ Không tìm thấy chuyến bay để xoá.");
+            System.out.println("Không tìm thấy chuyến bay để xoá.");
         }
     }
 
-
+    // Hiển thị danh sách
     public void hienThiThongTin() {
-        for (ChuyenBay chuyenBay : ds) {
-            System.out.println(chuyenBay.toString());
+        if (ds.isEmpty()) {
+            System.out.println("📭 Không có chuyến bay nào.");
+            return;
+        }
+        System.out.println("===== DANH SÁCH CHUYẾN BAY =====");
+        for (ChuyenBay cb : ds) {
+            System.out.println(cb);
         }
     }
 
+    // Tìm chuyến bay theo mã
     public ChuyenBay timTheoMa(String ma) {
         for (ChuyenBay cb : ds) {
             if (cb.getMaChuyenBay().equalsIgnoreCase(ma)) {
@@ -137,52 +149,50 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         return null;
     }
 
+    // Ghi dữ liệu vào file nhị phân
     public void luuDuLieu() {
         File file = new File("./btl/chuyenbay.dat");
-        FileOutputStream fileOutputStream = null;
-        ObjectOutputStream outputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            outputStream = new ObjectOutputStream(fileOutputStream);
-            outputStream.writeObject(ds);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(ds);
+            System.out.println("Đã lưu dữ liệu chuyến bay.");
         } catch (IOException e) {
-            System.out.println("Ghi dữ liệu chuyến bay xảy ra lỗi");
+            System.out.println("Ghi dữ liệu chuyến bay bị lỗi.");
             e.printStackTrace();
         }
     }
 
-    @SuppressWarnings({"unchecked", "resource"})
+    // Đọc dữ liệu từ file nhị phân
+    @SuppressWarnings("unchecked")
     public void docDuLieu() {
         File file = new File("./btl/chuyenbay.dat");
-        FileInputStream fileinputStream = null;
-        ObjectInputStream inputStream = null;
-
         if (!file.exists()) {
-            System.out.println("File không tồn tại");
+            System.out.println("❗ File dữ liệu chưa tồn tại.");
             return;
         }
 
-        try {
-            fileinputStream = new FileInputStream(file);
-            inputStream = new ObjectInputStream(fileinputStream);
-            List<ChuyenBay> dsChuyenBay = (List<ChuyenBay>) inputStream.readObject();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            List<ChuyenBay> dsChuyenBay = (List<ChuyenBay>) ois.readObject();
+            ds.clear();
             ds.addAll(dsChuyenBay);
+            System.out.println("Đã đọc dữ liệu chuyến bay.");
         } catch (Exception e) {
-            System.out.println("Đọc dữ liệu chuyến bay xảy ra lỗi");
+            System.out.println("Đọc dữ liệu chuyến bay bị lỗi.");
             e.printStackTrace();
         }
     }
 
+    // Xuất danh sách chuyến bay ra file text
     public void xuatFileText() {
         File file = new File("./btl/chuyenbay.txt");
         file.getParentFile().mkdirs();
-        try (java.io.PrintWriter pw = new java.io.PrintWriter(file)) {
+
+        try (PrintWriter pw = new PrintWriter(file)) {
             for (ChuyenBay cb : ds) {
                 pw.println(cb);
             }
-            System.out.println("Đã xuất dữ liệu chuyến bay ra file chuyenbay.txt!");
+            System.out.println("Đã xuất dữ liệu ra file chuyenbay.txt!");
         } catch (Exception e) {
-            System.out.println("Xuất file text thất bại!");
+            System.out.println("Xuất file thất bại!");
             e.printStackTrace();
         }
     }

@@ -1,4 +1,5 @@
 package src;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 public class TestQuanLyChuyenBay {
     public static void testAddChuyenBay() {
         QuanLyChuyenBay quanLy = new QuanLyChuyenBay();
-        String input = "VN123\nFlight VN123\n01-06-2025 14:30\n100\nHanoi\nHo Chi Minh\n";
+        String input = "VN123\nFlight VN123\n01/06/2025 14:30\n100\nHanoi\nHo Chi Minh\n";
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         Scanner scanner = new Scanner(in);
         quanLy.addChuyenBay(scanner);
@@ -27,7 +28,7 @@ public class TestQuanLyChuyenBay {
 
     public static void testShowChuyenBay() {
         QuanLyChuyenBay quanLy = new QuanLyChuyenBay();
-        String input = "VN123\nFlight VN123\n01-06-2025 14:30\n100\nHanoi\nHo Chi Minh\n";
+        String input = "VN123\nFlight VN123\n01/06/2025 14:30\n100\nHanoi\nHo Chi Minh\n";
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         Scanner scanner = new Scanner(in);
         quanLy.addChuyenBay(scanner);
@@ -38,7 +39,7 @@ public class TestQuanLyChuyenBay {
 
     public static void testDeleteChuyenBay() {
         QuanLyChuyenBay quanLy = new QuanLyChuyenBay();
-        String inputAdd = "VN123\nFlight VN123\n01-06-2025 14:30\n100\nHanoi\nHo Chi Minh\n";
+        String inputAdd = "VN123\nFlight VN123\n01/06/2025 14:30\n100\nHanoi\nHo Chi Minh\n";
         ByteArrayInputStream inAdd = new ByteArrayInputStream(inputAdd.getBytes());
         Scanner scannerAdd = new Scanner(inAdd);
         quanLy.addChuyenBay(scannerAdd);

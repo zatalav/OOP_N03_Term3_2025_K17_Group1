@@ -5,12 +5,12 @@ import java.util.Locale;
 
 public class Test_Ve {
 
-    public static void hienThiThongTinVe(String maVe, String tenChuyenBay, String ngayGioStr, String hanhKhach, double giaVe) {
+    public static void hienThiThongTinVe(String maVe, String tenChuyenBay, String ngayGioStr, String hanhKhach,
+            double giaVe) {
         try {
-      
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
-            
             NumberFormat currencyFormat = NumberFormat.getInstance(new Locale("vi", "VN"));
 
             Date ngayGio = sdf.parse(ngayGioStr);
@@ -24,14 +24,14 @@ public class Test_Ve {
             System.out.println("====================================");
 
         } catch (Exception e) {
-            System.out.println("❌ Lỗi xử lý ngày giờ: " + e.getMessage());
+            System.out.println("Lỗi xử lý ngày giờ: " + e.getMessage());
         }
     }
 
     public static void main(String[] args) {
         String maVe = "VE999";
         String tenChuyenBay = "Đà Nẵng - Cần Thơ";
-        String ngayGioStr = "09-05-2025 14:30"; 
+        String ngayGioStr = "09/05/2025 14:30";
         String hanhKhach = "Chu Văn An (chuvanan@gmail.com)";
         double giaVe = 3_000_000;
 

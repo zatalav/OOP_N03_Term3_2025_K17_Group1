@@ -8,10 +8,10 @@ public class TestKhachHang {
         String hoTen = "Chu Văn An";
         String email = "chuvanan@gmail.com";
         String soDienThoai = "0123456789";
-        String ngayDangKyStr = "23-05-2025";
+        String ngayDangKyStr = "23/05/2025";
 
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date ngayDangKy = sdf.parse(ngayDangKyStr);
 
             System.out.println("== THÔNG TIN KHÁCH HÀNG ==");
