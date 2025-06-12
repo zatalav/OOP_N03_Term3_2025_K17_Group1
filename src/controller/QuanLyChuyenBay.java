@@ -157,17 +157,14 @@ public void loadFromDatabase() {
 
 
 public void timkiem(){
-    ChuyenBay cbtk = null;
     System.out.println("Nhap ma chuyen bay: ");
     String maChuyenBay = sc.nextLine();
-    for (ChuyenBay cb : ds) {
-        if (cb.getMaChuyenBay().equals(maChuyenBay)) {
-            cbtk = cb;
-            break;
+    dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+    ArrayList<ChuyenBay> ketQua = dao.selectByCondition(maChuyenBay);
+    if (!ketQua.isEmpty()) {
+        for (ChuyenBay cb : ketQua) {
+            System.out.println("Chuyến bay tìm thấy: " + cb);
         }
-    }
-    if (cbtk != null) {
-        System.out.println("Chuyến bay tìm thấy: " + cbtk);
     } else {
         System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
     }
