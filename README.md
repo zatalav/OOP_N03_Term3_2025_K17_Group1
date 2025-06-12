@@ -113,3 +113,5 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 ![Activity Diagram - Xóa](<delete.png>)
 
+lưu đồ thuật toán
+![chuyến bay](image.png)

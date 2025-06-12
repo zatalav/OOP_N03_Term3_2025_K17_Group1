@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
+
     // Định dạng ngày
     private Date parseDate(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -20,7 +21,8 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         }
     }
 
-    // Nhập 1 chuyến bay
+
+    // Nhập chuyến bay
     public ChuyenBay nhap() {
         String maChuyenBay;
         while (true) {
@@ -68,6 +70,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         return new ChuyenBay(maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen,noiquoc);
     }
 
+
     // Thêm chuyến bay
     public void them() {
         ChuyenBay cb = nhap();      // Nhập chuyến bay từ bàn phím
@@ -76,10 +79,12 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
         dao.insert(cb);
     }
-// xoa chuyen bay
+
+
+    //xóa chuyến bay
     public void xoa(){
         ChuyenBay cbxoa = null;
-        System.out.println("Nhap ma chuyen bay: ");
+        System.out.println("Nhậpchuyến bay: ");
         String maChuyenBay = sc.nextLine();
         for (ChuyenBay cb : ds) {
             if (cb.getMaChuyenBay().equals(maChuyenBay)) {
@@ -87,88 +92,102 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 break;
             }
         }
-             if (cbxoa != null) {
-                ds.remove(cbxoa);
-                dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
-                dao.delete(cbxoa); // truyền đối tượng ChuyenBay
-                System.out.println("Đã xóa chuyến bay có mã: " + maChuyenBay);
-                } else {
-                    System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
-                }
+
+        if (cbxoa != null) {
+            ds.remove(cbxoa);
+            dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+            dao.delete(cbxoa); // truyền đối tượng ChuyenBay
+            System.out.println("Đã xóa chuyến bay có mã: " + maChuyenBay);
         }
-         // Thêm dòng này ở đầu file nếu chưa có
+        else {
+            System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+        }
+    }
 
 
-public void loadFromDatabase() {
-    ds.clear();
-    dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
-    ArrayList<ChuyenBay> danhSach = dao.selectAll();
-    ds.addAll(danhSach);
-}
+    //truy xuất dữ liệu từ sql sang ram
+    public void loadFromDatabase() {
+        ds.clear();
+        dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+        ArrayList<ChuyenBay> danhSach = dao.selectAll();
+        ds.addAll(danhSach);
+    }
 
-    // Tìm chuyến bay theo mã
-    public ChuyenBay timTheoMa(String ma) {
+
+    // sửa chuyến bay
+    public void sửa() {
+        ChuyenBay cbsua = null;
+        System.out.println("Nhập mã chuyến bay: ");
+        String maChuyenBay = sc.nextLine();
         for (ChuyenBay cb : ds) {
-            if (cb.getMaChuyenBay().equalsIgnoreCase(ma)) {
-                return cb;
+            if (cb.getMaChuyenBay().equals(maChuyenBay)) {
+                cbsua = cb;
+                break;
+            }   
+        }
+
+        if (cbsua != null) {
+            // Nhập lại thông tin mới cho chuyến bay (trừ mã)
+            System.out.println("Nhập tên hãng mới: ");
+            cbsua.setTenChuyenBay(sc.nextLine());
+
+            System.out.println("Nhập ngày giờ khởi hành mới (dd/MM/yyyy hh:mm): ");
+            Date ngayGioKhoiHanh = null;
+            do {
+                String ngayGioKhoiHanhStr = sc.nextLine();
+                ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
+            } while (ngayGioKhoiHanh == null);
+            cbsua.setNgayGioKhoiHanh(ngayGioKhoiHanh);
+
+            System.out.println("Nhập số ghế trống mới: ");
+            cbsua.setSoLuongGhe(Integer.parseInt(sc.nextLine()));
+
+            System.out.println("Nhập điểm khởi hành mới: ");
+            cbsua.setDiemKhoiHanh(sc.nextLine());
+
+            System.out.println("Nhập điểm đến mới: ");
+            cbsua.setDiemDen(sc.nextLine());
+
+            System.out.println("Nhập nơi quốc tế mới: ");
+            cbsua.setNoiquoc(sc.nextLine());
+
+            // Cập nhật vào database
+            dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+            dao.update(cbsua);
+            System.out.println("Đã cập nhật chuyến bay có mã: " + maChuyenBay);
+        } 
+        else {
+            System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+        }
+    }
+
+
+    // tìm kiếm chuyến bay
+    public void timkiem(){
+        System.out.println("Nhập mã chuyến bay: ");
+        String maChuyenBay = sc.nextLine();
+        dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+        ArrayList<ChuyenBay> ketQua = dao.selectByCondition(maChuyenBay);
+        if (!ketQua.isEmpty()) {
+            for (ChuyenBay cb : ketQua) {
+                System.out.println("Chuyến bay tìm thấy: " + cb);
+            }
+        } else {
+        System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+        }
+    }
+
+
+    // Liệt kê tất cả chuyến bay
+    public void lietKe() {
+        dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+        ArrayList<ChuyenBay> danhSach = dao.selectAll();
+        if (danhSach.isEmpty()) {
+            System.out.println("Không có chuyến bay nào trong hệ thống.");
+        } else {
+            for (ChuyenBay cb : danhSach) {
+                System.out.println(cb);
             }
         }
-        return null;
     }
-
-    public void sua() {
-    ChuyenBay cbsua = null;
-    System.out.println("Nhap ma chuyen bay: ");
-    String maChuyenBay = sc.nextLine();
-    for (ChuyenBay cb : ds) {
-        if (cb.getMaChuyenBay().equals(maChuyenBay)) {
-            cbsua = cb;
-            break;
-        }
-    }
-    if (cbsua != null) {
-        // Nhập lại thông tin mới cho chuyến bay (trừ mã)
-        System.out.println("Nhap ten hang moi: ");
-        cbsua.setTenChuyenBay(sc.nextLine());
-        System.out.println("Nhap ngay gio khoi hanh moi (dd/MM/yyyy hh:mm): ");
-        Date ngayGioKhoiHanh = null;
-        do {
-            String ngayGioKhoiHanhStr = sc.nextLine();
-            ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
-        } while (ngayGioKhoiHanh == null);
-        cbsua.setNgayGioKhoiHanh(ngayGioKhoiHanh);
-        System.out.println("Nhap so ghe trong moi: ");
-        cbsua.setSoLuongGhe(Integer.parseInt(sc.nextLine()));
-        System.out.println("Nhap diem khoi hanh moi: ");
-        cbsua.setDiemKhoiHanh(sc.nextLine());
-        System.out.println("Nhap diem den moi: ");
-        cbsua.setDiemDen(sc.nextLine());
-        System.out.println("Nhap noi quoc te moi: ");
-        cbsua.setNoiquoc(sc.nextLine());
-
-        // Cập nhật vào database
-        dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
-        dao.update(cbsua);
-        System.out.println("Đã cập nhật chuyến bay có mã: " + maChuyenBay);
-    } else {
-        System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
-    }
-}
-
-
-public void timkiem(){
-    System.out.println("Nhap ma chuyen bay: ");
-    String maChuyenBay = sc.nextLine();
-    dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
-    ArrayList<ChuyenBay> ketQua = dao.selectByCondition(maChuyenBay);
-    if (!ketQua.isEmpty()) {
-        for (ChuyenBay cb : ketQua) {
-            System.out.println("Chuyến bay tìm thấy: " + cb);
-        }
-    } else {
-        System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
-    }
-
-}
-
 }

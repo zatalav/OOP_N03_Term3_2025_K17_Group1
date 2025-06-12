@@ -11,15 +11,15 @@ public abstract class manager<M extends Identifiable> {
     protected abstract M nhap();
 
     public void add(){
-    System.out.println("Nhập thông tin mới:");
-    M m = nhap();
-    if (m != null) {
-        ds.add(m);
+        System.out.println("Nhập thông tin mới:");
+        M m = nhap();
+        if (m != null) {
+           ds.add(m);
         System.out.println("Đã thêm thành công!");
-    } else {
-        System.out.println("Thêm thất bại!");
+        } else {
+            System.out.println("Thêm thất bại!");
+        }
     }
-}
     public boolean kiemTraMaTrung(String ma) {
         if (ma == null || ma.trim().isEmpty()) {
             return false; // Không coi mã rỗng hoặc null là trùng
