@@ -1,8 +1,12 @@
-package src;
+package src.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import src.controller.QuanLyChuyenBay;
+import src.controller.qlve.InputHelper;
+import src.controller.qlve.TinhGiaVe;
+import src.controller.qlve.Validator;
 
 public class Ve {
     private String maVe;
@@ -55,7 +59,6 @@ public class Ve {
         maVe = Validator.nhapMaVe(sc);
         tenHanhKhach = InputHelper.nhapTen(sc);
         ngayDatVe = InputHelper.nhapNgay(sc);
-        chuyenBay = InputHelper.nhapChuyenBay(sc, qlChuyenBay);
         giaGoc = InputHelper.nhapGiaGoc(sc);
         soLuongGhe = InputHelper.nhapSoLuongGhe(sc);
         giaVe = TinhGiaVe.tinhTongGiaVe(giaGoc, soLuongGhe);

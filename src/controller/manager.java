@@ -1,8 +1,9 @@
-package src;
+package src.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import src.model.Identifiable;
 
 public abstract class manager<M extends Identifiable> {
     protected List<M> ds = new ArrayList<>();

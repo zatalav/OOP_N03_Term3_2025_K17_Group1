@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-import src.KhachHang;
+import src.model.KhachHang;
 
 public class KhachHangList {
 

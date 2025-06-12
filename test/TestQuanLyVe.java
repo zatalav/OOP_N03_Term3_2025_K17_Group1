@@ -3,8 +3,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import src.QuanLyVe;
 import src.QuanLyChuyenBay;
+import src.controller.qlve.QuanLyVe;
 import src.ChuyenBay;
 
 public class TestQuanLyVe {

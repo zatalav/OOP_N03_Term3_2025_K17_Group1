@@ -1,4 +1,4 @@
-package src;
+package src.model;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;

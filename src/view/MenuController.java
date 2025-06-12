@@ -1,5 +1,8 @@
-package src;
+package src.view;
 
+import src.controller.QuanLyChuyenBay;
+import src.controller.QuanLyKhachHang;
+import src.controller.qlve.QuanLyVe;
 import java.util.Scanner;
 
 public class MenuController {
@@ -7,15 +10,6 @@ public class MenuController {
     private QuanLyVe quanLyVe;
     private QuanLyChuyenBay quanLyChuyenBay;
     private QuanLyKhachHang quanLyKhachHang;
-
-    public MenuController() {
-        quanLyChuyenBay = new QuanLyChuyenBay();
-        quanLyVe = new QuanLyVe(quanLyChuyenBay); // liên kết chặt
-        quanLyKhachHang = new QuanLyKhachHang();
-
-        // Đọc dữ liệu chuyến bay từ file khi khởi động
-        quanLyChuyenBay.docDuLieu();
-    }
 
     public void showProgramSelection(Scanner sc) {
         int luaChon;
@@ -41,7 +35,6 @@ public class MenuController {
                     break;
                 case 0:
                     // Ghi dữ liệu khi thoát
-                    quanLyChuyenBay.luuDuLieu();
                     System.out.println("Dữ liệu đã được lưu. Hẹn gặp lại!");
                     break;
                 default:

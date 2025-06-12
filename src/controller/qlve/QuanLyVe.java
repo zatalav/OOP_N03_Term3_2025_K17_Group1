@@ -1,7 +1,9 @@
-package src;
+package src.controller.qlve;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import src.controller.QuanLyChuyenBay;
+import src.model.Ve;
 
 public class QuanLyVe {
     private ArrayList<Ve> danhSachVe = new ArrayList<>();

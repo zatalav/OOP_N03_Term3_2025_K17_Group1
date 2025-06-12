@@ -1,6 +1,8 @@
-package src;
+package src.main;
 
 import java.util.Scanner;
+
+import src.view.MenuController;
 
 public class App {
     public static void main(String[] args) {

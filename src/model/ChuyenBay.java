@@ -1,11 +1,8 @@
-package src;
+package src.model;
 
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ChuyenBay implements Identifiable, Serializable {
-    private static final long serialVersionUID = 6529685098267757690L;
+public class ChuyenBay implements Identifiable {
 
     private String maChuyenBay;
     private String tenChuyenBay;
@@ -13,18 +10,20 @@ public class ChuyenBay implements Identifiable, Serializable {
     private int soLuongGhe;
     private String diemKhoiHanh;
     private String diemDen;
+    private String noiquoc;
 
     public ChuyenBay() {
     }
 
     public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe,
-            String diemKhoiHanh, String diemDen) {
+            String diemKhoiHanh, String diemDen, String noiquoc) {
         this.maChuyenBay = maChuyenBay;
         this.tenChuyenBay = tenChuyenBay;
         this.ngayGioKhoiHanh = ngayGioKhoiHanh;
         this.soLuongGhe = soLuongGhe;
         this.diemKhoiHanh = diemKhoiHanh;
         this.diemDen = diemDen;
+        this.noiquoc = noiquoc;
     }
 
     @Override
@@ -84,16 +83,23 @@ public class ChuyenBay implements Identifiable, Serializable {
         this.soLuongGhe = soGheMoi;
     }
 
-    @Override
-    public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return String.format(
-                "Mã: %-8s | Tên: %-15s | Ngày giờ: %-16s | Ghế trống: %-3d | Điểm đi: %-10s | Điểm đến: %-10s",
-                maChuyenBay,
-                tenChuyenBay,
-                (ngayGioKhoiHanh != null ? sdf.format(ngayGioKhoiHanh) : "N/A"),
-                soLuongGhe,
-                diemKhoiHanh,
-                diemDen);
+    public String getNoiquoc() {
+        return noiquoc;
+    }
+
+    public void setNoiquoc(String noiquoc) {
+        this.noiquoc = noiquoc;
+    }
+
+    public String toString(){
+        return "ChuyenBay{" +
+                "maChuyenBay='" + maChuyenBay + '\'' +
+                ", tenChuyenBay='" + tenChuyenBay + '\'' +
+                ", ngayGioKhoiHanh=" + ngayGioKhoiHanh +
+                ", soLuongGhe=" + soLuongGhe +
+                ", diemKhoiHanh='" + diemKhoiHanh + '\'' +
+                ", diemDen='" + diemDen + '\'' +
+                ", noiquoc='" + noiquoc + '\'' +
+                '}';
     }
 }

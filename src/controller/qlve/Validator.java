@@ -1,4 +1,4 @@
-package src;
+package src.controller.qlve;
 
 import java.util.Scanner;
 

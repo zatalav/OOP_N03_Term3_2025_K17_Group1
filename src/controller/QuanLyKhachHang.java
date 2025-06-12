@@ -1,7 +1,9 @@
-package src;
+package src.controller;
 
 import java.io.*;
 import java.util.*;
+
+import src.model.KhachHang;
 
 public class QuanLyKhachHang extends manager<KhachHang> {
 

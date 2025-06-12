@@ -1,4 +1,4 @@
-package src;
+package src.controller.qlve;
 
 public class TinhGiaVe {
 

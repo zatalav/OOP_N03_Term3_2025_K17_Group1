@@ -1,9 +1,11 @@
-package src;
+package src.controller.qlve;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import src.controller.QuanLyChuyenBay;
+import src.model.ChuyenBay;
 
 public class InputHelper {
 
