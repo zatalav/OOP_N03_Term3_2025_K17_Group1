@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đặt Vé Máy Bay - Phenikaa Air</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --secondary: #0056b3;
+      --background: #f0f2f5;
+      --text-dark: #333;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: var(--secondary);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--white);
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--primary);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    form div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      grid-column: span 2;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--secondary);
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      button {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ứng Dụng Đặt Vé Máy Bay - Phenikaa Air</h1>
+    <p>Trải nghiệm đặt vé nhanh chóng, thuận tiện và chuyên nghiệp</p>
+  </header>
+
+  <nav>
+    <a href="#">Trang chủ</a>
+    <a href="#">Chuyến bay</a>
+    <a href="#">Đặt vé</a>
+    <a href="#">Tra cứu vé</a>
+    <a href="#">Liên hệ</a>
+  </nav>
+
+  <main>
+    <h2>Đặt vé máy bay</h2>
+    <form>
+      <div>
+        <label for="ten">Họ và tên</label>
+        <input type="text" id="ten" name="ten" required />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div>
+        <label for="ngaydi">Ngày đi</label>
+        <input type="date" id="ngaydi" name="ngaydi" required />
+      </div>
+
+      <div>
+        <label for="ngayve">Ngày về (nếu có)</label>
+        <input type="date" id="ngayve" name="ngayve" />
+      </div>
+
+      <div>
+        <label for="noidi">Nơi đi</label>
+        <select id="noidi" name="noidi">
+          <option>Hà Nội</option>
+          <option>TP.HCM</option>
+          <option>Đà Nẵng</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="noiden">Nơi đến</label>
+        <select id="noiden" name="noiden">
+          <option>TP.HCM</option>
+          <option>Hà Nội</option>
+          <option>Đà Nẵng</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="soghe">Số lượng ghế</label>
+        <input type="number" id="soghe" name="soghe" min="1" required />
+      </div>
+
+      <div>
+        <label for="ghichu">Ghi chú</label>
+        <textarea id="ghichu" name="ghichu" rows="3"></textarea>
+      </div>
+
+      <button type="submit">Xác nhận đặt vé</button>
+    </form>
+
+    <section>
+      <h2>Tra cứu thông tin chuyến bay</h2>
+      <form>
+        <div class="full-width">
+          <label for="mave">Nhập mã vé</label>
+          <input type="text" id="mave" name="mave" placeholder="VD: VE12345" />
+        </div>
+        <button type="submit">Tra cứu</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Phenikaa Air. Thiết kế bởi sinh viên Phenikaa. Mọi quyền được bảo lưu.
+  </footer>
+</body>
+</html>
