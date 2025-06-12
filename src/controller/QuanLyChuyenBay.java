@@ -115,4 +115,43 @@ public void loadFromDatabase() {
         }
         return null;
     }
+
+    public void sua() {
+    ChuyenBay cbsua = null;
+    System.out.println("Nhap ma chuyen bay: ");
+    String maChuyenBay = sc.nextLine();
+    for (ChuyenBay cb : ds) {
+        if (cb.getMaChuyenBay().equals(maChuyenBay)) {
+            cbsua = cb;
+            break;
+        }
+    }
+    if (cbsua != null) {
+        // Nhập lại thông tin mới cho chuyến bay (trừ mã)
+        System.out.println("Nhap ten hang moi: ");
+        cbsua.setTenChuyenBay(sc.nextLine());
+        System.out.println("Nhap ngay gio khoi hanh moi (dd/MM/yyyy hh:mm): ");
+        Date ngayGioKhoiHanh = null;
+        do {
+            String ngayGioKhoiHanhStr = sc.nextLine();
+            ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
+        } while (ngayGioKhoiHanh == null);
+        cbsua.setNgayGioKhoiHanh(ngayGioKhoiHanh);
+        System.out.println("Nhap so ghe trong moi: ");
+        cbsua.setSoLuongGhe(Integer.parseInt(sc.nextLine()));
+        System.out.println("Nhap diem khoi hanh moi: ");
+        cbsua.setDiemKhoiHanh(sc.nextLine());
+        System.out.println("Nhap diem den moi: ");
+        cbsua.setDiemDen(sc.nextLine());
+        System.out.println("Nhap noi quoc te moi: ");
+        cbsua.setNoiquoc(sc.nextLine());
+
+        // Cập nhật vào database
+        dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+        dao.update(cbsua);
+        System.out.println("Đã cập nhật chuyến bay có mã: " + maChuyenBay);
+    } else {
+        System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+    }
+}
 }
