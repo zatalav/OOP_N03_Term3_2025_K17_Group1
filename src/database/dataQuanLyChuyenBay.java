@@ -52,34 +52,27 @@ public int insert(ChuyenBay t) {
 }
 
     @Override
-    public int update(ChuyenBay t) {
-       int kq = 0;
-        try {
-             Connection con = JDBC.getConnection();
-
-             Statement st = con.createStatement();
-
-             String sql = "UPDATE chuyenbay " + 
-             " SET "+
-             "tenChuyenBay = '"+t.getTenChuyenBay()+"', "+
-             "ngayGioKhoiHanh = '"+t.getNgayGioKhoiHanh()+"', "+
-             "soLuongGhe = "+t.getSoLuongGhe()+ ", "+
-             "diemKhoiHanh = '"+t.getDiemKhoiHanh()+"', "+
-             "DiemDen = '"+t.getDiemDen()+"' " +    
-             "Where maChuyenBay = '"+t.getMaChuyenBay()+"'" ;    
-              kq = st.executeUpdate(sql);
-
-             System.out.println("ban da thuc thi thanh cong cau lenh: " + sql);
-             System.out.println("So dong thay doi: " + kq);
-
-             JDBC.closeConnection(con);
-            
-        } catch (SQLException e) {
-            // TODO: handle exception
-        }
-
-        return kq;
+public int update(ChuyenBay cb) {
+    int kq = 0;
+    try {
+        Connection con = JDBC.getConnection();
+        String sql = "UPDATE chuyenbay SET tenChuyenBay=?, ngayGioKhoiHanh=?, soLuongGhe=?, diemKhoiHanh=?, diemDen=?, noiquoc=? WHERE maChuyenBay=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, cb.getTenChuyenBay());
+        ps.setTimestamp(2, new java.sql.Timestamp(cb.getNgayGioKhoiHanh().getTime()));
+        ps.setInt(3, cb.getSoLuongGhe());
+        ps.setString(4, cb.getDiemKhoiHanh());
+        ps.setString(5, cb.getDiemDen());
+        ps.setString(6, cb.getNoiquoc());
+        ps.setString(7, cb.getMaChuyenBay());
+        kq = ps.executeUpdate();
+        ps.close();
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return kq;
+}
 
     @Override
     public int delete(ChuyenBay t) {
