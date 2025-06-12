@@ -1,7 +1,7 @@
 package src.database;
 
 import src.model.ChuyenBay;
-import src.dao.Arraylist;
+import java.util.ArrayList;
 import src.dao.Dao_interface;
 import src.data.JDBC;
 
@@ -106,28 +106,35 @@ public int insert(ChuyenBay t) {
     }
 
     @Override
-    public Arraylist<ChuyenBay> selectAll() {
-        Arraylist<ChuyenBay> kq = new Arraylist<ChuyenBay>();
-        try {
-             Connection con = JDBC.getConnection();
+public ArrayList<ChuyenBay> selectAll() {
+    ArrayList<ChuyenBay> kq = new ArrayList<ChuyenBay>();
+    try {
+        Connection con = JDBC.getConnection();
+        Statement st = con.createStatement();
+        String sql = "SELECT * FROM chuyenbay";  
+        ResultSet rs = st.executeQuery(sql);
 
-             Statement st = con.createStatement();
+        while (rs.next()) {
+            String maChuyenBay = rs.getString("maChuyenBay");
+            String tenChuyenBay = rs.getString("tenChuyenBay");
+            java.util.Date ngayGioKhoiHanh = rs.getTimestamp("ngayGioKhoiHanh");
+            int soLuongGhe = rs.getInt("soLuongGhe");
+            String diemKhoiHanh = rs.getString("diemKhoiHanh");
+            String diemDen = rs.getString("diemDen");
+            String noiquoc = rs.getString("noiquoc");
 
-             String sql = "SELECT * FROM chuyenbay";  
-             ResultSet rs = st.executeQuery(sql);
-
-             while (rs.next()) {
-                 
-             }
-
-             JDBC.closeConnection(con);
-            
-        } catch (SQLException e) {
-            // TODO: handle exception
+            ChuyenBay cb = new ChuyenBay(
+                maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen, noiquoc
+            );
+            kq.add(cb);
         }
 
-        return kq;
+        JDBC.closeConnection(con);
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return kq;
+}
 
     @Override
     public ChuyenBay selectById(ChuyenBay t) {

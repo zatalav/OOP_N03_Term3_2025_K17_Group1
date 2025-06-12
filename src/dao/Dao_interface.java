@@ -1,4 +1,5 @@
 package src.dao;
+import java.util.ArrayList;
 
 public interface Dao_interface<T> {
     public int insert (T t);
@@ -7,9 +8,9 @@ public interface Dao_interface<T> {
 
     public int delete (T t);
 
-    public Arraylist<T> selectAll();
+    public ArrayList<T> selectAll();
 
     public T selectById(T t);
 
-    public Arraylist<T> selectByCondition(String condition);
+    public ArrayList<T> selectByCondition(String condition);
 }

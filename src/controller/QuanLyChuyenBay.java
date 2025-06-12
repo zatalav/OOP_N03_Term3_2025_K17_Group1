@@ -5,6 +5,7 @@ import src.model.ChuyenBay;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
@@ -75,23 +76,35 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
         dao.insert(cb);
     }
-
-    // Sửa chuyến bay theo mã
-    public void sua(String maChuyenBay){
-        edit();
-    }
-
-    // Xóa chuyến bay theo mã
-    public void xoa(String maChuyenBay){
-        delete();
-    }
-
-    // Hiển thị danh sách
-    public void hienThiThongTin() {
-        for (ChuyenBay chuyenBay : ds) {
-            System.out.println(chuyenBay.toString());
+// xoa chuyen bay
+    public void xoa(){
+        ChuyenBay cbxoa = null;
+        System.out.println("Nhap ma chuyen bay: ");
+        String maChuyenBay = sc.nextLine();
+        for (ChuyenBay cb : ds) {
+            if (cb.getMaChuyenBay().equals(maChuyenBay)) {
+                cbxoa = cb;
+                break;
+            }
         }
-    }
+             if (cbxoa != null) {
+                ds.remove(cbxoa);
+                dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+                dao.delete(cbxoa); // truyền đối tượng ChuyenBay
+                System.out.println("Đã xóa chuyến bay có mã: " + maChuyenBay);
+                } else {
+                    System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+                }
+        }
+         // Thêm dòng này ở đầu file nếu chưa có
+
+
+public void loadFromDatabase() {
+    ds.clear();
+    dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
+    ArrayList<ChuyenBay> danhSach = dao.selectAll();
+    ds.addAll(danhSach);
+}
 
     // Tìm chuyến bay theo mã
     public ChuyenBay timTheoMa(String ma) {
