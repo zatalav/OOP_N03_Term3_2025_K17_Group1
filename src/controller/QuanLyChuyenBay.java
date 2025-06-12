@@ -154,4 +154,24 @@ public void loadFromDatabase() {
         System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
     }
 }
+
+
+public void timkiem(){
+    ChuyenBay cbtk = null;
+    System.out.println("Nhap ma chuyen bay: ");
+    String maChuyenBay = sc.nextLine();
+    for (ChuyenBay cb : ds) {
+        if (cb.getMaChuyenBay().equals(maChuyenBay)) {
+            cbtk = cb;
+            break;
+        }
+    }
+    if (cbtk != null) {
+        System.out.println("Chuyến bay tìm thấy: " + cbtk);
+    } else {
+        System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+    }
+
+}
+
 }

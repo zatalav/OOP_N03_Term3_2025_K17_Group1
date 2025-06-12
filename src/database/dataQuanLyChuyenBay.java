@@ -130,9 +130,34 @@ public ArrayList<ChuyenBay> selectAll() {
 }
 
     @Override
-    public ChuyenBay selectById(ChuyenBay t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectById'");
+    public ChuyenBay selectById(String maChuyenBay) {
+       ArrayList<ChuyenBay> kq = new ArrayList<>();
+    try {
+        Connection con = JDBC.getConnection();
+        String sql = "SELECT * FROM chuyenbay WHERE maChuyenBay = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, maChuyenBay);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            ChuyenBay cb = new ChuyenBay(
+                rs.getString("maChuyenBay"),
+                rs.getString("tenChuyenBay"),
+                rs.getTimestamp("ngayGioKhoiHanh"),
+                rs.getInt("soLuongGhe"),
+                rs.getString("diemKhoiHanh"),
+                rs.getString("diemDen"),
+                rs.getString("noiquoc")
+            );
+            kq.add(cb);
+        }
+        rs.close();
+        ps.close();
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return kq;
     }
 
     @Override
