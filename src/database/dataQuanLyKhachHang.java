@@ -134,4 +134,72 @@ public ArrayList<KhachHang> selectAll() {
     }
     return kq;
     }
+
+     @Override
+    public KhachHang selectById(KhachHang t) {
+        Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    KhachHang kh = null;
+
+    try {
+        con = JDBC.getConnection();
+        String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
+        ps = con.prepareStatement(sql);
+        ps.setString(1, t.getMaKhachHang());
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            kh = new KhachHang(
+                rs.getString("maKhachHang"),
+                rs.getString("hoTen"),
+                rs.getString("email"),
+                rs.getString("soDienThoai"),
+                rs.getString("canCuocCongDan"),
+                rs.getString("diachi")
+            );
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    return kh;
+    }
+
+    @Override
+public ArrayList<KhachHang> selectByCondition(String maKhachHang) {
+    ArrayList<KhachHang> kq = new ArrayList<>();
+    try {
+        Connection con = JDBC.getConnection();
+        String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, maKhachHang);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            KhachHang kh = new KhachHang(
+                rs.getString("maKhachHang"),
+                rs.getString("hoTen"),
+                rs.getString("email"),
+                rs.getString("soDienThoai"),
+                rs.getString("canCuocCongDan"),
+                rs.getString("diachi")
+            );
+            kq.add(kh);
+        }
+        rs.close();
+        ps.close();
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return kq;
+}
 }

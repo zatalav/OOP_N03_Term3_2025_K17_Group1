@@ -96,4 +96,31 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
         }
     }
+
+    public void lietKe() {
+        dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+        ArrayList<KhachHang> ds = dao.selectAll();
+        if (ds.isEmpty()) {
+            System.out.println("Danh sách khách hàng rỗng.");
+        } else {
+            System.out.println("Danh sách khách hàng:");
+            for (KhachHang kh : ds) {
+                System.out.println(kh);
+            }
+        }
+    }
+
+    public void timKiem() {
+        System.out.println("Nhập mã khách hàng cần tìm: ");
+        String maKhachHang = sc.nextLine();
+        dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+        ArrayList<KhachHang> ketQua = dao.selectByCondition(maKhachHang);
+        if (!ketQua.isEmpty()) {
+        for (KhachHang kh : ketQua) {
+            System.out.println("Chuyến bay tìm thấy: " + kh);
+        }
+        } else {
+            System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
+        }
+    }
 }
