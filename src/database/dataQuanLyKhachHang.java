@@ -105,4 +105,33 @@ public ArrayList<KhachHang> selectAll() {
     }
     return kq;
 }
+
+@Override
+    public int update(KhachHang t) {
+        int kq = 0;
+    try {
+        Connection con = null;
+        con = JDBC.getConnection();
+        if (con == null) {
+            System.out.println("Khong the ket noi den MySQL!");
+            return kq;
+        }
+        con.setAutoCommit(true); // Bật autocommit
+        String sql = "UPDATE KhachHang SET hoTen = ?, email = ?, soDienThoai = ?, canCuocCongDan = ?, diaChi = ? WHERE maKhachHang = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, t.getHoTen());
+        ps.setString(2, t.getEmail());
+        ps.setString(3, t.getSoDienThoai());
+        ps.setString(4, t.getCanCuocCongDan());
+        ps.setString(5, t.getDiaChi());
+        ps.setString(6, t.getMaKhachHang()); // WHERE maKhachHang = ?
+
+        kq = ps.executeUpdate();
+        System.out.println("Da chen thanh cong " + kq + " dong!");
+    } catch (SQLException e) {
+        System.out.println("Loi khi chen du lieu: " + e.getMessage());
+        e.printStackTrace();
+    }
+    return kq;
+    }
 }

@@ -65,4 +65,35 @@ public class QuanLyKhachHang extends manager<KhachHang> {
                     System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
                 }
         }
+
+         public void sua() {
+        KhachHang khsua = null;
+        System.out.println("Nhap ma chuyen bay: ");
+        String maKhachHang = sc.nextLine();
+        for (KhachHang kh : ds) {
+            if (kh.getMaKhachHang().equals(maKhachHang)) {
+                khsua = kh;
+                break;
+            }
+        }
+
+        if (khsua != null) {
+            System.out.println("Nhập tên khách hàng: ");
+            khsua.setHoTen(sc.nextLine());
+            System.out.println("Nhập email: ");
+            khsua.setEmail(sc.nextLine());
+            System.out.println("Nhập số điện thoại: ");
+            khsua.setSoDienThoai(sc.nextLine());
+            System.out.println("Nhập căn cước công dân: ");
+            khsua.setCanCuocCongDan(sc.nextLine());
+            System.out.println("Nhập địa chỉ: ");
+            khsua.setDiaChi(sc.nextLine());
+            dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+            dao.update(khsua);
+            System.out.println("Đã cập nhật chuyến bay có mã: " + maKhachHang);
+        }
+        else {
+        System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
+        }
+    }
 }
