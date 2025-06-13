@@ -47,4 +47,62 @@ public class dataQuanLyKhachHang implements Dao_interface<KhachHang> {
     }
     return kq;
     }
+
+    @Override
+    public int delete(KhachHang t) {
+        int kq = 0;
+         try {
+             Connection con = JDBC.getConnection();
+
+             Statement st = con.createStatement();
+
+             String sql = "DELETE from KhachHang " +  
+             "Where maKhachHang = '"+t.getMaKhachHang()+"'" ;    
+              kq = st.executeUpdate(sql);
+
+             System.out.println("ban da thuc thi thanh cong cau lenh: " + sql);
+             System.out.println("So dong thay doi: " + kq);
+
+             JDBC.closeConnection(con);
+            
+        } catch (SQLException e) {
+            // TODO: handle exception
+        }
+
+        return kq;
+    }
+
+
+
+    @Override
+public ArrayList<KhachHang> selectAll() {
+    ArrayList<KhachHang> kq = new ArrayList<>();
+    try {
+        Connection con = JDBC.getConnection();
+        Statement st = con.createStatement();
+        String sql = "SELECT * FROM KhachHang";
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            String maKhachHang = rs.getString("maKhachHang");
+            String hoTen = rs.getString("hoTen");
+            String email = rs.getString("email");
+            String soDienThoai = rs.getString("soDienThoai");
+            String canCuocCongDan = rs.getString("canCuocCongDan");
+            String diaChi = rs.getString("diachi");
+
+            KhachHang kh = new KhachHang(
+                maKhachHang, hoTen, email, soDienThoai, canCuocCongDan, diaChi
+            );
+            kq.add(kh);
+        }
+
+        rs.close();
+        st.close();
+        JDBC.closeConnection(con);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return kq;
+}
 }

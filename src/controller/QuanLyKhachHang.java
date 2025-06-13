@@ -38,4 +38,31 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
         dao.insert(kh);
     }
+
+    public void loadFromDatabase() {
+    ds.clear();
+    dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+    ArrayList<KhachHang> danhSach = dao.selectAll();
+    ds.addAll(danhSach);
+}
+
+     public void xoa(){
+        KhachHang cbxoa = null;
+        System.out.println("Nhap ma chuyen bay: ");
+        String maKhachHang = sc.nextLine();
+        for (KhachHang cb : ds) {
+            if (cb.getMaKhachHang().equals(maKhachHang)) {
+                cbxoa = cb;
+                break;
+            }
+        }
+             if (cbxoa != null) {
+                ds.remove(cbxoa);
+                dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+                dao.delete(cbxoa); // truyền đối tượng ChuyenBay
+                System.out.println("Đã xóa chuyến bay có mã: " + maKhachHang);
+                } else {
+                    System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
+                }
+        }
 }
