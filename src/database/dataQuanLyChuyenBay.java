@@ -64,9 +64,9 @@ public int update(ChuyenBay cb) {
         ps.setString(1, cb.getTenChuyenBay());
         ps.setTimestamp(2, new java.sql.Timestamp(cb.getNgayGioKhoiHanh().getTime()));
         ps.setInt(3, cb.getSoLuongGhe());
-         ps.setInt(4, GheVip);
-        ps.setInt(5, GheHangNhat);
-        ps.setInt(6,GheThuong);
+         ps.setInt(4, cb.getGheVip());
+        ps.setInt(5, cb.getGheHangNhat());
+        ps.setInt(6,cb.getGheThuong());
         ps.setString(7, cb.getDiemKhoiHanh());
         ps.setString(8, cb.getDiemDen());
         ps.setString(9, cb.getNoiquoc());
@@ -129,10 +129,11 @@ public ArrayList<ChuyenBay> selectAll() {
             int GheThuong = rs.getInt("GheThuong");
             if (rs.wasNull()) {
                  GheThuong = soLuongGhe - GheVip - GheHangNhat;
+            }
             String diemKhoiHanh = rs.getString("diemKhoiHanh");
             String diemDen = rs.getString("diemDen");
             String noiquoc = rs.getString("noiquoc");
-
+            
             ChuyenBay cb = new ChuyenBay( maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, GheVip, GheHangNhat, GheThuong, diemKhoiHanh, diemDen, noiquoc);
             kq.add(cb);
         }
@@ -145,8 +146,8 @@ public ArrayList<ChuyenBay> selectAll() {
 }
 
     @Override
-    public ChuyenBay selectById(String maChuyenBay) {
-       ArrayList<ChuyenBay> kq = new ArrayList<>();
+    public ChuyenBay selectById(String t) {
+        ChuyenBay cb = null;
     try {
         Connection con = JDBC.getConnection();
         String sql = "SELECT * FROM chuyenbay WHERE maChuyenBay = ?";
@@ -155,7 +156,7 @@ public ArrayList<ChuyenBay> selectAll() {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            ChuyenBay cb = new ChuyenBay(
+            cb = new ChuyenBay(
                 rs.getString("maChuyenBay"),
                 rs.getString("tenChuyenBay"),
                 rs.getTimestamp("ngayGioKhoiHanh"),
@@ -167,20 +168,23 @@ public ArrayList<ChuyenBay> selectAll() {
                 rs.getString("diemDen"),
                 rs.getString("noiquoc")
             );
-            kq.add(cb);
         }
-        rs.close();
-        ps.close();
-        con.close();
     } catch (SQLException e) {
         e.printStackTrace();
-    }
-    return kq;
+    }finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }return cb;
     }
 
     @Override
     public Arraylist<ChuyenBay> selectByCondition(String maChuyenBay) {
-        ArrayList<ChuyenBay> kq = new ArrayList<>();
+    ChuyenBay cb = null;
     try {
         Connection con = JDBC.getConnection();
         String sql = "SELECT * FROM chuyenbay WHERE maChuyenBay = ?";
@@ -189,7 +193,7 @@ public ArrayList<ChuyenBay> selectAll() {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            ChuyenBay cb = new ChuyenBay(
+            cb = new ChuyenBay(
                 rs.getString("maChuyenBay"),
                 rs.getString("tenChuyenBay"),
                 rs.getTimestamp("ngayGioKhoiHanh"),
