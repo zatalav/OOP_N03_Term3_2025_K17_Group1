@@ -64,10 +64,36 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         System.out.print("Nhập điểm đến: ");
         String diemDen = sc.nextLine();
 
-        System.out.println("Nhap noi quoc te: ");
-        String noiquoc = sc.nextLine();
+        String noiquoc;
+        while (true) {
+            System.out.println("Nhap noi di (I: International(quoc te), D: Domestic(trong nuoc)): ");
+            noiquoc = sc.nextLine().trim().toUpperCase();
+            if (noiquoc.equals("I") || noiquoc.equals("D")) {
+                if (noiquoc.equals("I")) {
+                    noiquoc = "Quoc te"; // <- CHUYỂN I thành "Quoc te"
+                    break;
+                } else if (noiquoc.equals("D")) {
+                    noiquoc = "Trong nuoc"; // <- CHUYỂN D thành "Trong nuoc"
+                    break;
+                }
+            } else {
+                System.out.println("Chi duoc nhap I (quoc te) hoac D (trong nuoc). Vui long nhap lai.");
+            }
+        }
 
-        return new ChuyenBay(maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, diemKhoiHanh, diemDen,noiquoc);
+        int GheVip = soLuongGhe / 10;
+        int GheHangNhat = 0;
+        int GheThuong = 0;
+
+        if (noiquoc.equals("Quoc te")) {
+            GheHangNhat = soLuongGhe / 20;
+            GheThuong = soLuongGhe - GheVip - GheHangNhat;
+        } else {
+            GheThuong = soLuongGhe - GheVip;
+        }
+
+        return new ChuyenBay(maChuyenBay, tenChuyenbay, ngayGioKhoiHanh, soLuongGhe, GheVip, GheHangNhat, GheThuong, diemKhoiHanh, diemDen,noiquoc);
+    }
     }
 
 
@@ -148,8 +174,39 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             System.out.println("Nhập điểm đến mới: ");
             cbsua.setDiemDen(sc.nextLine());
 
-            System.out.println("Nhập nơi quốc tế mới: ");
-            cbsua.setNoiquoc(sc.nextLine());
+            String noiquoc;
+            while (true) {
+                System.out.println("Nhap noi di (I: International(quoc te), D: Domestic(trong nuoc)): ");
+                noiquoc = sc.nextLine().trim().toUpperCase();
+                if (noiquoc.equals("I") || noiquoc.equals("D")) {
+                    if (noiquoc.equals("I")) {
+                        noiquoc = "Quoc te"; // <- CHUYỂN I thành "Quoc te"
+                        break;
+                    } else if (noiquoc.equals("D")) {
+                        noiquoc = "Trong nuoc"; // <- CHUYỂN D thành "Trong nuoc"
+                        break;
+                    }
+                } else {
+                    System.out.println("Chi duoc nhap I (quoc te) hoac D (trong nuoc). Vui long nhap lai.");
+                }
+            }
+
+        int soLuongGhe = cbsua.getSoLuongGhe();
+        int GheVip = soLuongGhe / 10;
+        int GheHangNhat = 0;
+        int GheThuong;
+
+        if (noiquoc.equals("Quoc te")) {
+            GheHangNhat = soLuongGhe / 20;
+            GheThuong = soLuongGhe - GheVip - GheHangNhat;
+        } else {
+            GheThuong = soLuongGhe - GheVip;
+        }
+
+        cbsua.setGheVip(GheVip);
+        cbsua.setGheHangNhat(GheHangNhat);
+        cbsua.setGheThuong(GheThuong);
+
 
             // Cập nhật vào database
             dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();

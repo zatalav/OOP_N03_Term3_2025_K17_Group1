@@ -8,6 +8,9 @@ public class ChuyenBay implements Identifiable {
     private String tenChuyenBay;
     private Date ngayGioKhoiHanh;
     private int soLuongGhe;
+    private int GheVip;
+    private int GheHangNhat;
+    private int GheThuong;
     private String diemKhoiHanh;
     private String diemDen;
     private String noiquoc;
@@ -15,12 +18,14 @@ public class ChuyenBay implements Identifiable {
     public ChuyenBay() {
     }
 
-    public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe,
-            String diemKhoiHanh, String diemDen, String noiquoc) {
+    public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe, int GheVip, int GheHangNhat, int GheThuong, String diemKhoiHanh, String diemDen, String noiquoc) {
         this.maChuyenBay = maChuyenBay;
         this.tenChuyenBay = tenChuyenBay;
         this.ngayGioKhoiHanh = ngayGioKhoiHanh;
         this.soLuongGhe = soLuongGhe;
+        this.GheVip = GheVip;
+        this.GheHangNhat = GheHangNhat;
+        this.GheThuong = GheThuong;
         this.diemKhoiHanh = diemKhoiHanh;
         this.diemDen = diemDen;
         this.noiquoc = noiquoc;
@@ -63,6 +68,30 @@ public class ChuyenBay implements Identifiable {
         this.soLuongGhe = soLuongGhe;
     }
 
+    public int getGheVip() {
+        return GheVip;
+    }
+
+    public void setGheVip(int GheVip) {
+        this.GheVip = GheVip;
+    }
+
+    public int getGheThuong(){
+        return GheThuong;
+    }
+
+    public void setGheThuong(int GheThuong){
+        this.GheThuong = GheThuong;
+    }
+
+    public int getGheHangNhat(){
+        return GheHangNhat;
+    }
+
+    public void setGheHangNhat(int GheHangNhat){
+        this.GheHangNhat = GheHangNhat;
+    }
+
     public String getDiemKhoiHanh() {
         return diemKhoiHanh;
     }
@@ -97,6 +126,9 @@ public class ChuyenBay implements Identifiable {
                 ", tenChuyenBay='" + tenChuyenBay + '\'' +
                 ", ngayGioKhoiHanh=" + ngayGioKhoiHanh +
                 ", soLuongGhe=" + soLuongGhe +
+                ", GheVip=" + GheVip +
+                ", GheHangNhat=" + GheHangNhat +
+                ", GheThuong=" + GheThuong +
                 ", diemKhoiHanh='" + diemKhoiHanh + '\'' +
                 ", diemDen='" + diemDen + '\'' +
                 ", noiquoc='" + noiquoc + '\'' +
