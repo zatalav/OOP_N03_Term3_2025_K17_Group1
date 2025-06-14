@@ -18,7 +18,8 @@ public class ChuyenBay implements Identifiable {
     public ChuyenBay() {
     }
 
-    public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe, int GheVip, int GheHangNhat, int GheThuong, String diemKhoiHanh, String diemDen, String noiquoc) {
+    public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe, int GheVip,
+            int GheHangNhat, int GheThuong, String diemKhoiHanh, String diemDen, String noiquoc) {
         this.maChuyenBay = maChuyenBay;
         this.tenChuyenBay = tenChuyenBay;
         this.ngayGioKhoiHanh = ngayGioKhoiHanh;
@@ -76,19 +77,19 @@ public class ChuyenBay implements Identifiable {
         this.GheVip = GheVip;
     }
 
-    public int getGheThuong(){
+    public int getGheThuong() {
         return GheThuong;
     }
 
-    public void setGheThuong(int GheThuong){
+    public void setGheThuong(int GheThuong) {
         this.GheThuong = GheThuong;
     }
 
-    public int getGheHangNhat(){
+    public int getGheHangNhat() {
         return GheHangNhat;
     }
 
-    public void setGheHangNhat(int GheHangNhat){
+    public void setGheHangNhat(int GheHangNhat) {
         this.GheHangNhat = GheHangNhat;
     }
 
@@ -120,7 +121,7 @@ public class ChuyenBay implements Identifiable {
         this.noiquoc = noiquoc;
     }
 
-    public String toString(){
+    public String toString() {
         return "ChuyenBay{" +
                 "maChuyenBay='" + maChuyenBay + '\'' +
                 ", tenChuyenBay='" + tenChuyenBay + '\'' +

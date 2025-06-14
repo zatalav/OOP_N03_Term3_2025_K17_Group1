@@ -4,14 +4,14 @@ import src.database.dataQuanLyKhachHang;
 import src.model.KhachHang;
 import java.util.ArrayList;
 
-
 public class QuanLyKhachHang extends manager<KhachHang> {
-    public KhachHang nhap(){
+
+    public KhachHang nhap() {
         String maKhachHang;
-        while(true){
+        while (true) {
             System.out.println("Nhập mã khách hàng:");
             maKhachHang = sc.nextLine();
-            if(kiemTraMaTrung(maKhachHang)){
+            if (kiemTraMaTrung(maKhachHang)) {
                 System.out.println("Mã khách hàng đã tồn tại, vui lòng nhập lại.");
             } else {
                 break;
@@ -27,28 +27,27 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         String canCuocCongDan = sc.nextLine();
         System.out.println("Nhập địa chỉ: ");
         String diaChi = sc.nextLine();
-        
-        return new KhachHang(maKhachHang, hoTen,email, soDienThoai,canCuocCongDan, diaChi);
+
+        return new KhachHang(maKhachHang, hoTen, email, soDienThoai, canCuocCongDan, diaChi);
     }
-    
-    public void them(){
+
+    public void them() {
         KhachHang kh = nhap();
-        ds.add(kh);  
-        // Lưu vào MySQL
+        ds.add(kh);
         dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
         dao.insert(kh);
     }
 
     public void loadFromDatabase() {
-    ds.clear();
-    dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
-    ArrayList<KhachHang> danhSach = dao.selectAll();
-    ds.addAll(danhSach);
-}
+        ds.clear();
+        dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+        ArrayList<KhachHang> danhSach = dao.selectAll();
+        ds.addAll(danhSach);
+    }
 
-     public void xoa(){
+    public void xoa() {
         KhachHang cbxoa = null;
-        System.out.println("Nhap ma chuyen bay: ");
+        System.out.println("Nhập mã khách hàng: ");
         String maKhachHang = sc.nextLine();
         for (KhachHang cb : ds) {
             if (cb.getMaKhachHang().equals(maKhachHang)) {
@@ -56,19 +55,20 @@ public class QuanLyKhachHang extends manager<KhachHang> {
                 break;
             }
         }
-             if (cbxoa != null) {
-                ds.remove(cbxoa);
-                dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
-                dao.delete(cbxoa); // truyền đối tượng ChuyenBay
-                System.out.println("Đã xóa chuyến bay có mã: " + maKhachHang);
-                } else {
-                    System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
-                }
-        }
 
-         public void sua() {
+        if (cbxoa != null) {
+            ds.remove(cbxoa);
+            dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
+            dao.delete(cbxoa);
+            System.out.println("Đã xóa khách hàng có mã: " + maKhachHang);
+        } else {
+            System.out.println("Không tìm thấy khách hàng với mã: " + maKhachHang);
+        }
+    }
+
+    public void sua() {
         KhachHang khsua = null;
-        System.out.println("Nhap ma chuyen bay: ");
+        System.out.println("Nhập mã khách hàng: ");
         String maKhachHang = sc.nextLine();
         for (KhachHang kh : ds) {
             if (kh.getMaKhachHang().equals(maKhachHang)) {
@@ -88,12 +88,12 @@ public class QuanLyKhachHang extends manager<KhachHang> {
             khsua.setCanCuocCongDan(sc.nextLine());
             System.out.println("Nhập địa chỉ: ");
             khsua.setDiaChi(sc.nextLine());
+
             dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
             dao.update(khsua);
-            System.out.println("Đã cập nhật chuyến bay có mã: " + maKhachHang);
-        }
-        else {
-        System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
+            System.out.println("Đã cập nhật khách hàng có mã: " + maKhachHang);
+        } else {
+            System.out.println("Không tìm thấy khách hàng với mã: " + maKhachHang);
         }
     }
 
@@ -116,11 +116,11 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
         ArrayList<KhachHang> ketQua = dao.selectByCondition(maKhachHang);
         if (!ketQua.isEmpty()) {
-        for (KhachHang kh : ketQua) {
-            System.out.println("Chuyến bay tìm thấy: " + kh);
-        }
+            for (KhachHang kh : ketQua) {
+                System.out.println("Khách hàng tìm thấy: " + kh);
+            }
         } else {
-            System.out.println("Không tìm thấy chuyến bay với mã: " + maKhachHang);
+            System.out.println("Không tìm thấy khách hàng với mã: " + maKhachHang);
         }
     }
 }

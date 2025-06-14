@@ -89,22 +89,15 @@ public class dataQuanLyVe implements Dao_interface<Ve> {
         int kq = 0;
         try {
             Connection con = JDBC.getConnection();
-
             Statement st = con.createStatement();
-
-            String sql = "DELETE from Ve " +
-                    "Where maVe = '" + t.getMaVe() + "'";
+            String sql = "DELETE from Ve WHERE maVe = '" + t.getMaVe() + "'";
             kq = st.executeUpdate(sql);
-
             System.out.println("ban da thuc thi thanh cong cau lenh: " + sql);
             System.out.println("So dong thay doi: " + kq);
-
             JDBC.closeConnection(con);
-
         } catch (SQLException e) {
             // TODO: handle exception
         }
-
         return kq;
     }
 
@@ -116,18 +109,15 @@ public class dataQuanLyVe implements Dao_interface<Ve> {
             Statement st = con.createStatement();
             String sql = "SELECT * FROM Ve";
             ResultSet rs = st.executeQuery(sql);
-
             while (rs.next()) {
                 String maVe = rs.getString("maVe");
                 java.util.Date ngayDatVe = rs.getTimestamp("ngayDatVe");
                 Double giaVe = rs.getDouble("giaVe");
                 String maChuyenBay = rs.getString("maChuyenBay");
                 String maKhachHang = rs.getString("maKhachHang");
-
                 Ve v = new Ve(maVe, ngayDatVe, giaVe, maChuyenBay, maKhachHang);
                 kq.add(v);
             }
-
             JDBC.closeConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -141,14 +131,12 @@ public class dataQuanLyVe implements Dao_interface<Ve> {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Ve v = null;
-
         try {
             con = JDBC.getConnection();
             String sql = "SELECT * FROM Ve WHERE maVe = ?";
             ps = con.prepareStatement(sql);
             ps.setString(1, t.getMaVe());
             rs = ps.executeQuery();
-
             if (rs.next()) {
                 v = new Ve(
                         rs.getString("maVe"),
@@ -184,28 +172,19 @@ public class dataQuanLyVe implements Dao_interface<Ve> {
                     "JOIN chuyenbay cb ON v.maChuyenBay = cb.maChuyenBay " +
                     "JOIN KhachHang kh ON v.maKhachHang = kh.maKhachHang " +
                     "WHERE v.maVe = ?";
-            ;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, maVe);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
-                // Lấy thông tin vé
                 String maVeResult = rs.getString("maVe");
                 java.util.Date ngayDatVe = rs.getTimestamp("ngayDatVe");
                 Double giaVe = rs.getDouble("giaVe");
                 String maChuyenBay = rs.getString("maChuyenBay");
                 String maKhachHang = rs.getString("maKhachHang");
-
-                // Lấy thông tin chuyến bay
                 String tenChuyenBay = rs.getString("tenChuyenBay");
                 java.util.Date ngayGioKhoiHanh = rs.getTimestamp("ngayGioKhoiHanh");
-
-                // Lấy thông tin khách hàng
                 String hoTenKhachHang = rs.getString("hoTen");
                 String emailKhachHang = rs.getString("email");
-
-                // Bạn có thể tạo class Ve mở rộng để chứa thêm thông tin, hoặc in trực tiếp
                 System.out.println("Mã vé: " + maVeResult);
                 System.out.println("Mã chuyến bay: " + maChuyenBay + " - Tên chuyến bay: " + tenChuyenBay);
                 System.out.println("Ngày giờ khởi hành: " + ngayGioKhoiHanh);
@@ -213,8 +192,6 @@ public class dataQuanLyVe implements Dao_interface<Ve> {
                         + emailKhachHang);
                 System.out.println("Ngày đặt vé: " + ngayDatVe);
                 System.out.println("Giá vé: " + giaVe);
-
-                // Nếu muốn trả về đối tượng Ve, bạn vẫn có thể tạo như cũ:
                 Ve ve = new Ve(maVeResult, ngayDatVe, giaVe, maChuyenBay, maKhachHang);
                 kq.add(ve);
             }

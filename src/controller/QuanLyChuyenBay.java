@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
-
     // Định dạng ngày
     private Date parseDate(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -20,7 +19,6 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             return null;
         }
     }
-
 
     // Nhập chuyến bay
     public ChuyenBay nhap() {
@@ -70,10 +68,10 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             noiquoc = sc.nextLine().trim().toUpperCase();
             if (noiquoc.equals("I") || noiquoc.equals("D")) {
                 if (noiquoc.equals("I")) {
-                    noiquoc = "Quoc te"; // <- CHUYỂN I thành "Quoc te"
+                    noiquoc = "Quoc te";
                     break;
                 } else if (noiquoc.equals("D")) {
-                    noiquoc = "Trong nuoc"; // <- CHUYỂN D thành "Trong nuoc"
+                    noiquoc = "Trong nuoc";
                     break;
                 }
             } else {
@@ -92,25 +90,22 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             GheThuong = soLuongGhe - GheVip;
         }
 
-        return new ChuyenBay(maChuyenBay, tenChuyenbay, ngayGioKhoiHanh, soLuongGhe, GheVip, GheHangNhat, GheThuong, diemKhoiHanh, diemDen,noiquoc);
+        return new ChuyenBay(maChuyenBay, tenChuyenBay, ngayGioKhoiHanh, soLuongGhe, GheVip, GheHangNhat, GheThuong,
+                diemKhoiHanh, diemDen, noiquoc);
     }
-    }
-
 
     // Thêm chuyến bay
     public void them() {
-        ChuyenBay cb = nhap();      // Nhập chuyến bay từ bàn phím
-        ds.add(cb);                 // Thêm vào danh sách tạm thời (RAM)
-        // Lưu vào MySQL
+        ChuyenBay cb = nhap();
+        ds.add(cb);
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
         dao.insert(cb);
     }
 
-
-    //xóa chuyến bay
-    public void xoa(){
+    // Xóa chuyến bay
+    public void xoa() {
         ChuyenBay cbxoa = null;
-        System.out.println("Nhậpchuyến bay: ");
+        System.out.println("Nhập chuyến bay: ");
         String maChuyenBay = sc.nextLine();
         for (ChuyenBay cb : ds) {
             if (cb.getMaChuyenBay().equals(maChuyenBay)) {
@@ -122,16 +117,14 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         if (cbxoa != null) {
             ds.remove(cbxoa);
             dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
-            dao.delete(cbxoa); // truyền đối tượng ChuyenBay
+            dao.delete(cbxoa);
             System.out.println("Đã xóa chuyến bay có mã: " + maChuyenBay);
-        }
-        else {
+        } else {
             System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
         }
     }
 
-
-    //truy xuất dữ liệu từ sql sang ram
+    // Truy xuất dữ liệu từ SQL sang RAM
     public void loadFromDatabase() {
         ds.clear();
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
@@ -139,9 +132,8 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         ds.addAll(danhSach);
     }
 
-
-    // sửa chuyến bay
-    public void sửa() {
+    // Sửa chuyến bay
+    public void sua() {
         ChuyenBay cbsua = null;
         System.out.println("Nhập mã chuyến bay: ");
         String maChuyenBay = sc.nextLine();
@@ -149,11 +141,10 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             if (cb.getMaChuyenBay().equals(maChuyenBay)) {
                 cbsua = cb;
                 break;
-            }   
+            }
         }
 
         if (cbsua != null) {
-            // Nhập lại thông tin mới cho chuyến bay (trừ mã)
             System.out.println("Nhập tên hãng mới: ");
             cbsua.setTenChuyenBay(sc.nextLine());
 
@@ -180,10 +171,10 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 noiquoc = sc.nextLine().trim().toUpperCase();
                 if (noiquoc.equals("I") || noiquoc.equals("D")) {
                     if (noiquoc.equals("I")) {
-                        noiquoc = "Quoc te"; // <- CHUYỂN I thành "Quoc te"
+                        noiquoc = "Quoc te";
                         break;
                     } else if (noiquoc.equals("D")) {
-                        noiquoc = "Trong nuoc"; // <- CHUYỂN D thành "Trong nuoc"
+                        noiquoc = "Trong nuoc";
                         break;
                     }
                 } else {
@@ -191,36 +182,32 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 }
             }
 
-        int soLuongGhe = cbsua.getSoLuongGhe();
-        int GheVip = soLuongGhe / 10;
-        int GheHangNhat = 0;
-        int GheThuong;
+            int soLuongGhe = cbsua.getSoLuongGhe();
+            int GheVip = soLuongGhe / 10;
+            int GheHangNhat = 0;
+            int GheThuong;
 
-        if (noiquoc.equals("Quoc te")) {
-            GheHangNhat = soLuongGhe / 20;
-            GheThuong = soLuongGhe - GheVip - GheHangNhat;
-        } else {
-            GheThuong = soLuongGhe - GheVip;
-        }
+            if (noiquoc.equals("Quoc te")) {
+                GheHangNhat = soLuongGhe / 20;
+                GheThuong = soLuongGhe - GheVip - GheHangNhat;
+            } else {
+                GheThuong = soLuongGhe - GheVip;
+            }
 
-        cbsua.setGheVip(GheVip);
-        cbsua.setGheHangNhat(GheHangNhat);
-        cbsua.setGheThuong(GheThuong);
+            cbsua.setGheVip(GheVip);
+            cbsua.setGheHangNhat(GheHangNhat);
+            cbsua.setGheThuong(GheThuong);
 
-
-            // Cập nhật vào database
             dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
             dao.update(cbsua);
             System.out.println("Đã cập nhật chuyến bay có mã: " + maChuyenBay);
-        } 
-        else {
+        } else {
             System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
         }
     }
 
-
-    // tìm kiếm chuyến bay
-    public void timkiem(){
+    // Tìm kiếm chuyến bay
+    public void timkiem() {
         System.out.println("Nhập mã chuyến bay: ");
         String maChuyenBay = sc.nextLine();
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
@@ -230,10 +217,9 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 System.out.println("Chuyến bay tìm thấy: " + cb);
             }
         } else {
-        System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
+            System.out.println("Không tìm thấy chuyến bay với mã: " + maChuyenBay);
         }
     }
-
 
     // Liệt kê tất cả chuyến bay
     public void lietKe() {

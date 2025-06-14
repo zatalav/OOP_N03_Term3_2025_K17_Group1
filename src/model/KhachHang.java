@@ -1,10 +1,6 @@
 package src.model;
 
 public class KhachHang implements Identifiable {
-    @Override
-    public String getMa() {
-        return maKhachHang;
-    }
 
     public String maKhachHang;
     public String hoTen;
@@ -25,7 +21,12 @@ public class KhachHang implements Identifiable {
         this.diaChi = diaChi;
     }
 
-    // Getters & Setters
+    @Override
+    public String getMa() {
+        return maKhachHang;
+    }
+
+    // Getters
     public String getMaKhachHang() {
         return maKhachHang;
     }
@@ -46,12 +47,17 @@ public class KhachHang implements Identifiable {
         return canCuocCongDan;
     }
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    public String getDiaChi() {
+        return diaChi;
     }
 
+    // Setters
     public void setMaKhachHang(String maKhachHang) {
         this.maKhachHang = maKhachHang;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public void setEmail(String email) {
@@ -66,17 +72,14 @@ public class KhachHang implements Identifiable {
         this.canCuocCongDan = canCuocCongDan;
     }
 
-     public String getDiaChi() {
-        return diaChi;
-    }
-    
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
 
     @Override
     public String toString() {
-        return String.format("Mã KH: %-8s | Họ tên: %-20s | Email: %-25s | SĐT: %-11s | CCCD: %-12s | Địa chỉ: %s",
+        return String.format(
+                "Mã KH: %-8s | Họ tên: %-20s | Email: %-25s | SĐT: %-11s | CCCD: %-12s | Địa chỉ: %s",
                 maKhachHang, hoTen, email, soDienThoai, canCuocCongDan, diaChi);
     }
 }

@@ -9,6 +9,7 @@ import src.controller.qlve.TinhGiaVe;
 import src.controller.qlve.Validator;
 
 public class Ve {
+
     private String maVe;
     private Date ngayDatVe;
     private double giaVe;
@@ -36,6 +37,7 @@ public class Ve {
     public String getMaVe() {
         return maVe;
     }
+
     public void setMaVe(String maVe) {
         this.maVe = maVe;
     }
@@ -43,6 +45,7 @@ public class Ve {
     public Date getNgayDatVe() {
         return ngayDatVe;
     }
+
     public void setNgayDatVe(Date ngayDatVe) {
         this.ngayDatVe = ngayDatVe;
     }
@@ -50,6 +53,7 @@ public class Ve {
     public double getGiaVe() {
         return giaVe;
     }
+
     public void setGiaVe(double giaVe) {
         this.giaVe = giaVe;
     }
@@ -57,6 +61,7 @@ public class Ve {
     public String getMaChuyenBay() {
         return maChuyenBay;
     }
+
     public void setMaChuyenBay(String maChuyenBay) {
         this.maChuyenBay = maChuyenBay;
     }
@@ -64,6 +69,7 @@ public class Ve {
     public String getMaKhachHang() {
         return maKhachHang;
     }
+
     public void setMaKhachHang(String maKhachHang) {
         this.maKhachHang = maKhachHang;
     }

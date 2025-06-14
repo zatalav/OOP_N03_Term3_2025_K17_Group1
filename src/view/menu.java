@@ -31,9 +31,8 @@ public class menu {
                 case 2 -> quanLy.timkiem();
                 case 3 -> quanLy.sua();
                 case 4 -> quanLy.xoa();
-
-                case 0 -> System.out.println("🔙 Thoát chương trình.");
-                default -> System.out.println("❌ Lựa chọn không hợp lệ.");
+                case 0 -> System.out.println("Thoát chương trình.");
+                default -> System.out.println("Lựa chọn không hợp lệ.");
             }
         } while (chon != 0);
     }
