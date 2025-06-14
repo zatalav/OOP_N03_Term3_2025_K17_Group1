@@ -11,7 +11,7 @@ public class KhachHang implements Identifiable {
     private String email;
     private String soDienThoai;
     private String canCuocCongDan;
-    private String diaChi
+    private String diaChi;
 
     public KhachHang() {
     }
