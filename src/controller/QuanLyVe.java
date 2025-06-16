@@ -74,12 +74,18 @@ public class QuanLyVe extends manager<Ve> {
         } while (ngayDatVe == null);
 
         System.out.println("Nhập giá vé:");
-        double giaVe = sc.nextDouble();
-        ChuyenBay cb = null;
-        for (ChuyenBay c : dsChuyenBay) {
-            if (c.getmaChuyenBay().equals(maChuyenBay)) {
-                cb = c;
-                break;
+        double giaVe = 0;
+        while (true) {
+            System.out.println("Nhap gia ve:");
+            try {
+                giaVe = Double.parseDouble(sc.nextLine());
+                if (giaVe < 0) {
+                    System.out.println("Gia ve phai lon hon 0, vui long nhap lai.");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Gia ve khong hop le, vui long nhap so.");
             }
         }
         int ThoiGianBay = cb.getThoiGianBay();
@@ -189,6 +195,7 @@ public class QuanLyVe extends manager<Ve> {
     }
 
     public void sua() {
+        loadFromDatabase();
         Ve vsua = null;
         System.out.println("Nhập mã Vé: ");
         String maVe = sc.nextLine();
@@ -207,9 +214,22 @@ public class QuanLyVe extends manager<Ve> {
                 ngayDatVe = parseDate(ngayDatVeStr);
             } while (ngayDatVe == null);
             vsua.setNgayDatVe(ngayDatVe);
-            double giaVeMoi = sc.nextDouble();
-            sc.nextLine();
-            vsua.setGiaVe(giaVeMoi);
+        double giaVeMoi;
+        while (true){
+            System.out.println("Nhap gia ve:");
+            try {
+                giaVeMoi = Double.parseDouble(sc.nextLine());
+                if (giaVeMoi < 0) {
+                    System.out.println("Gia ve phai lon hon 0, vui long nhap lai.");
+                } else {
+                    vsua.setGiaVe(giaVeMoi);
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Gia ve khong hop le, vui long nhap so.");
+            }
+
+        }
 
             String loaive;
             ChuyenBay cb = null;
