@@ -37,7 +37,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
         Date ngayGioKhoiHanh = null;
         do {
-            System.out.println("Nhap ngay gio khoi hanh (dd/MM/yyyy hh:mm): ");
+            System.out.println("Nhập ngày giờ khởi hành (dd/MM/yyyy hh:mm): ");
             String ngayGioKhoiHanhStr = sc.nextLine();
             ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
         } while (ngayGioKhoiHanh == null);
@@ -67,18 +67,18 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
         String noiquoc;
         while (true) {
-            System.out.println("Nhap noi di (I: International(quoc te), D: Domestic(trong nuoc)): ");
+            System.out.println("Nhập nơi đi (I: International(quốc tế), D: Domestic(trong nước)): ");
             noiquoc = sc.nextLine().trim().toUpperCase();
             if (noiquoc.equals("I") || noiquoc.equals("D")) {
                 if (noiquoc.equals("I")) {
-                    noiquoc = "Quoc te";
+                    noiquoc = "Quốc tế";
                     break;
                 } else if (noiquoc.equals("D")) {
-                    noiquoc = "Trong nuoc";
+                    noiquoc = "Trong nước";
                     break;
                 }
             } else {
-                System.out.println("Chi duoc nhap I (quoc te) hoac D (trong nuoc). Vui long nhap lai.");
+                System.out.println("Chỉ được nhập I (quốc tế) hoặc D (trong nước). Vui lòng nhập lại.");
             }
         }
 
@@ -86,7 +86,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
         int GheHangNhat = 0;
         int GheThuong = 0;
 
-        if (noiquoc.equals("Quoc te")) {
+        if (noiquoc.equals("Quốc tế")) {
             GheHangNhat = soLuongGhe / 20;
             GheThuong = soLuongGhe - GheVip - GheHangNhat;
         } else {
@@ -159,7 +159,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             } while (ngayGioKhoiHanh == null);
             cbsua.setNgayGioKhoiHanh(ngayGioKhoiHanh);
 
-            System.out.println("Nhap tong thoi gian bay");
+            System.out.println("Nhập tổng thời gian bay");
             cbsua.setThoiGianBay(sc.nextInt());
 
             System.out.println("Nhập số ghế trống mới: ");
@@ -173,18 +173,18 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
             String noiquoc;
             while (true) {
-                System.out.println("Nhap noi di (I: International(quoc te), D: Domestic(trong nuoc)): ");
+                System.out.println("Nhập nơi di (I: International(quốc tế), D: Domestic(trong nước)): ");
                 noiquoc = sc.nextLine().trim().toUpperCase();
                 if (noiquoc.equals("I") || noiquoc.equals("D")) {
                     if (noiquoc.equals("I")) {
-                        noiquoc = "Quoc te";
+                        noiquoc = "Quốc tế";
                         break;
                     } else if (noiquoc.equals("D")) {
-                        noiquoc = "Trong nuoc";
+                        noiquoc = "Trong nước";
                         break;
                     }
                 } else {
-                    System.out.println("Chi duoc nhap I (quoc te) hoac D (trong nuoc). Vui long nhap lai.");
+                    System.out.println("Chỉ được nhập I (quốc tế) hoặc D (trong nước). Vui lòng nhập lại.");
                 }
             }
 
@@ -193,7 +193,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             int GheHangNhat = 0;
             int GheThuong;
 
-            if (noiquoc.equals("Quoc te")) {
+            if (noiquoc.equals("Quốc tế")) {
                 GheHangNhat = soLuongGhe / 20;
                 GheThuong = soLuongGhe - GheVip - GheHangNhat;
             } else {
