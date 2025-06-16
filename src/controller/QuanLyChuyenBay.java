@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.ArrayList;
 
 public class QuanLyChuyenBay extends manager<ChuyenBay> {
+    public String regex = "^CB\\d{3}$";
 
     // Định dạng ngày
     Date parseDate(String dateString) {
@@ -22,11 +23,15 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
     // Nhập chuyến bay
     public ChuyenBay nhap() {
+        loadFromDatabase();
         String maChuyenBay;
         while (true) {
             System.out.print("Nhập mã chuyến bay: ");
             maChuyenBay = sc.nextLine();
-            if (kiemTraMaTrung(maChuyenBay)) {
+            if(!maChuyenBay.matches("^CB\\d{3}$")){
+                System.out.println("Sai định dạng mã(VD: CB001). Nhập lại: ");
+            }
+            else if (kiemTraMaTrung(maChuyenBay)) {
                 System.out.println("Mã chuyến bay đã tồn tại, vui lòng nhập lại.");
             } else
                 break;
@@ -42,8 +47,20 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
         } while (ngayGioKhoiHanh == null);
 
-        System.out.println("Nhập số giờ bay: ");
-        int ThoiGianBay = Integer.parseInt(sc.nextLine());
+        int ThoiGianBay = 0;
+        while (true) {
+            System.out.println("Nhập số giờ bay: ");
+            try {
+                ThoiGianBay = Integer.parseInt(sc.nextLine());
+                if (ThoiGianBay <= 0) {
+                    System.out.println("Số giờ bay phải lớn hơn 0, vui lòng nhập lại.");
+                }else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Dữ liệu không hợp lệ, vui lòng nhập số nguyên.");
+            }
+        }
 
         int soLuongGhe;
         while (true) {
@@ -107,6 +124,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
     // Xóa chuyến bay
     public void xoa() {
+        loadFromDatabase();
         ChuyenBay cbxoa = null;
         System.out.println("Nhập chuyến bay: ");
         String maChuyenBay = sc.nextLine();
@@ -137,6 +155,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
     // Sửa chuyến bay
     public void sua() {
+        loadFromDatabase();
         ChuyenBay cbsua = null;
         System.out.println("Nhập mã chuyến bay: ");
         String maChuyenBay = sc.nextLine();
@@ -159,11 +178,37 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             } while (ngayGioKhoiHanh == null);
             cbsua.setNgayGioKhoiHanh(ngayGioKhoiHanh);
 
-            System.out.println("Nhập tổng thời gian bay");
-            cbsua.setThoiGianBay(sc.nextInt());
+            int ThoiGianBay = 0;
+            while (true) {
+                System.out.println("Nhập số giờ bay: ");
+                try {
+                    ThoiGianBay = Integer.parseInt(sc.nextLine());
+                    if (ThoiGianBay <= 0) {
+                        System.out.println("Số giờ bay phải lớn hơn 0, vui lòng nhập lại.");
+                    } else {
+                        cbsua.setThoiGianBay(ThoiGianBay);
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Dữ liệu không hợp lệ, vui lòng nhập số nguyên.");
+                }
+            }
 
-            System.out.println("Nhập số ghế trống mới: ");
-            cbsua.setSoLuongGhe(Integer.parseInt(sc.nextLine()));
+            int soLuongGhe = 0;
+            while (true) {
+                System.out.println("Nhập số ghế trống: ");
+                try {
+                    soLuongGhe = Integer.parseInt(sc.nextLine());
+                    if (soLuongGhe < 0) {
+                        System.out.println("Số lượng ghế không được âm, vui lòng nhập lại.");
+                    } else {
+                        cbsua.setSoLuongGhe(soLuongGhe);
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Dữ liệu không hợp lệ, vui lòng nhập số nguyên.");
+                }
+            }
 
             System.out.println("Nhập điểm khởi hành mới: ");
             cbsua.setDiemKhoiHanh(sc.nextLine());
@@ -188,7 +233,6 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 }
             }
 
-            int soLuongGhe = cbsua.getSoLuongGhe();
             int GheVip = soLuongGhe / 10;
             int GheHangNhat = 0;
             int GheThuong;
@@ -214,6 +258,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
     // Tìm kiếm chuyến bay
     public void timkiem() {
+        loadFromDatabase();
         System.out.println("Nhập mã chuyến bay: ");
         String maChuyenBay = sc.nextLine();
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
@@ -229,6 +274,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
     // Liệt kê tất cả chuyến bay
     public void lietKe() {
+        loadFromDatabase();
         dataQuanLyChuyenBay dao = new dataQuanLyChuyenBay();
         ArrayList<ChuyenBay> danhSach = dao.selectAll();
         if (danhSach.isEmpty()) {
