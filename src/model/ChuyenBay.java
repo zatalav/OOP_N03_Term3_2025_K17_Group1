@@ -7,6 +7,7 @@ public class ChuyenBay implements Identifiable {
     private String maChuyenBay;
     private String tenChuyenBay;
     private Date ngayGioKhoiHanh;
+    private int ThoiGianBay;
     private int soLuongGhe;
     private int GheVip;
     private int GheHangNhat;
@@ -18,11 +19,12 @@ public class ChuyenBay implements Identifiable {
     public ChuyenBay() {
     }
 
-    public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh, int soLuongGhe, int GheVip,
+    public ChuyenBay(String maChuyenBay, String tenChuyenBay, Date ngayGioKhoiHanh,,int ThoiGianBay, int soLuongGhe, int GheVip,
             int GheHangNhat, int GheThuong, String diemKhoiHanh, String diemDen, String noiquoc) {
         this.maChuyenBay = maChuyenBay;
         this.tenChuyenBay = tenChuyenBay;
         this.ngayGioKhoiHanh = ngayGioKhoiHanh;
+        this.ThoiGianBay = ThoiGianBay;
         this.soLuongGhe = soLuongGhe;
         this.GheVip = GheVip;
         this.GheHangNhat = GheHangNhat;
@@ -37,11 +39,11 @@ public class ChuyenBay implements Identifiable {
         return maChuyenBay;
     }
 
-    public String getMaChuyenBay() {
+    public String getmaChuyenBay() {
         return maChuyenBay;
     }
 
-    public void setMaChuyenBay(String maChuyenBay) {
+    public void setmaChuyenBay(String maChuyenBay) {
         this.maChuyenBay = maChuyenBay;
     }
 
@@ -59,6 +61,14 @@ public class ChuyenBay implements Identifiable {
 
     public void setNgayGioKhoiHanh(Date ngayGioKhoiHanh) {
         this.ngayGioKhoiHanh = ngayGioKhoiHanh;
+    }
+
+    public int getThoiGianBay(){
+        return ThoiGianBay;
+    }
+
+    public void setThoiGianBay(int ThoiGianBay){
+        this.ThoiGianBay = ThoiGianBay;
     }
 
     public int getSoLuongGhe() {
