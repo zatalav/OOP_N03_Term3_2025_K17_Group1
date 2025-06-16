@@ -11,6 +11,7 @@ import src.model.Ve;
 import src.database.dataQuanLyVe;
 
 public class QuanLyVe extends manager<Ve> {
+    pulic String regex = "^CB\\d{3}_V\\d{3}$";
     ArrayList<KhachHang> dsKhachHang = new src.database.dataQuanLyKhachHang().selectAll();
     ArrayList<ChuyenBay> dsChuyenBay = new src.database.dataQuanLyChuyenBay().selectAll();
 
@@ -147,6 +148,40 @@ public class QuanLyVe extends manager<Ve> {
         ArrayList<Ve> danhSach = dao.selectAll();
         ds.addAll(danhSach);
     }
+    loadFromDatabase();
+        String maVe;
+        while (true) {
+            System.out.println("Nhap ma ve:");
+            maVe = sc.nextLine();
+            if(!maVe.matches("^CB\\d{3}_V\\d{3}$")){
+                System.out.println("Sai định dạng mã(VD: CB001_V123). Nhập lại:");
+            }  
+            else if (kiemTraMaTrung(maVe)) {
+                System.out.println("Ma ve da ton tai, vui long nhap lai.");
+            } else {
+                break;
+            }
+        }
+
+        String maChuyenBay;
+        while(true){
+            System.out.println("Nhap ma chuyen bay:");
+            maChuyenBay = sc.nextLine();
+            if (!kiemTraMaChuyenBayTonTai(maChuyenBay, dsChuyenBay)) {
+                System.out.println("Ma chuyen bay khong ton tai, vui long nhap lai.");
+            }
+            else break;
+        }
+
+        String maKhachHang;
+        while(true){
+            System.out.println("Nhap ma khach hang:");
+            maKhachHang = sc.nextLine();
+            if (!kiemTraMaKhachHangTonTai(maKhachHang, dsKhachHang)) {
+                System.out.println("Ma khach hang khong ton tai, vui long nhap lai.");
+            }
+            else break;
+        }
 
     public void lietKe() {
         dataQuanLyVe dao = new dataQuanLyVe();
