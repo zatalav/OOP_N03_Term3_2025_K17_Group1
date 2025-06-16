@@ -11,6 +11,8 @@ import src.model.Ve;
 import src.database.dataQuanLyVe;
 
 public class QuanLyVe extends manager<Ve> {
+    ArrayList<KhachHang> dsKhachHang = new src.database.dataQuanLyKhachHang().selectAll();
+    ArrayList<ChuyenBay> dsChuyenBay = new src.database.dataQuanLyChuyenBay().selectAll();
     Date parseDate(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         try {
@@ -51,8 +53,6 @@ public class QuanLyVe extends manager<Ve> {
                 break;
             }
         }
-        ArrayList<KhachHang> dsKhachHang = new src.database.dataQuanLyKhachHang().selectAll();
-        ArrayList<ChuyenBay> dsChuyenBay = new src.database.dataQuanLyChuyenBay().selectAll();
         System.out.println("Nhap ma khach hang:");
         String maKhachHang = sc.nextLine();
         if (!kiemTraMaKhachHangTonTai(maKhachHang, dsKhachHang)) {
@@ -74,7 +74,61 @@ public class QuanLyVe extends manager<Ve> {
 
         System.out.println("Nhap gia ve:");
         double giaVe = sc.nextDouble();
-        return new Ve(maVe, ngayDatVe, giaVe, maChuyenBay, maKhachHang);
+        ChuyenBay cb = null;
+    for (ChuyenBay c : dsChuyenBay) {
+        if (c.getmaChuyenBay().equals(maChuyenBay)) {
+            cb = c;
+            break;
+        }
+    }
+        int ThoiGianBay= cb.getThoiGianBay();
+        //lựa chọn loại vé
+        String loaive;
+        sc.nextLine();
+        if (cb.getNoiquoc().equalsIgnoreCase("Trong nuoc")){
+            while (true) {
+                System.out.print("Nhập loại vé ('V'='VIP ticket'(hạng thương gia)  'E'='Economy ticket(vé thường)'): ");
+                String chon = sc.nextLine().toUpperCase();
+                if(chon.equals("V")){
+                    loaive = "VIP";
+                    break;
+                } 
+                else if (chon.equals("E")) {
+                    loaive = "THUONG";
+                    break;
+                }
+                else {
+                    System.out.println("Loại vé không hợp lệ cho chuyến bay trong nước.");
+                }
+            }
+        }
+        else {
+        // Quốc tế → cho cả 3
+            while (true) {
+                System.out.print("Nhập loại vé ('F'='First Class ticket(vé hạng nhất)'  'V'='VIP ticket'(hạng thương gia)  'E'='Economy ticket(vé thường)'): ");
+                String chon = sc.nextLine().toUpperCase();
+                if(chon.equals("V")){
+                    loaive = "VIP";
+                    break;
+                } 
+                else if (chon.equals("E")) {
+                    loaive = "THUONG";
+                    break;
+                }
+                else if (chon.equals("F")) {
+                    loaive = "FIRST";
+                    break;
+                }
+                else {
+                    System.out.println("Loại vé không hợp lệ.");
+                }
+            }
+        }
+
+        double giaVeVip= giaVe*1.5;
+        double giaVeHangNhat= giaVe*3;
+
+        return new Ve(maVe,ngayDatVe,ThoiGianBay , giaVe,giaVeVip,giaVeHangNhat,loaive, maChuyenBay,maKhachHang);
     }
 
     public void them() {
@@ -157,8 +211,63 @@ public class QuanLyVe extends manager<Ve> {
                 ngayDatVe = parseDate(ngayDatVeStr);
             } while (ngayDatVe == null);
             vsua.setNgayDatVe(ngayDatVe);
-            System.out.println("Nhap gia ve:");
-            vsua.setGiaVe(sc.nextDouble());
+            double giaVeMoi = sc.nextDouble();
+            sc.nextLine();
+            vsua.setGiaVe(giaVeMoi);
+
+            String loaive;
+            ChuyenBay cb = null;
+            for (ChuyenBay c : dsChuyenBay) {
+                if (c.getmaChuyenBay().equals(vsua.getMaChuyenBay())) {
+                    cb = c;
+                    break;
+                }
+            }
+            if (cb == null) {
+                System.out.println("Không tìm thấy chuyến bay tương ứng!");
+                return;
+            }
+
+            vsua.setThoiGianBay(cb.getThoiGianBay());
+
+            if (cb.getNoiquoc().equalsIgnoreCase("Trong nuoc")) {
+                while (true) {
+                    System.out.print("Nhập loại vé ('V'='VIP ticket'(hạng thương gia)  'E'='Economy ticket(vé thường)'): ");
+                    String chon = sc.nextLine().toUpperCase();
+                    if (chon.equals("V")) {
+                        loaive = "VIP";
+                        break;
+                    } else if (chon.equals("E")) {
+                        loaive = "THUONG";
+                        break;
+                    } else {
+                        System.out.println("Loại vé không hợp lệ cho chuyến bay trong nước.");
+                    }
+                }
+            } else {
+                while (true) {
+                    System.out.print("Nhập loại vé ('F'='First Class ticket(vé hạng nhất)'  'V'='VIP ticket'(hạng thương gia)  'E'='Economy ticket(vé thường)'): ");
+                    String chon = sc.nextLine().toUpperCase();
+                    if (chon.equals("V")) {
+                        loaive = "VIP";
+                        break;
+                    } else if (chon.equals("E")) {
+                        loaive = "THUONG";
+                        break;
+                    } else if (chon.equals("F")) {
+                        loaive = "FIRST";
+                        break;
+                    } else {
+                        System.out.println("Loại vé không hợp lệ.");
+                    }
+                }
+            }
+
+            // Cập nhật lại các thông tin vào đối tượng vsua
+            vsua.setloaive(loaive);
+            vsua.setGiaVeVip(giaVeMoi * 1.5);
+            vsua.setGiaVeHangNhat(giaVeMoi * 3);
+
             dataQuanLyVe dao = new dataQuanLyVe();
             dao.update(vsua);
             System.out.println("Đã cập nhật chuyến bay có mã: " + maVe);

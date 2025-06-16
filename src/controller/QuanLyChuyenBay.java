@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class QuanLyChuyenBay extends manager<ChuyenBay> {
 
     // Định dạng ngày
-    private Date parseDate(String dateString) {
+    Date parseDate(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         try {
             return formatter.parse(dateString);
@@ -32,7 +32,7 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 break;
         }
 
-        System.out.print("Nhập tên chuyến bay: ");
+        System.out.print("Nhập tên hãng chuyến bay: ");
         String tenChuyenBay = sc.nextLine();
 
         Date ngayGioKhoiHanh = null;
@@ -41,6 +41,9 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
             String ngayGioKhoiHanhStr = sc.nextLine();
             ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
         } while (ngayGioKhoiHanh == null);
+
+        System.out.println("Nhập số giờ bay: ");
+        int ThoiGianBay = Integer.parseInt(sc.nextLine());
 
         int soLuongGhe;
         while (true) {
@@ -155,6 +158,9 @@ public class QuanLyChuyenBay extends manager<ChuyenBay> {
                 ngayGioKhoiHanh = parseDate(ngayGioKhoiHanhStr);
             } while (ngayGioKhoiHanh == null);
             cbsua.setNgayGioKhoiHanh(ngayGioKhoiHanh);
+
+            System.out.println("Nhap tong thoi gian bay");
+            cbsua.setThoiGianBay(sc.nextInt());
 
             System.out.println("Nhập số ghế trống mới: ");
             cbsua.setSoLuongGhe(Integer.parseInt(sc.nextLine()));

@@ -1,12 +1,10 @@
 package src.main;
 
-import java.util.Scanner;
-import src.view.MenuController;
+import src.view.menu_controller;
 
-public class App {
+public class main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        MenuController controller = new MenuController();
-        controller.showProgramSelection(sc);
+        menu_controller menu = new menu_controller();
+        menu.runMenu(); // chỉ gọi menu, không xử lý gì trong main
     }
 }

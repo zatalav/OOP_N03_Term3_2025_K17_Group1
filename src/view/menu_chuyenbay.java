@@ -15,6 +15,7 @@ public class menu {
             System.out.println("2. Tim kiem chuyến bay");
             System.out.println("3. Sửa chuyến bay");
             System.out.println("4. Xóa chuyến bay");
+            System.out.println("5. liet ke chuyến bay");
             System.out.println("0. Thoát");
             System.out.print(">> Chọn chức năng: ");
 
@@ -27,12 +28,13 @@ public class menu {
             sc.nextLine();
 
             switch (chon) {
-                case 1 -> quanLy.them();
-                case 2 -> quanLy.timkiem();
-                case 3 -> quanLy.sua();
-                case 4 -> quanLy.xoa();
-                case 0 -> System.out.println("Thoát chương trình.");
-                default -> System.out.println("Lựa chọn không hợp lệ.");
+                case 1 : quanLy.them(); break;
+                case 2 : quanLy.timkiem();break;
+                case 3 : quanLy.sua();break;
+                case 4 : quanLy.xoa();break;
+                case 5 : quanLy.lietKe();break;
+                case 0 : System.out.println("🔙 Thoát chương trình.");break;
+                default : System.out.println("❌ Lựa chọn không hợp lệ.");break;
             }
         } while (chon != 0);
     }
