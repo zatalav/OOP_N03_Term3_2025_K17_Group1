@@ -5,13 +5,18 @@ import src.model.KhachHang;
 import java.util.ArrayList;
 
 public class QuanLyKhachHang extends manager<KhachHang> {
+    public String PHONE_REGEX = "^\\+[0-9]{9,14}$";
+    public String regex = "^CB\\d{3}_KH\\d{3}$";
 
     public KhachHang nhap() {
+        loadFromDatabase();
         String maKhachHang;
         while (true) {
             System.out.println("Nhập mã khách hàng:");
-            maKhachHang = sc.nextLine();
-            if (kiemTraMaTrung(maKhachHang)) {
+            maKhachHang = sc.nextLine().toUpperCase().trim();
+            if (!maKhachHang.matches("^CB\\d{3}_KH\\d{3}$")) {
+                System.out.println("Sai định dạng mã(VD: CB001_KH123). Nhập lại:");
+            } else if (kiemTraMaTrung(maKhachHang)) {
                 System.out.println("Mã khách hàng đã tồn tại, vui lòng nhập lại.");
             } else {
                 break;
@@ -21,8 +26,14 @@ public class QuanLyKhachHang extends manager<KhachHang> {
         String hoTen = sc.nextLine();
         System.out.println("Nhập email: ");
         String email = sc.nextLine();
-        System.out.println("Nhập số điện thoại: ");
-        String soDienThoai = sc.nextLine();
+        String soDienThoai;
+        System.out.println("Nhập số điện thoại(VD: +84345782790): ");
+        while (true) {
+            soDienThoai = sc.nextLine();
+            if (soDienThoai.matches(PHONE_REGEX))
+                break;
+            System.out.println("Số điện thoại không hợp lệ, nhập lại:");
+        }
         System.out.println("Nhập căn cước công dân: ");
         String canCuocCongDan = sc.nextLine();
         System.out.println("Nhập địa chỉ: ");
@@ -67,6 +78,7 @@ public class QuanLyKhachHang extends manager<KhachHang> {
     }
 
     public void sua() {
+        loadFromDatabase();
         KhachHang khsua = null;
         System.out.println("Nhập mã khách hàng: ");
         String maKhachHang = sc.nextLine();
@@ -82,8 +94,17 @@ public class QuanLyKhachHang extends manager<KhachHang> {
             khsua.setHoTen(sc.nextLine());
             System.out.println("Nhập email: ");
             khsua.setEmail(sc.nextLine());
-            System.out.println("Nhập số điện thoại: ");
-            khsua.setSoDienThoai(sc.nextLine());
+            String SoDienThoai;
+            while (true) {
+                System.out.println("Nhập số điện thoại (ví dụ: +84981015263): ");
+                SoDienThoai = sc.nextLine();
+                if (SoDienThoai.matches(PHONE_REGEX)) {
+                    khsua.setSoDienThoai(SoDienThoai);
+                    break;
+                } else {
+                    System.out.println("Số điện thoại không hợp lệ, nhập lại:");
+                }
+            }
             System.out.println("Nhập căn cước công dân: ");
             khsua.setCanCuocCongDan(sc.nextLine());
             System.out.println("Nhập địa chỉ: ");
@@ -99,12 +120,12 @@ public class QuanLyKhachHang extends manager<KhachHang> {
 
     public void lietKe() {
         dataQuanLyKhachHang dao = new dataQuanLyKhachHang();
-        ArrayList<KhachHang> ds = dao.selectAll();
-        if (ds.isEmpty()) {
+        ArrayList<KhachHang> dsKH = dao.selectAll();
+        if (dsKH.isEmpty()) {
             System.out.println("Danh sách khách hàng rỗng.");
         } else {
             System.out.println("Danh sách khách hàng:");
-            for (KhachHang kh : ds) {
+            for (KhachHang kh : dsKH) {
                 System.out.println(kh);
             }
         }
