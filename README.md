@@ -18,9 +18,9 @@
 
 ## 🎯 Mục tiêu chính
 
-* Xây dựng ứng dụng đặt vé máy bay thân thiện với người dùng.
-* Hỗ trợ quản lý chuyến bay, hành khách, và vé một cách dễ dàng.
-* Phù hợp với các hệ thống demo học tập hoặc phòng vé nhỏ.
+- Xây dựng ứng dụng đặt vé máy bay thân thiện với người dùng.
+- Hỗ trợ quản lý chuyến bay, hành khách, và vé một cách dễ dàng.
+- Phù hợp với các hệ thống demo học tập hoặc phòng vé nhỏ.
 
 ---
 
@@ -35,26 +35,26 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 ✅ **Quản lý hành khách**
 
-* Nhập, sửa, xoá và hiển thị thông tin khách hàng (Họ tên, Email, SĐT, Mã KH).
-* Kiểm tra hợp lệ định dạng email, số điện thoại, mã khách hàng.
+- Nhập, sửa, xoá và hiển thị thông tin khách hàng (Họ tên, Email, SĐT, Mã KH).
+- Kiểm tra hợp lệ định dạng email, số điện thoại, mã khách hàng.
 
 ✅ **Quản lý chuyến bay**
 
-* Thêm, xoá, cập nhật chuyến bay (Mã, tên, ngày giờ, số ghế, điểm đi - đến).
-* Kiểm tra định dạng ngày giờ theo chuẩn `dd-MM-yyyy HH:mm`.
-* Hỗ trợ test đơn vị với `TestQuanLyChuyenBay`.
+- Thêm, xoá, cập nhật chuyến bay (Mã, tên, ngày giờ, số ghế, điểm đi - đến).
+- Kiểm tra định dạng ngày giờ theo chuẩn `dd-MM-yyyy HH:mm`.
+- Hỗ trợ test đơn vị với `TestQuanLyChuyenBay`.
 
 ✅ **Quản lý vé**
 
-* Tạo, sửa, xoá vé cho từng hành khách.
-* Thông tin vé gồm: Mã vé, tên hành khách, ngày đặt vé, giá vé.
-* Kiểm tra mã vé hợp lệ theo định dạng `^[A-Z]{2}\d{5}$`.
-* Hỗ trợ hiển thị vé với định dạng ngày và tiền Việt (`Locale vi_VN`).
+- Tạo, sửa, xoá vé cho từng hành khách.
+- Thông tin vé gồm: Mã vé, tên hành khách, ngày đặt vé, giá vé.
+- Kiểm tra mã vé hợp lệ theo định dạng `^[A-Z]{2}\d{5}$`.
+- Hỗ trợ hiển thị vé với định dạng ngày và tiền Việt (`Locale vi_VN`).
 
 ✅ **Hiển thị & Test**
 
-* Mỗi đối tượng (Vé, Chuyến bay, Khách hàng) có lớp hiển thị định dạng rõ ràng.
-* Các test case `TestQuanLyVe`, `TestQuanLyChuyenBay`, `TestKhachHang`, `Test_Ve` đã triển khai kiểm thử chức năng thêm, hiển thị, và xóa dữ liệu.
+- Mỗi đối tượng (Vé, Chuyến bay, Khách hàng) có lớp hiển thị định dạng rõ ràng.
+- Các test case `TestQuanLyVe`, `TestQuanLyChuyenBay`, `TestKhachHang`, `Test_Ve` đã triển khai kiểm thử chức năng thêm, hiển thị, và xóa dữ liệu.
 
 ---
 
@@ -92,11 +92,11 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 ## 👤 Tác giả <a name="tác-giả"></a>
 
-| MSSV     | Họ và Tên             | Vai trò           |
-| -------- | --------------------- | ----------------- |
-| 23010772 | Lê Đức Duy            |  |
-| 23010123 | Lê Mạnh Hùng          |     |
-| 23016112 | Nguyễn Thị Khánh Linh |     |
+| MSSV     | Họ và Tên             | Vai trò                      |
+| -------- | --------------------- | ---------------------------- |
+| 23010772 | Lê Đức Duy            | Giao diện & xử lý Quản lý Vé |
+| 23010123 | Lê Mạnh Hùng          | Giao diện Quản lý Chuyến bay |
+| 23016112 | Nguyễn Thị Khánh Linh | Giao diện Quản lý Khách hàng |
 
 📍 **Đại học Phenikaa**
 📧 Mọi góp ý vui lòng gửi về: [Github Group](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1.git)
@@ -107,11 +107,17 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 ![UML Class Diagram](<Ảnh chụp màn hình 2025-05-23 080633.png>)
 
-![Activity Diagram - Thêm](<add.png>)
+![Activity Diagram - Thêm](add.png)
 
-![Activity Diagram - Sửa](<edit.png>)
+![Activity Diagram - Sửa](edit.png)
 
-![Activity Diagram - Xóa](<delete.png>)
+![Activity Diagram - Xóa](delete.png)
 
-lưu đồ thuật toán
+lưu đồ thuật toán:
 ![chuyến bay](image.png)
+
+try-catch-finally:
+![try-catch-finally](ve-management-app/src/main/java/com/example/veapp/img/try-catch-example.png)
+
+UI quản lý vé:
+![UI quản lý vé](ve-management-app/src/main/java/com/example/veapp/img/UI_quanlyve.png)
