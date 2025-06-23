@@ -105,13 +105,13 @@ Hệ thống hướng đến người dùng tại các phòng vé vừa và nh�
 
 ## 📊 Hình ảnh hệ thống
 
-![UML Class Diagram](<Ảnh chụp màn hình 2025-05-23 080633.png>)
+![UML Class Diagram](./img/sodosql.png)
 
-![Activity Diagram - Thêm](add.png)
+![Activity Diagram - Thêm](./img/add.png)
 
-![Activity Diagram - Sửa](edit.png)
+![Activity Diagram - Sửa](./img/edit.png)
 
-![Activity Diagram - Xóa](delete.png)
+![Activity Diagram - Xóa](./img/delete.png)
 
 lưu đồ thuật toán:
 ![chuyến bay](image.png)
