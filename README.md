@@ -117,7 +117,7 @@ lưu đồ thuật toán:
 ![chuyến bay](image.png)
 
 try-catch-finally:
-![try-catch-finally](thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png)
+![try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png)
 
 UI quản lý vé:
-![UI quản lý vé](thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)
+![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)
