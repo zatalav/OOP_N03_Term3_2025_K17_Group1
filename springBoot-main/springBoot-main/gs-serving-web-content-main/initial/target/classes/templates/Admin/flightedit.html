@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Sửa chuyến bay</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" href="../../static/css/demo.css">
+    <link rel="stylesheet" th:href="@{/css/edit.css}" href="../../static/css/select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <p>Bảng điều khiển</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="UserDetails.html">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Khách hàng</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="flights.html">
+                        <i class="fa-solid fa-plane"></i>
+                        <p>Chuyến bay</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="TicketDetails.html">
+                        <i class="fa-solid fa-ticket"></i>
+                        <p>Vé</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="revenue.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <p>Thống kê doanh thu</p>
+                    </a>
+                </li>
+                <li class="active-pro">
+                    <a href="user.html">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Đăng xuất</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li><a href="flightadd.html">Thêm chuyến bay</a></li>
+                        <li><a href="flights.html">Hiển thị chuyến bay</a></li>
+                        <li><a href="flightfind.html">Tìm chuyến bay</a></li>
+                        <li th:classappend="${#httpServletRequest.requestURI.endsWith('flightedit.html')} ? 'active'">
+                            <a href="flightedit.html">Sửa chuyến bay</a>
+                        </li>
+                        <li><a href="flightdelete.html">Xóa chuyến bay</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="add-flight-card">
+                <h4 class="mb-4 text-center">Sửa thông tin chuyến bay</h4>
+                <form th:action="@{/flights/edit}" method="get">
+                    <div class="mb-3">
+                        <label for="maChuyenBay" class="form-label">Nhập mã chuyến bay cần sửa</label>
+                        <input type="text" class="form-control" id="maChuyenBay" name="maChuyenBay" required>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success">Tìm chuyến bay cần sửa</button>
+                    </div>
+                </form>
+                <div th:if="${flight != null}" class="mt-4">
+                    <h4 class="text-center" style="color:#2980b9;font-weight:bold;">Chỉnh sửa thông tin chuyến bay:</h4>
+                    <form th:action="@{/flights/edit}" method="post">
+                        <input type="hidden" name="maChuyenBay" th:value="${flight.maChuyenBay}">
+                        <div class="mb-3">
+                            <label for="tenChuyenBay" class="form-label">Hãng chuyến bay</label>
+                            <input type="text" class="form-control" id="tenChuyenBay" name="tenChuyenBay" th:value="${flight.tenChuyenBay}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ngayGioKhoiHanh" class="form-label">Ngày giờ khởi hành</label>
+                            <input type="datetime-local" class="form-control" id="ngayGioKhoiHanh" name="ngayGioKhoiHanh"
+                                   th:value="${#dates.format(flight.ngayGioKhoiHanh, 'yyyy-MM-dd\'T\'HH:mm')}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="thoiGianBay" class="form-label">Thời gian bay</label>
+                            <input type="text" class="form-control" id="thoiGianBay" name="thoiGianBay" th:value="${flight.thoiGianBay}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="giaVe" class="form-label">Giá vé</label>
+                            <input type="number" class="form-control" id="giaVe" name="giaVe" min="0" th:value="${flight.giaVe}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="soLuongGhe" class="form-label">Số lượng ghế</label>
+                            <input type="number" class="form-control" id="soLuongGhe" name="soLuongGhe" min="1" th:value="${flight.soLuongGhe}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="diemKhoiHanh" class="form-label">Điểm khởi hành</label>
+                            <input type="text" class="form-control" id="diemKhoiHanh" name="diemKhoiHanh" th:value="${flight.diemKhoiHanh}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="diemDen" class="form-label">Điểm đến</label>
+                            <input type="text" class="form-control" id="diemDen" name="diemDen" th:value="${flight.diemDen}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="noiQuoc" class="form-label">Phạm vi</label>
+                            <input type="text" class="form-control" id="noiQuoc" name="noiQuoc" th:value="${flight.noiQuoc}" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Lưu thay đổi</button>
+                        </div>
+                    </form>
+                </div>
+                <div th:if="${flight == null && maChuyenBay != null}">
+                    <p class="text-danger text-center mt-3">Không tìm thấy chuyến bay với mã "<span th:text="${maChuyenBay}"></span>"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>

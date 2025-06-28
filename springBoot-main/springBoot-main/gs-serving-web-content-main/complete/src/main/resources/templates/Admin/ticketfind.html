@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>🔍 Tìm vé</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" th:href="@{/css/select.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text"><i class="fas fa-plane"></i> NHÓM 1</a>
+            </div>
+            <ul class="nav">
+                <li><a th:href="@{/admin/dashboard}"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                <li><a th:href="@{/admin/CustomersDetails}"><i class="fa-solid fa-user"></i><p>Khách hàng</p></a></li>
+                <li><a th:href="@{/admin/flights}"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                <li class="active"><a th:href="@{/admin/ticketDetails}"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                <li><a th:href="@{/admin/revenue}"><i class="fa-solid fa-chart-line"></i><p>Thống kê doanh thu</p></a></li>
+                <li class="active-pro"><a th:href="@{/admin/logout}"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main panel -->
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li><a th:href="@{/admin/ticketadd}">Thêm vé</a></li>
+                        <li><a th:href="@{/admin/ticketDetails}">Hiển thị vé</a></li>
+                        <li class="active"><a th:href="@{/admin/ticketfind}">Tìm vé</a></li>
+                        <li><a th:href="@{/admin/ticketedit}">Sửa vé</a></li>
+                        <li><a th:href="@{/admin/ticketdelete}">Xóa vé</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="add-flight-card">
+                <h4 class="mb-4 text-center">Tìm vé</h4>
+
+                <!-- Thông báo thành công/thất bại -->
+                <div th:if="${message}" class="alert alert-success text-center mb-3" th:text="${message}"></div>
+                <div th:if="${error}" class="alert alert-danger text-center mb-3" th:text="${error}"></div>
+
+                <!-- Form tìm kiếm -->
+                <form th:action="@{/admin/ticketfind}" method="get">
+                    <div class="mb-3">
+                        <label for="maVe">Nhập mã vé cần tìm</label>
+                        <input class="form-control" id="maVe" name="maVe" th:value="${maVe}" required>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+                    </div>
+                </form>
+
+                <!-- Nếu tìm thấy vé -->
+                <div th:if="${ve != null}" class="mt-4">
+                    <h5 class="text-center" style="color:#2980b9;">Thông tin vé</h5>
+                    <table class="table table-bordered" style="margin: 0 auto; max-width: 600px;">
+                        <tr><th>Mã vé</th><td th:text="${ve.maVe}"></td></tr>
+                        <tr><th>Ngày đặt vé</th><td th:text="${#dates.format(ve.ngayDatVe, 'dd/MM/yyyy')}"></td></tr>
+                        <tr><th>Loại vé</th><td th:text="${ve.loaive}"></td></tr>
+                        <tr><th>Mã chuyến bay</th><td th:text="${ve.maChuyenBay}"></td></tr>
+                        <tr><th>Mã khách hàng</th><td th:text="${ve.maKhachHang}"></td></tr>
+                    </table>
+                </div>
+
+                <!-- Nếu không tìm thấy -->
+                <div th:if="${ve == null and maVe != null}" class="text-center mt-4">
+                    <p class="text-danger">Không tìm thấy vé với mã "<span th:text="${maVe}"></span>"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>
+</footer>
+</body>
+</html>

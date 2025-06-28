@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Sửa vé</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" th:href="@{/css/select.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li><a th:href="@{/admin/dashboard}"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                <li><a th:href="@{/admin/CustomersDetails}"><i class="fa-solid fa-user"></i><p>Khách hàng</p></a></li>
+                <li><a th:href="@{/admin/flights}"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                <li class="active"><a th:href="@{/admin/ticketDetails}"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                <li><a th:href="@{/admin/revenue}"><i class="fa-solid fa-chart-line"></i><p>Thống kê doanh thu</p></a></li>
+                <li class="active-pro"><a th:href="@{/admin/logout}"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li><a th:href="@{/admin/ticketadd}">Thêm vé</a></li>
+                        <li><a th:href="@{/admin/ticketDetails}">Hiển thị vé</a></li>
+                        <li><a th:href="@{/admin/ticketfind}">Tìm vé</a></li>
+                        <li class="active"><a th:href="@{/admin/ticketedit}">Sửa vé</a></li>
+                        <li><a th:href="@{/admin/ticketdelete}">Xóa vé</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="add-flight-card">
+                <h4 class="mb-4 text-center">Sửa vé</h4>
+
+                <!-- Form tìm vé -->
+                <form th:action="@{/admin/ticketedit}" method="get">
+                    <div class="mb-3">
+                        <label for="maVe" class="form-label">Nhập mã vé cần sửa</label>
+                        <input type="text" class="form-control" id="maVe" name="maVe" th:value="${maVe}" required>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-ticket"></i> Tìm vé</button>
+                    </div>
+                </form>
+
+                <!-- Thông báo -->
+                <div class="text-center mt-3">
+                    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+                    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                    <p class="text-danger" th:if="${ve == null and maVe != null}">
+                        Không tìm thấy vé với mã "<span th:text="${maVe}"></span>"
+                    </p>
+                </div>
+
+                <!-- Form chỉnh sửa nếu tìm thấy -->
+                <div th:if="${ve != null}" class="mt-4">
+                    <h5 class="text-center" style="color:#2980b9;font-weight:bold;">Chỉnh sửa thông tin vé</h5>
+
+                    <form th:action="@{/admin/ticketedit}" method="post">
+                        <input type="hidden" name="maVe" th:value="${ve.maVe}">
+
+                        <div class="mb-3">
+                            <label for="ngayDatVe">Ngày đặt vé</label>
+                            <input type="date" class="form-control" id="ngayDatVe" name="ngayDatVe"
+                                   th:value="${#dates.format(ve.ngayDatVe, 'yyyy-MM-dd')}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="loaive">Loại vé</label>
+                            <select class="form-control" id="loaive" name="loaive" required>
+                                <option value="">-- Chọn loại vé --</option>
+                                <option value="Thuong" th:selected="${ve.loaive == 'Thuong'}">Phổ thông</option>
+                                <option value="Vip" th:selected="${ve.loaive == 'Vip'}">Thương gia</option>
+                                <option value="HangNhat" th:selected="${ve.loaive == 'HangNhat'}">Hạng nhất</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="maChuyenBay">Mã chuyến bay</label>
+                            <input type="text" class="form-control" id="maChuyenBay" name="maChuyenBay"
+                                   th:value="${ve.maChuyenBay}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="maKhachHang">Mã khách hàng</label>
+                            <input type="text" class="form-control" id="maKhachHang" name="maKhachHang"
+                                   th:value="${ve.maKhachHang}" required>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Lưu thay đổi</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>
+</footer>
+</body>
+</html>

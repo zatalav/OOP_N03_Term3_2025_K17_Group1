@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Quản lý chuyến bay</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" href="../../static/css/demo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <p>Bảng điều khiển</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="UserDetails.html">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Khách hàng</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="flights.html">
+                        <i class="fa-solid fa-plane"></i>
+                        <p>Chuyến bay</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="TicketDetails.html">
+                        <i class="fa-solid fa-ticket"></i>
+                        <p>Vé</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="revenue.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <p>Thống kê doanh thu</p>
+                    </a>
+                </li>
+                <li class="active-pro">
+                    <a href="user.html">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Đăng xuất</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li><a href="ticketAdd.html">Thêm vé</a></li>
+                        <li><a href="TicketDetails.html">Hiển thị vé</a></li>
+                        <li><a href="ticketfind.html">Tìm vé</a></li>
+                        <li><a href="ticketedit.html">Sửa vé</a></li>
+                        <li><a href="ticketdelete.html">Xóa vé</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Danh sách vé</h4>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table id="flightTable" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã vé</th>
+                                <th>Ngày đặt vé</th>
+                                <th>Thời gian bay</th>
+                                <th>Giá vé</th>
+                                <th>Loại vé</th>
+                                <th>Mã chuyến bay</th>
+                                <th>Mã khách hàng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="i : ${stuList}">
+                                <td th:text="${i.maVe}"></td>
+                                <td th:text="${#dates.format(i.ngayDatVe, 'dd/MM/yyyy')}"></td>
+                                <td th:text="${i.thoiGianBay}"></td>
+                                <td th:text="${#numbers.formatDecimal(i.giaVe, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></td>
+                                <td th:text="${i.loaive}"></td>
+                                <td th:text="${i.maChuyenBay}"></td>
+                                <td th:text="${i.maKhachHang}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="footer">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>
+</footer>

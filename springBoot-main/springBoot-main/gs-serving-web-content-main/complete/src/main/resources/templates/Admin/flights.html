@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Quản lý chuyến bay</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                        <i class="fas fa-plane"></i> NHÓM 1
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li><a th:href="@{/admin/dashboard}"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                    <li><a th:href="@{/admin/CustomersDetails}"><i class="fa-solid fa-user"></i><p>Khách hàng</p></a></li>
+                    <li class="active"><a th:href="@{/admin/flights}"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                    <li><a th:href="@{/admin/ticketDetails}"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                    <li><a th:href="@{/admin/revenue}"><i class="fa-solid fa-chart-line"></i><p>Thống kê doanh thu</p></a></li>
+                    <li class="active-pro"><a th:href="@{/admin/logout}"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar">
+                <ul class="navbar-menu">
+                    <li class="dropdown">
+                        <ul class="dropdown-menu menu">
+                            <li><a th:href="@{/admin/flightadd}">Thêm chuyến bay</a></li>
+                            <li class="active"><a th:href="@{/admin/flights}">Hiển thị chuyến bay</a></li>
+                            <li><a th:href="@{/admin/flightfind}">Tìm chuyến bay</a></li>
+                            <li><a th:href="@{/admin/flightedit}">Sửa chuyến bay</a></li>
+                            <li><a th:href="@{/admin/flightdelete}">Xóa chuyến bay</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content">
+                <div th:if="${message}" class="alert alert-success" style="text-align:center;background-color: #37ff00; margin:10px 0;">
+                 <p th:text="${message}"></p>
+            </div>
+            
+            <div th:if="${error}" class="alert alert-danger" style="text-align:center; background-color: #ff0000; margin:10px 0;">
+                 <p th:text="${error}"></p>
+            </div>
+                <div class="card">
+                    <div class="header">
+                        <h2 class="title">Danh sách chuyến bay</h2>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table id="flightTable" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Mã chuyến bay</th>
+                                    <th>Hãng chuyến bay</th>
+                                    <th>Ngày giờ khởi hành</th>
+                                    <th>Thời gian bay</th>
+                                    <th>Giá vé</th>
+                                    <th>Số lượng ghế</th>
+                                    <th>Điểm khởi hành</th>
+                                    <th>Điểm đến</th>
+                                    <th>Phạm vi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="i : ${flightList}">
+                                    <td th:text="${i.maChuyenBay}"></td>
+                                    <td th:text="${i.tenChuyenBay}"></td>
+                                    <td th:text="${#temporals.format(i.ngayGioKhoiHanh, 'dd/MM/yyyy HH:mm')}"></td>
+                                    <td th:text="${i.thoiGianBay}"></td>
+                                    <td th:text="${#numbers.formatDecimal(i.giaVe, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></td>
+                                    <td th:text="${i.soLuongGhe}"></td>
+                                    <td th:text="${i.diemKhoiHanh}"></td>
+                                    <td th:text="${i.diemDen}"></td>
+                                    <td th:text="${i.noiQuoc}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+        </div>
+    </footer>
+</body>
+</html>

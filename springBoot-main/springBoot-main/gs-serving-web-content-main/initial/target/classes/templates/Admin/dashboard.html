@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Xây dựng hệ thống đặt vé máy bay</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" href="../../static/css/demo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li class="active"><a href="dashboard.html"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                <li><a href="UserDetails.html"><i class="fa-solid fa-user"></i><p>Hành khách</p></a></li>
+                <li><a href="flights.html"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                <li><a href="TicketDetails.html"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                <li><a href="revenue.html"><i class="fa-regular fa-bell"></i><p>Thống kê doanh thu</p></a></li>
+                <li class="active-pro"><a href="user.html"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li><a href=>Admin</a></li>
+                <li class="dropdown"><a href="#">Chức năng <b class="caret"></b></a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <h3 class="text-center">Chào mừng đến với hệ thống quản lý đặt vé máy bay</h3>
+            <div class="text-center mt-4">
+                <img src="../static/images/banner.jpg" alt="Banner máy bay"
+                     style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-top: 20px;">
+            </div>
+            <p class="text-center mt-3">Đặt vé dễ dàng - Nhanh chóng - Tiện lợi!</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

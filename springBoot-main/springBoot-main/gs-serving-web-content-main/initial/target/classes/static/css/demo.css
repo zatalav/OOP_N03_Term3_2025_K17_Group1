@@ -1,0 +1,303 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6fa;
+    color: #222;
+}
+
+.sidebar {
+    width: 230px;
+    background: linear-gradient(135deg, #283e51 0%, #485563 100%);
+    position: fixed;
+    height: 100vh;
+    color: #fff;
+    box-shadow: 2px 0 12px rgba(40,62,81,0.08);
+    z-index: 100;
+    transition: width 0.2s;
+}
+
+.sidebar-wrapper {
+    padding: 20px 0;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {
+    margin: 8px 0;
+    transition: background 0.2s;
+}
+
+.nav li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background 0.2s, color 0.2s;
+    gap: 12px;
+}
+
+.nav li.active a,
+.nav li a:hover {
+    background: rgba(255,255,255,0.13);
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.nav li i {
+    min-width: 22px;
+    font-size: 18px;
+}
+
+.sidebar .nav > li.active-pro {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+
+.sidebar .nav > li.active-pro a {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ff7675 !important;
+    font-weight: bold;
+}
+
+@media all and (max-width: 991px)  {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+    }
+    .sidebar .nav > li.active-pro{
+        position: initial;
+    }
+    .main-panel {
+        margin-left: 0 !important;
+    }
+}
+
+.main-panel {
+    margin-left: 230px;
+    min-height: 100vh;
+    background: #f4f6fa;
+    transition: margin-left 0.2s;
+}
+
+.navbar {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(40,62,81,0.04);
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0 24px;
+    text-align: right;
+}
+
+.navbar-menu li {
+    display: inline-block;
+    margin-left: 18px;
+}
+
+.navbar-menu li a {
+    color: #34495e;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.navbar-menu li a:hover {
+    background: #f0f0f0;
+    color: #2980b9;
+}
+
+.content {
+    padding: 36px 48px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+/* Banner image */
+img[alt="Banner máy bay"] {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    margin-top: 20px;
+    border: 3px solid #fff;
+}
+
+.table-upgrade td:nth-child(2),
+.table-upgrade td:nth-child(3){
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content {
+        padding: 18px 8px;
+    }
+    .main-panel {
+        margin-left: 0;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+}
+
+.places-buttons .btn{
+    margin-bottom: 30px;
+    background: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    transition: background 0.2s;
+}
+.places-buttons .btn:hover {
+    background: #ffd700;
+    color: #222;
+}
+
+.all-icons [class*="pe-"]{
+    font-size: 40px;
+}
+.all-icons input{
+    border: 0;
+}
+.all-icons .font-icon-detail{
+    text-align: center;
+    padding: 45px 0px 30px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+.all-icons .font-icon-detail input{
+    margin: 25px auto 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* Typo-line */
+@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+
+#map{
+    position:relative;
+    width:100%;
+    height: calc(100% - 60px);
+}
+
+.table, .table th, .table td {
+    border: 1px solid #bbb;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px 12px;
+    background: #fff;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+}
+
+.row.g-4.mb-4 {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+.col-md-4 {
+    flex: 1 1 0;
+    max-width: 32%;
+    min-width: 220px;
+}
+
+.d-flex.align-items-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.d-flex.align-items-center > i {
+    font-size: 2.7rem;
+    margin: 0;
+}
+
+.d-flex.align-items-center > div {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;   
+    gap: 8px;
+}
+
+.d-flex.align-items-center h6,
+.d-flex.align-items-center h5 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+.d-flex.align-items-center h5 {
+    font-size: 1.45rem;
+    font-weight: bold;
+}

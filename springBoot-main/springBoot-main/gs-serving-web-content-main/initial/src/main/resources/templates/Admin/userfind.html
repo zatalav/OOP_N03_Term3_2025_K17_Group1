@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Tìm kiếm khách hàng</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" href="../../static/css/demo.css">
+    <link rel="stylesheet" th:href="@{/css/select.css}" href="../../static/css/select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <p>Bảng điều khiển</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="UserDetails.html">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Khách hàng</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="flights.html">
+                        <i class="fa-solid fa-plane"></i>
+                        <p>Chuyến bay</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="TicketDetails.html">
+                        <i class="fa-solid fa-ticket"></i>
+                        <p>Vé</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="revenue.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <p>Thống kê doanh thu</p>
+                    </a>
+                </li>
+                <li class="active-pro">
+                    <a href="user.html">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Đăng xuất</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li><a href="userAdd.html">Thêm khách hàng</a></li>
+                        <li><a href="UserDetails.html">Hiển thị khách hàng</a></li>
+                        <li th:classappend="${#httpServletRequest.requestURI.endsWith('userfind.html')} ? 'active'">
+                            <a href="userfind.html">Tìm khách hàng</a>
+                        </li>
+                        <li><a href="useredit.html">Sửa khách hàng</a></li>
+                        <li><a href="userdelete.html">Xóa khách hàng</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="add-flight-card">
+                <h4 class="mb-4 text-center">Tìm kiếm khách hàng</h4>
+                <form th:action="@{/users/find}" method="get">
+                    <div class="mb-3">
+                        <label for="maKhachHang" class="form-label">Nhập mã khách hàng</label>
+                        <input type="text" class="form-control" id="maKhachHang" name="maKhachHang" required>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+                    </div>
+                </form>
+                <div th:if="${user != null}" class="mt-4">
+                    <h5 class="text-center" style="color:#2980b9;font-weight:bold;">Thông tin khách hàng:</h5>
+                    <table class="table table-bordered" style="margin: 0 auto; max-width: 500px;">
+                        <tr>
+                            <th>Mã khách hàng</th>
+                            <td th:text="${user.maKhachHang}"></td>
+                        </tr>
+                        <tr>
+                            <th>Tài khoản</th>
+                            <td th:text="${user.user}"></td>
+                        </tr>
+                        <tr>
+                            <th>password</th>
+                            <td th:text="${user.password}"></td>
+                        </tr>
+                        <tr>
+                            <th>Họ tên</th>
+                            <td th:text="${user.hoTen}"></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td th:text="${user.email}"></td>
+                        </tr>
+                        <tr>
+                            <th>Số điện thoại</th>
+                            <td th:text="${user.soDienThoai}"></td>
+                        </tr>
+                        <tr>
+                            <th>Căn cước công dân</th>
+                            <td th:text="${user.canCuocCongDan}"></td>
+                        </tr>
+                        <tr>
+                            <th>Địa chỉ</th>
+                            <td th:text="${user.diaChi}"></td>
+                        </tr>
+                        <tr>
+                            <th>Thành phố</th>
+                            <td th:text="${user.city}"></td>
+                        </tr>
+                        <tr>
+                            <th>Quốc gia</th>
+                            <td th:text="${user.country}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div th:if="${user == null && maKhachHang != null}">
+                    <p class="text-danger text-center mt-3">Không tìm thấy khách hàng với mã "<span th:text="${maKhachHang}"></span>"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>
+</footer>
+</body>
+</html>

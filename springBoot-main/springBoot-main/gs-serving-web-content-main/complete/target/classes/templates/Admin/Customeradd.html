@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Thêm khách hàng</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" th:href="@{/css/select.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li><a th:href="@{/admin/dashboard}"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                <li class="active"><a th:href="@{/admin/CustomersDetails}"><i class="fa-solid fa-user"></i><p>Khách hàng</p></a></li>
+                <li><a th:href="@{/admin/flights}"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                <li><a th:href="@{/admin/ticketDetails}"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                <li><a th:href="@{/admin/revenue}"><i class="fa-solid fa-chart-line"></i><p>Thống kê doanh thu</p></a></li>
+                <li class="active-pro"><a th:href="@{/admin/logout}"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li class="active"><a th:href="@{/admin/Customeradd}">Thêm khách hàng</a></li>
+                        <li><a th:href="@{/admin/CustomersDetails}">Hiển thị khách hàng</a></li>
+                        <li><a th:href="@{/admin/Customerfind}">Tìm khách hàng</a></li>
+                        <li><a th:href="@{/admin/Customeredit}">Sửa khách hàng</a></li>
+                        <li><a th:href="@{/admin/Customerdelete}">Xóa khách hàng</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="add-flight-card">
+                <h4 class="mb-4 text-center">Thêm khách hàng mới</h4>
+                <!-- Thông báo thành công/thất bại -->
+                <div th:if="${message}" class="alert alert-success text-center" th:text="${message}"></div>
+                <div th:if="${error}" class="alert alert-danger text-center" th:text="${error}"></div>
+                <form th:action="@{/admin/Customeradd}" method="post">
+                    <div class="mb-3">
+                        <label for="maKhachHang" class="form-label">Mã khách hàng</label>
+                        <input type="text" class="form-control" id="maKhachHang" name="maKhachHang" th:value="${khachHang.maKhachHang}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user" class="form-label">Tài khoản</label>
+                        <input type="text" class="form-control" id="user" name="user" th:value="${khachHang.user}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mật khẩu</label>
+                        <input type="text" class="form-control" id="password" name="password" th:value="${khachHang.password}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="hoTen" class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="hoTen" name="hoTen" th:value="${khachHang.hoTen}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" th:value="${khachHang.email}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="soDienThoai" class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="soDienThoai" name="soDienThoai" th:value="${khachHang.soDienThoai}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="canCuocCongDan" class="form-label">Căn cước công dân</label>
+                        <input type="text" class="form-control" id="canCuocCongDan" name="canCuocCongDan" th:value="${khachHang.canCuocCongDan}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="diaChi" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="diaChi" name="diaChi" th:value="${khachHang.diaChi}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Thành phố</label>
+                        <input type="text" class="form-control" id="city" name="city" th:value="${khachHang.city}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Quốc gia</label>
+                        <input type="text" class="form-control" id="country" name="country" th:value="${khachHang.country}" required>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success">Thêm khách hàng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+.add-flight-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(40,62,81,0.10);
+    border: none;
+    padding: 2.5rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.add-flight-card h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2980b9;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #dbeafe;
+    padding: 10px 14px;
+    font-size: 1rem;
+    background: #f8fafc;
+    transition: border 0.2s, box-shadow 0.2s;
+    margin-bottom: 8px;
+}
+
+.form-control:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 0 2px #d0e6fa;
+    background: #fff;
+    outline: none;
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(67,233,123,0.08);
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+    color: #111;
+}
+
+.mb-3 {
+    margin-bottom: 1.25rem !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .add-flight-card {
+        padding: 1.2rem 0.5rem;
+    }
+}

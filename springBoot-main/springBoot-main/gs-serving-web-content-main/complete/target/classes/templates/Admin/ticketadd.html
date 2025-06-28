@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>✈️ Thêm vé</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" th:href="@{/css/select.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
+                    <i class="fas fa-plane"></i> NHÓM 1
+                </a>
+            </div>
+            <ul class="nav">
+                <li><a th:href="@{/admin/dashboard}"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                <li><a th:href="@{/admin/CustomersDetails}"><i class="fa-solid fa-user"></i><p>Khách hàng</p></a></li>
+                <li><a th:href="@{/admin/flights}"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                <li class="active"><a th:href="@{/admin/ticketDetails}"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                <li><a th:href="@{/admin/revenue}"><i class="fa-solid fa-chart-line"></i><p>Thống kê doanh thu</p></a></li>
+                <li class="active-pro"><a th:href="@{/admin/logout}"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <ul class="dropdown-menu menu">
+                        <li class="active"><a th:href="@{/admin/ticketadd}">Thêm vé</a></li>
+                        <li><a th:href="@{/admin/ticketDetails}">Hiển thị vé</a></li>
+                        <li><a th:href="@{/admin/ticketfind}">Tìm vé</a></li>
+                        <li><a th:href="@{/admin/ticketedit}">Sửa vé</a></li>
+                        <li><a th:href="@{/admin/ticketdelete}">Xóa vé</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="add-flight-card">
+                <h4 class="mb-4 text-center">Thêm vé mới</h4>
+
+                <!-- Thông báo thành công/thất bại -->
+                <div th:if="${message}" class="alert alert-success text-center mb-3" th:text="${message}"></div>
+                <div th:if="${error}" class="alert alert-danger text-center mb-3" th:text="${error}"></div>
+
+                <form th:action="@{/admin/ticketadd}" th:object="${ve}" method="post">
+                    <div class="mb-3">
+                        <label for="ngayDatVe" class="form-label">Ngày đặt vé</label>
+                        <input type="date" class="form-control" id="ngayDatVe" th:field="*{ngayDatVe}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="loaive" class="form-label">Loại vé</label>
+                        <select class="form-control" id="loaive" th:field="*{loaive}" required>
+                            <option value="">-- Chọn loại vé --</option>
+                            <option value="Thuong">Phổ thông</option>
+                            <option value="Vip">Thương gia</option>
+                            <option value="HangNhat">Hạng nhất</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="maChuyenBay" class="form-label">Mã chuyến bay</label>
+                        <input type="text" class="form-control" id="maChuyenBay" th:field="*{maChuyenBay}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="maKhachHang" class="form-label">Mã khách hàng</label>
+                        <input type="text" class="form-control" id="maKhachHang" th:field="*{maKhachHang}" required>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus"></i> Thêm vé</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">© 2025 Nhóm 1 - OOP N03 - K17</p>
+    </div>
+</footer>
+</body>
