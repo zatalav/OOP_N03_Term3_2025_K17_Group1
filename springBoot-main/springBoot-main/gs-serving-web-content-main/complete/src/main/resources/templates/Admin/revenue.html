@@ -3,152 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>✈️ Thống kê doanh thu</title>
-    <link rel="stylesheet" th:href="@{/css/demo.css}" href="../../static/css/demo.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-4 { margin-top: 1.5rem; }
+        .mt-5 { margin-top: 3rem; }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
-    <div class="sidebar" data-color="green" data-image="../static/images/sb2.jpeg" th:data-image="@{/images/sb2.jpeg}">
+    <!-- Sidebar -->
+    <div class="sidebar">
         <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="simple-text">
-                    <i class="fas fa-plane"></i> Nhóm 1
+                    <i class="fas fa-plane"></i> NHÓM 1
                 </a>
             </div>
             <ul class="nav">
-                <li>
-                    <a href="dashboard.html">
-                        <i class="fa-solid fa-chart-simple"></i>
-                        <p>Bảng điều khiển</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="UserDetails.html">
-                        <i class="fa-solid fa-user"></i>
-                        <p>Khách hàng</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="flights.html">
-                        <i class="fa-solid fa-plane"></i>
-                        <p>Chuyến bay</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="TicketDetails.html">
-                        <i class="fa-solid fa-ticket"></i>
-                        <p>Vé</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="revenue.html">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <p>Thống kê doanh thu</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="user.html">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <p>Đăng xuất</p>
-                    </a>
-                </li>
+                <li><a th:href="@{/admin/dashboard}"><i class="fa-solid fa-chart-simple"></i><p>Bảng điều khiển</p></a></li>
+                <li><a th:href="@{/admin/CustomersDetails}"><i class="fa-solid fa-user"></i><p>Hành khách</p></a></li>
+                <li><a th:href="@{/admin/flights}"><i class="fa-solid fa-plane"></i><p>Chuyến bay</p></a></li>
+                <li><a th:href="@{/admin/ticketDetails}"><i class="fa-solid fa-ticket"></i><p>Vé</p></a></li>
+                <li class="active"><a th:href="@{/admin/revenue}"><i class="fa-solid fa-chart-line"></i><p>Thống kê doanh thu</p></a></li>
+                <li class="active-pro"><a th:href="@{/admin/adminLogin}"><i class="fa-solid fa-right-from-bracket"></i><p>Đăng xuất</p></a></li>
             </ul>
         </div>
     </div>
+
+    <!-- Main Panel -->
     <div class="main-panel">
         <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title"><i class="fa-solid fa-coins me-2"></i> Thống kê doanh thu</h4>
-                        </div>
-                        <div class="content">
-                            <div class="row g-4 mb-4">
-                                <div class="col-md-4">
-                                    <div class="card p-3 shadow-sm">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa-solid fa-sack-dollar fa-2x text-success me-3"></i>
-                                            <div>
-                                                <h6 class="mb-1">Tháng</h6>
-                                                <h5 class="fw-bold text-success" th:text="${revenueMonth}"></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card p-3 shadow-sm">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa-solid fa-calendar-week fa-2x text-primary me-3"></i>
-                                            <div>
-                                                <h6 class="mb-1">Năm</h6>
-                                                <h5 class="fw-bold text-primary" th:text="${revenueYear}"></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card p-3 shadow-sm">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa-solid fa-calendar-alt fa-2x text-info me-3"></i>
-                                            <div>
-                                                <h6 class="mb-1">Tổng</h6>
-                                                <h5 class="fw-bold text-info" th:text="${revenueTotal}"></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Biểu đồ -->
-                            <div class="card p-4 shadow-sm mb-4">
-                                <h5 class="card-title">Biểu đồ doanh thu theo tháng</h5>
-                                <canvas id="revenueChart" height="100"
-                                    th:data-labels="${chartLabels}"
-                                    th:data-values="${chartValues}">
-                                </canvas>
-                            </div>
-                            <!-- Bảng giao dịch -->
-                            <div class="card p-4 shadow-sm">
-                                <h5 class="card-title">Lịch sử giao dịch gần đây</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered align-middle">
-                                        <thead class="table-light text-center">
-                                            <tr>
-                                                <th>Ngày</th>
-                                                <th>Mã giao dịch</th>
-                                                <th>Khách hàng</th>
-                                                <th>Số tiền</th>
-                                                <th>Trạng thái</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="gd : ${transactions}">
-                                                <td th:text="${#dates.format(gd.ngay, 'dd/MM/yyyy')}"></td>
-                                                <td th:text="${gd.maGiaoDich}"></td>
-                                                <td th:text="${gd.khachHang}"></td>
-                                                <td th:text="${#numbers.formatDecimal(gd.soTien, 0, 'COMMA', 0, 'POINT')} + '₫'"></td>
-                                                <td>
-                                                    <span th:classappend="'badge ' + ${gd.trangThaiClass}" th:text="${gd.trangThai}"></span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-end text-muted mt-2">
-                                    Cập nhật lần cuối: <span th:text="${lastUpdate}"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer">
-                            <hr>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center">
+                <h3>📊 Thống kê doanh thu theo tháng / năm</h3>
+
+                <!-- Form chọn tháng/năm -->
+                <form method="get" th:action="@{/admin/revenue}" class="mt-4">
+                    <label for="thang">Tháng:</label>
+                    <input type="number" id="thang" name="thang" min="1" max="12" th:value="${revenueMonth}" style="width: 80px; padding: 4px;">
+                    &nbsp;&nbsp;
+                    <label for="nam">Năm:</label>
+                    <input type="number" id="nam" name="nam" min="2000" max="2100" th:value="${revenueYear}" style="width: 100px; padding: 4px;">
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa-solid fa-magnifying-glass"></i> Xem
+                    </button>
+                </form>
+            </div>
+
+            <!-- Kết quả thống kê -->
+            <div class="card text-center">
+                <h4>Doanh thu tháng 
+                    <span th:text="${revenueMonth}"></span>/<span th:text="${revenueYear}"></span>
+                </h4>
+                <h2 class="text-success mt-3">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    <span th:text="${#numbers.formatDecimal(revenueTotal, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
+                </h2>
             </div>
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../../static/js/bieudo.js" th:src="@{/js/revenue-chart.js}"></script>
 </body>
 </html>
