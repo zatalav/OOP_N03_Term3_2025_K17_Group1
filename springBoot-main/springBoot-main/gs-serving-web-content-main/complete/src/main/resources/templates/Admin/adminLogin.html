@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập Admin</title>
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" th:href="@{/css/select.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .login-card {
+            max-width: 400px;
+            margin: 60px auto;
+            padding: 32px 24px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .login-card h3 {
+            margin-bottom: 24px;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div class="login-card">
+    <h3 class="text-center">Đăng nhập Admin</h3>
+    
+    <form th:action="@{/admin/adminLogin}" method="post" th:object="${adminLogin}">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" th:field="*{email}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" th:field="*{password}" required>
+        </div>
+
+        <!-- Hiển thị lỗi nếu đăng nhập sai -->
+        <div th:if="${error}" class="alert alert-danger text-center mb-3" th:text="${error}"></div>
+
+        <!-- Hiển thị thông báo nếu đăng nhập thành công (chỉ khi cần) -->
+        <div th:if="${message}" class="alert alert-success text-center mb-3" th:text="${message}"></div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
