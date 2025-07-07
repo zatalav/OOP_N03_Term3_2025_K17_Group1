@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class ViewKhachHangController {
+public class KhachHangController {
 
     @Autowired
-    private KhachHangService service;
+    private KhachHangService khachhangservice;
 
     // Hiển thị toàn bộ khách hàng
     @GetMapping("/admin/CustomersDetails")
     public String hienThiDanhSach(Model model) {
-        List<KhachHang> ds = service.getAll();
+        List<KhachHang> ds = khachhangservice.getAll();
         model.addAttribute("khachList", ds);
         return "Admin/CustomersDetails";
     }
@@ -39,10 +39,10 @@ public class ViewKhachHangController {
             model.addAttribute("khachHang", kh);
             return "Admin/Customeradd";
         }
-        if (service.getById(kh.getMaKhachHang()) != null) {
+        if (khachhangservice.getById(kh.getMaKhachHang()) != null) {
             model.addAttribute("error", "❌ Thêm khách hàng thất bại. Mã đã tồn tại!");
         } else {
-            int result = service.add(kh);
+            int result = khachhangservice.add(kh);
             if (result > 0) {
                 model.addAttribute("message", "✅ Thêm khách hàng thành công.");
             } else {
@@ -57,7 +57,7 @@ public class ViewKhachHangController {
     @GetMapping("/admin/Customeredit")
     public String hienThiFormSua(@RequestParam(required = false) String maKhachHang, Model model) {
         if (maKhachHang != null) {
-            KhachHang kh = service.getById(maKhachHang);
+            KhachHang kh = khachhangservice.getById(maKhachHang);
             model.addAttribute("khachHang", kh);
             model.addAttribute("maKhachHangCu", maKhachHang); // giữ mã cũ để POST dùng
             model.addAttribute("maKhachHang", maKhachHang);
@@ -80,7 +80,7 @@ public class ViewKhachHangController {
             model.addAttribute("maKhachHangCu", maCu);
             return "Admin/Customeredit";
         }
-        int result = service.update(khachHang); // chỉ truyền khachHang vì service chỉ nhận 1 tham số
+        int result = khachhangservice.update(khachHang); // chỉ truyền khachHang vì service chỉ nhận 1 tham số
         if (result > 0) {
             model.addAttribute("message", "✅ Sửa khách hàng thành công.");
         } else {
@@ -95,7 +95,7 @@ public class ViewKhachHangController {
     @GetMapping("/admin/Customerfind")
     public String hienThiFormTimKiem(@RequestParam(required = false) String maKhachHang, Model model) {
         if (maKhachHang != null) {
-            List<KhachHang> ds = service.search(maKhachHang);
+            List<KhachHang> ds = khachhangservice.search(maKhachHang);
             if (!ds.isEmpty()) {
                 model.addAttribute("khachHang", ds.get(0));
             } else {
@@ -110,7 +110,7 @@ public class ViewKhachHangController {
     @GetMapping("/admin/Customerdelete")
     public String hienThiFormXoa(@RequestParam(required = false) String maKhachHang, Model model) {
         if (maKhachHang != null) {
-            KhachHang kh = service.getById(maKhachHang);
+            KhachHang kh = khachhangservice.getById(maKhachHang);
             model.addAttribute("khachHang", kh);
             model.addAttribute("maKhachHang", maKhachHang);
             if (kh == null) {
@@ -123,15 +123,15 @@ public class ViewKhachHangController {
     // Xử lý xóa khách hàng (POST)
     @PostMapping("/admin/Customerdelete")
     public String xuLyXoa(@RequestParam String maKhachHang, Model model) {
-        KhachHang kh = service.getById(maKhachHang);
+        KhachHang kh = khachhangservice.getById(maKhachHang);
         if (kh == null) {
             model.addAttribute("error", "Không tìm thấy khách hàng với mã: " + maKhachHang);
             model.addAttribute("maKhachHang", maKhachHang);
             return "Admin/Customerdelete";
         }
-        service.delete(maKhachHang);
+        khachhangservice.delete(maKhachHang);
         model.addAttribute("message", "✅ Xóa khách hàng thành công.");
-        List<KhachHang> ds = service.getAll();
+        List<KhachHang> ds = khachhangservice.getAll();
         model.addAttribute("khachList", ds);
         return "Admin/CustomersDetails";
     }

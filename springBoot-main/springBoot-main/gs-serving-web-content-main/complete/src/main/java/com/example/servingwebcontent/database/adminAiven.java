@@ -15,17 +15,18 @@ public class adminAiven {
         return DriverManager.getConnection(url, user, password);
     }
 
-    // ✅ Kiểm tra thông tin đăng nhập admin từ bảng riêng
+    // ✅ Kiểm tra thông tin đăng nhập admin từ bảng riêng, có thêm maVe
     public adminLogin selectByEmailAndPassword(String email, String password) {
         adminLogin admin = null;
         try (Connection conn = getConnection()) {
-            String sql = "SELECT email, password FROM admin WHERE email = ? AND password = ?";
+            String sql = "SELECT email, password, maKhachHang FROM admin WHERE email = ? AND password = ?";
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    admin = new adminLogin(rs.getString("email"), rs.getString("password"));
+                    String maKhachHang = rs.getString("maKhachHang");
+                    admin = new adminLogin(email, password, maKhachHang);
                 }
             }
         } catch (Exception e) {

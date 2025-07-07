@@ -13,14 +13,14 @@ public class adminLoginController {
     @Autowired
     private adminLoginService adminLoginService;
 
-    // ✅ Hiển thị form đăng nhập admin
+    // Hiển thị form đăng nhập admin
     @GetMapping("/admin/adminLogin")
     public String showLoginForm(Model model) {
         model.addAttribute("adminLogin", new adminLogin());
-        return "Admin/adminLogin"; // TÊN FILE HTML phải đúng
+        return "Admin/adminLogin";
     }
 
-    // ✅ Xử lý đăng nhập admin (POST)
+    // Xử lý đăng nhập admin (POST)
     @PostMapping("/admin/adminLogin")
     public String processLogin(
             @ModelAttribute("adminLogin") adminLogin login,
@@ -28,10 +28,10 @@ public class adminLoginController {
         boolean isValid = adminLoginService.checkLogin(login.getEmail(), login.getPassword());
         if (isValid) {
             model.addAttribute("message", "✅ Đăng nhập thành công.");
-            return "Admin/dashboard"; // trỏ đúng view có thật
+            return "Admin/dashboard";
         } else {
             model.addAttribute("error", "❌ Sai email hoặc mật khẩu.");
-            return "Admin/adminLogin"; // phải đúng file view
+            return "Admin/adminLogin";
         }
     }
 }

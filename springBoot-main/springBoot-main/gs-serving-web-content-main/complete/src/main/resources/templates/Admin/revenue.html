@@ -9,6 +9,13 @@
         body {
             font-family: Arial, sans-serif;
         }
+        .wrapper {
+            display: flex;
+        }
+        .main-panel {
+            flex: 1;
+            background-color: #f8f9fa;
+        }
         .content {
             padding: 2rem;
         }
@@ -18,21 +25,29 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             padding: 2rem;
             margin-top: 2rem;
+            text-align: center;
         }
         .text-center {
             text-align: center;
         }
-        .mt-4 { margin-top: 1.5rem; }
-        .mt-5 { margin-top: 3rem; }
         .btn-success {
             background-color: #28a745;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
+            cursor: pointer;
         }
         .btn-success:hover {
             background-color: #218838;
+        }
+        input[type=number] {
+            padding: 4px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        label {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -60,31 +75,29 @@
     <!-- Main Panel -->
     <div class="main-panel">
         <div class="content">
-            <div class="text-center">
-                <h3>📊 Thống kê doanh thu theo tháng / năm</h3>
+            <h2 class="text-center">📊 Thống kê doanh thu theo tháng / năm</h2>
 
-                <!-- Form chọn tháng/năm -->
-                <form method="get" th:action="@{/admin/revenue}" class="mt-4">
-                    <label for="thang">Tháng:</label>
-                    <input type="number" id="thang" name="thang" min="1" max="12" th:value="${revenueMonth}" style="width: 80px; padding: 4px;">
-                    &nbsp;&nbsp;
-                    <label for="nam">Năm:</label>
-                    <input type="number" id="nam" name="nam" min="2000" max="2100" th:value="${revenueYear}" style="width: 100px; padding: 4px;">
-                    &nbsp;&nbsp;
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa-solid fa-magnifying-glass"></i> Xem
-                    </button>
-                </form>
-            </div>
+            <!-- Form chọn tháng/năm -->
+            <form method="get" th:action="@{/admin/revenue}" class="text-center" style="margin-top: 2rem;">
+                <label for="thang">Tháng:</label>
+                <input type="number" id="thang" name="thang" min="1" max="12" th:value="${revenueMonth}" style="width: 80px;">
+                &nbsp;&nbsp;
+                <label for="nam">Năm:</label>
+                <input type="number" id="nam" name="nam" min="2000" max="2100" th:value="${revenueYear}" style="width: 100px;">
+                &nbsp;&nbsp;
+                <button type="submit" class="btn-success">
+                    <i class="fa-solid fa-magnifying-glass"></i> Xem
+                </button>
+            </form>
 
-            <!-- Kết quả thống kê -->
-            <div class="card text-center">
+            <!-- Hiển thị tổng doanh thu -->
+            <div class="card">
                 <h4>Doanh thu tháng 
                     <span th:text="${revenueMonth}"></span>/<span th:text="${revenueYear}"></span>
                 </h4>
                 <h2 class="text-success mt-3">
                     <i class="fa-solid fa-sack-dollar"></i>
-                    <span th:text="${#numbers.formatDecimal(revenueTotal, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
+                    <span th:text="${#numbers.formatDecimal(revenueTotal, 0, 'COMMA', 0, 'POINT') + ' ₫'}">0 ₫</span>
                 </h2>
             </div>
         </div>

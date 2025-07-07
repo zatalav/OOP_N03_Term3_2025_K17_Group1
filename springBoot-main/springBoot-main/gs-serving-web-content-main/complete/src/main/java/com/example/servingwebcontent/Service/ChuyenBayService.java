@@ -11,33 +11,33 @@ import java.util.List;
 public class ChuyenBayService {
 
     @Autowired
-    private ChuyenBayAiven database;
+    private ChuyenBayAiven chuyenbayAiven;
 
     public List<ChuyenBay> getAll() {
-        return database.selectAll();
+        return chuyenbayAiven.selectAll();
     }
 
     public int add(ChuyenBay cb) {
         tinhToanSoGheVaGiaVe(cb);
-        return database.insert(cb); // trả về số dòng thêm thành công
+        return chuyenbayAiven.insert(cb); // trả về số dòng thêm thành công
     }
 
     public int update(String maChuyenBay, ChuyenBay cbMoi) {
         cbMoi.setMaChuyenBay(maChuyenBay);
         tinhToanSoGheVaGiaVe(cbMoi);
-        return database.update(cbMoi); // trả về số dòng cập nhật thành công
+        return chuyenbayAiven.update(cbMoi); // trả về số dòng cập nhật thành công
     }
 
     public void delete(String maChuyenBay) {
-        database.delete(maChuyenBay);
+        chuyenbayAiven.delete(maChuyenBay);
     }
 
     public ChuyenBay getById(String maChuyenBay) {
-        return database.selectById(maChuyenBay);
+        return chuyenbayAiven.selectById(maChuyenBay);
     }
 
     public List<ChuyenBay> search(String maChuyenBay) {
-        return database.selectByCondition(maChuyenBay);
+        return chuyenbayAiven.selectByCondition(maChuyenBay);
     }
 
     private void tinhToanSoGheVaGiaVe(ChuyenBay cb) {
