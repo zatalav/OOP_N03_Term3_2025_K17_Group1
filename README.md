@@ -275,6 +275,8 @@ springBoot-main/
 | Biểu đồ use-case thống kê doanh thu                                                              |
 | ![Biểu đồ tuần tự chức năng đăng nhập](img/Bieudotuantucndn.png)                                 |
 | Biểu đồ tuần tự chức năng đăng nhập                                                              |
+| ![Biểu đồ tuần tự chức năng thêm chuyến bay](img/Bieudotuantucnthemcb.png)                       |
+| Biểu đồ tuần tự chức năng thêm chuyến bay                                                        |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
