@@ -271,6 +271,8 @@ springBoot-main/
 | Biểu đồ use-case quản lý khách hàng                                                              |
 | ![Biểu đồ use-case quản lý vé](img/Bieudouse-caseqlve.png)                                       |
 | Biểu đồ use-case quản lý vé                                                                      |
+| ![Biểu đồ use-case thống kê doanh thu](img/Bieudouse-casetkdt.png)                               |
+| Biểu đồ use-case thống kê doanh thu                                                              |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
