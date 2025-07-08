@@ -240,6 +240,7 @@ springBoot-main/
 | ![Sơ đồ Activity thêm](img/SodoActivitythem.png)                                                 |
 | ![Sơ đồ Activity sửa](img/SodoActivitysua.png)                                                   |
 | ![Sơ đồ Activity xóa](img/SodoActivityxoa.png)                                                   |
+| ![Sơ đồ Activity tìm kiếm](img/SodoActivitytimkiem.png)                                          |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
 | ![Sơ đồ quan hệ ERD](img/SodoERD.png)                                                            |
