@@ -237,6 +237,8 @@ springBoot-main/
 | ------------------------------------------------------------------------------------------------ |
 | ![Sơ đồ lớp UML](img/sodolopUML.png)                                                             |
 | Sơ đồ lớp UML                                                                                    |
+| ![Sơ đồ quan hệ các lớp](img/Sodoquanhecaclop.png)                                               |
+| Sơ đồ quan hệ các lớp                                                                            |
 | ![Sơ đồ Activity đăng nhập](img/SodoActivity.png)                                                |
 | Sơ đồ Activity đăng nhập                                                                         |
 | ![Sơ đồ Activity thêm chuyến bay](img/SodoActivitythem.png)                                      |
