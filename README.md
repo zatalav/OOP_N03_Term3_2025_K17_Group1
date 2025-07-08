@@ -281,6 +281,8 @@ springBoot-main/
 | Biểu đồ tuần tự chức năng sửa chuyến bay                                                         |
 | ![Biểu đồ tuần tự chức năng xóa chuyến bay](img/Bieudotuantucnxoacb.png)                         |
 | Biểu đồ tuần tự chức năng xóa chuyến bay                                                         |
+| ![Biểu đồ tuần tự chức năng tìm kiếm chuyến bay](img/Bieudotuantucntimkiemcb.png)                |
+| Biểu đồ tuần tự chức năng tìm kiếm chuyến bay                                                    |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
