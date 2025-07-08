@@ -244,6 +244,11 @@ springBoot-main/
 | ![Sơ đồ Activity khách hàng thêm](img/Activitykhthem.png)                                        |
 | ![Sơ đồ Activity khách hàng sửa](img/Activitykhsua.png)                                          |
 | ![Sơ đồ Activity khách hàng xóa](img/Activitykhxoa.png)                                          |
+| ![Sơ đồ Activity khách hàng tìm kiếm](img/Activitykhtimkiem.png)                                 |
+| ![Sơ đồ Activity vé thêm](img/Activityvethem.png)                                                |
+| ![Sơ đồ Activity vé sửa](img/Activityvesua.png)                                                  |
+| ![Sơ đồ Activity vé xóa](img/Activityvexoa.png)                                                  |
+| ![Sơ đồ Activity vé tìm kiếm](img/Activityvetimkiem.png)                                         |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
 | ![Sơ đồ quan hệ ERD](img/SodoERD.png)                                                            |
