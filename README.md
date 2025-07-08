@@ -267,6 +267,10 @@ springBoot-main/
 | Biểu đồ ca sử dụng tổng quát                                                                     |
 | ![Biểu đồ use-case quản lý chuyến bay](img/Bieudouse-caseqlcb.png)                               |
 | Biểu đồ use-case quản lý chuyến bay                                                              |
+| ![Biểu đồ use-case quản lý khách hàng](img/Bieudouse-caseqlkh.png)                               |
+| Biểu đồ use-case quản lý khách hàng                                                              |
+| ![Biểu đồ use-case quản lý vé](img/Bieudouse-caseqlve.png)                                       |
+| Biểu đồ use-case quản lý vé                                                                      |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
