@@ -251,7 +251,48 @@ springBoot-main/
 | ![Sơ đồ Activity vé tìm kiếm](img/Activityvetimkiem.png)                                         |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
-| ![Sơ đồ quan hệ ERD](img/SodoERD.png)                                                            |
+
+## 🗂️ Sơ đồ cơ sở dữ liệu (ERD)
+
+### 1. 🔹 Sơ đồ hệ thống cơ bản
+
+Hệ thống đặt vé máy bay được xây dựng với các bảng chính như:
+
+- `chuyenbay`: lưu thông tin các chuyến bay
+- `khachhang`: lưu thông tin người dùng
+- `ve`: lưu thông tin các vé đã đặt
+- `account`: lưu thông tin tài khoản đăng nhập người dùng
+
+![Sơ đồ ERD cơ bản](img/SodoERDcoban.png)
+
+Sơ đồ này mô tả mối quan hệ:
+
+- Một khách hàng có thể đặt nhiều vé (`1 - n`)
+- Một chuyến bay có thể có nhiều vé (`1 - n`)
+- Bảng `account` có quan hệ 1-1 với bảng `khachhang` để phân quyền người dùng
+
+---
+
+### 2. 🔸 Sơ đồ hệ thống mở rộng
+
+Sau quá trình phát triển, hệ thống được mở rộng thêm:
+
+- `admin`: bảng quản trị viên có quyền quản lý hệ thống
+- `thongkedoanhthu`: bảng dùng cho thống kê doanh thu theo tháng, năm, loại vé
+
+![Sơ đồ ERD mở rộng](img/SodoERDmorong.png)
+
+Các mối quan hệ mới:
+
+- `admin` liên kết đến `khachhang` để xác định người dùng có quyền quản trị
+- `thongkedoanhthu` liên kết với `ve` để tổng hợp doanh thu theo từng loại vé và thời điểm
+
+---
+
+🔎 **Lý do sử dụng 2 sơ đồ:**
+
+- Sơ đồ đầu tiên giúp xây dựng hệ thống cơ bản, phục vụ chức năng đặt vé và quản lý khách hàng.
+- Sơ đồ thứ hai mở rộng hệ thống theo hướng có thể **báo cáo, thống kê**, và **phân quyền truy cập** rõ ràng hơn.
 
 ## 📚 License
 
