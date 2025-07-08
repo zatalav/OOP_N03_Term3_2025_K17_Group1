@@ -236,21 +236,41 @@ springBoot-main/
 | Giao diện & Biểu đồ                                                                              |
 | ------------------------------------------------------------------------------------------------ |
 | ![Sơ đồ lớp UML](img/sodolopUML.png)                                                             |
+| Sơ đồ lớp UML                                                                                    |
 | ![Sơ đồ Activity đăng nhập](img/SodoActivity.png)                                                |
-| ![Sơ đồ Activity chuyến bay thêm](img/SodoActivitythem.png)                                      |
-| ![Sơ đồ Activity chuyến bay sửa](img/SodoActivitysua.png)                                        |
-| ![Sơ đồ Activity chuyến bay xóa](img/SodoActivityxoa.png)                                        |
-| ![Sơ đồ Activity chuyến bay tìm kiếm](img/SodoActivitytimkiem.png)                               |
-| ![Sơ đồ Activity khách hàng thêm](img/Activitykhthem.png)                                        |
-| ![Sơ đồ Activity khách hàng sửa](img/Activitykhsua.png)                                          |
-| ![Sơ đồ Activity khách hàng xóa](img/Activitykhxoa.png)                                          |
-| ![Sơ đồ Activity khách hàng tìm kiếm](img/Activitykhtimkiem.png)                                 |
-| ![Sơ đồ Activity vé thêm](img/Activityvethem.png)                                                |
-| ![Sơ đồ Activity vé sửa](img/Activityvesua.png)                                                  |
-| ![Sơ đồ Activity vé xóa](img/Activityvexoa.png)                                                  |
-| ![Sơ đồ Activity vé tìm kiếm](img/Activityvetimkiem.png)                                         |
+| Sơ đồ Activity đăng nhập                                                                         |
+| ![Sơ đồ Activity thêm chuyến bay](img/SodoActivitythem.png)                                      |
+| Sơ đồ Activity thêm chuyến bay                                                                   |
+| ![Sơ đồ Activity sửa chuyến bay](img/SodoActivitysua.png)                                        |
+| Sơ đồ Activity sửa chuyến bay                                                                    |
+| ![Sơ đồ Activity xóa chuyến bay](img/SodoActivityxoa.png)                                        |
+| Sơ đồ Activity xóa chuyến bay                                                                    |
+| ![Sơ đồ Activity tìm kiếm chuyến bay](img/SodoActivitytimkiem.png)                               |
+| Sơ đồ Activity tìm kiếm chuyến bay                                                               |
+| ![Sơ đồ Activity thêm khách hàng](img/Activitykhthem.png)                                        |
+| Sơ đồ Activity thêm khách hàng                                                                   |
+| ![Sơ đồ Activity sửa khách hàng](img/Activitykhsua.png)                                          |
+| Sơ đồ Activity sửa khách hàng                                                                    |
+| ![Sơ đồ Activity xóa khách hàng](img/Activitykhxoa.png)                                          |
+| Sơ đồ Activity xóa khách hàng                                                                    |
+| ![Sơ đồ Activity tìm kiếm khách hàng](img/Activitykhtimkiem.png)                                 |
+| Sơ đồ Activity tìm kiếm khách hàng                                                               |
+| ![Sơ đồ Activity thêm vé](img/Activityvethem.png)                                                |
+| Sơ đồ Activity thêm vé                                                                           |
+| ![Sơ đồ Activity sửa vé](img/Activityvesua.png)                                                  |
+| Sơ đồ Activity sửa vé                                                                            |
+| ![Sơ đồ Activity xóa vé](img/Activityvexoa.png)                                                  |
+| Sơ đồ Activity xóa vé                                                                            |
+| ![Sơ đồ Activity tìm kiếm vé](img/Activityvetimkiem.png)                                         |
+| Sơ đồ Activity tìm kiếm vé                                                                       |
+| ![Biểu đồ ca sử dụng tổng quát](img/Bieudocasudung.png)                                          |
+| Biểu đồ ca sử dụng tổng quát                                                                     |
+| ![Biểu đồ use-case quản lý chuyến bay](img/Bieudouse-caseqlcb.png)                               |
+| Biểu đồ use-case quản lý chuyến bay                                                              |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
+| Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
+| UI quản lý vé                                                                                    |
 
 ## 🗂️ Sơ đồ cơ sở dữ liệu (ERD)
 
