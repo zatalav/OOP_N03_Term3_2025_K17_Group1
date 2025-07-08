@@ -303,6 +303,8 @@ springBoot-main/
 | Biểu đồ tuần tự chức năng tìm kiếm vé                                                            |
 | ![Sơ đồ thực thể liên kết](img/Sodothucthelienket.png)                                           |
 | Sơ đồ thực thể liên kết                                                                          |
+| ![Sơ đồ lớp và thiết kế lớp](img/Sodolopvathietkelop.png)                                        |
+| Sơ đồ lớp và thiết kế lớp                                                                        |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
