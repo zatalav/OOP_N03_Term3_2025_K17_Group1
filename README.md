@@ -235,14 +235,14 @@ springBoot-main/
 
 | Giao diện & Biểu đồ                                                                              |
 | ------------------------------------------------------------------------------------------------ |
-| ![Sơ đồ lớp UML](./img/sodosql.png)                                                              |
-| ![Activity - Thêm](./img/add.png)                                                                |
-| ![Activity - Sửa](./img/edit.png)                                                                |
-| ![Activity - Xoá](./img/delete.png)                                                              |
+| ![Sơ đồ lớp UML](img/sodolopUML.png)                                                             |
+| ![Sơ đồ Activity](img/SodoActivity.png)                                                          |
+| ![Sơ đồ Activity thêm](img/SodoActivitythem.png)                                                 |
+| ![Sơ đồ Activity sửa](img/SodoActivitysua.png)                                                   |
+| ![Sơ đồ Activity xóa](img/SodoActivityxoa.png)                                                   |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
-
----
+| ![Sơ đồ quan hệ ERD](img/SodoERD.png)                                                            |
 
 ## 📚 License
 
