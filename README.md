@@ -291,6 +291,8 @@ springBoot-main/
 | Biểu đồ tuần tự chức năng xóa khách hàng                                                         |
 | ![Biểu đồ tuần tự chức năng tìm kiếm khách hàng](img/Bieudotuantucntimkiemkh.png)                |
 | Biểu đồ tuần tự chức năng tìm kiếm khách hàng                                                    |
+| ![Biểu đồ tuần tự chức năng thêm vé](img/Bieudotuantucnthemve.png)                               |
+| Biểu đồ tuần tự chức năng thêm vé                                                                |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
