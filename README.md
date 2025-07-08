@@ -273,6 +273,8 @@ springBoot-main/
 | Biểu đồ use-case quản lý vé                                                                      |
 | ![Biểu đồ use-case thống kê doanh thu](img/Bieudouse-casetkdt.png)                               |
 | Biểu đồ use-case thống kê doanh thu                                                              |
+| ![Biểu đồ tuần tự chức năng đăng nhập](img/Bieudotuantucndn.png)                                 |
+| Biểu đồ tuần tự chức năng đăng nhập                                                              |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
