@@ -295,6 +295,8 @@ springBoot-main/
 | Biểu đồ tuần tự chức năng thêm vé                                                                |
 | ![Biểu đồ tuần tự chức năng sửa vé](img/Bieudotuantucnsuave.png)                                 |
 | Biểu đồ tuần tự chức năng sửa vé                                                                 |
+| ![Biểu đồ tuần tự chức năng xóa vé](img/Bieudotuantucnxoave.png)                                 |
+| Biểu đồ tuần tự chức năng xóa vé                                                                 |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | Try-catch-finally                                                                                |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
