@@ -1,0 +1,205 @@
+/* Root Variables */
+:root {
+  --primary: #007bff;
+  --primary-hover: #0056b3;
+  --background: #f4f8fb;
+  --white: #fff;
+  --gray: #6c757d;
+  --dark: #343a40;
+  --border: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--dark);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--white);
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.header .logo {
+  font-size: 20px;
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar a {
+  margin: 0 12px;
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: var(--primary);
+}
+
+/* Home Section */
+.home {
+  background: linear-gradient(to right, #007bff, #00c6ff);
+  color: var(--white);
+  padding: 100px 30px;
+  text-align: center;
+}
+
+.home .content h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.home .content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: var(--white);
+  color: var(--primary);
+  padding: 10px 25px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  color: var(--white);
+}
+
+/* Booking Section */
+.book {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.heading span {
+  font-size: 32px;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.book-form {
+  background: var(--white);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 0 0 10px var(--shadow);
+  border-radius: 8px;
+}
+
+.book-form .inputBox {
+  margin-bottom: 20px;
+}
+
+.book-form .inputBox span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.book-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.btn-2 {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-2:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--white);
+  padding: 40px 30px 20px;
+  margin-top: 60px;
+  border-top: 1px solid var(--border);
+}
+
+.footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
+  flex: 1 1 200px;
+  margin-bottom: 20px;
+}
+
+.footer-col-1 h3,
+.footer-col-3 h3,
+.footer-col-4 h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: var(--dark);
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+  color: var(--gray);
+}
+
+.footer ul li i {
+  margin-right: 8px;
+}
+
+.footer .app-logo img {
+  width: 120px;
+  margin-right: 10px;
+}
+
+.footer .logo {
+  font-size: 18px;
+  color: var(--primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer hr {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.footer p.copyright {
+  text-align: center;
+  color: var(--gray);
+  font-size: 14px;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✈️ Đăng nhập hệ thống đặt vé máy bay</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo"><i class="fas fa-plane"></i> Nhóm 01</a>
+    <nav class="navbar" id="MenuItems">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="register.html">Đăng ký</a></li>
+      <li><a href="login.html">Đăng nhập</a></li>
+      <a href="login.html" class="login"><img src="./img/avatar.png" alt="avatar" width="30" height="30" /></a>
+    </nav>
+  </header>
+
+  <!-- Login Section -->
+  <div class="contact">
+    <div class="form">
+      <div class="contact-info">
+        <h3 class="title">Chào mừng bạn trở lại</h3>
+        <p class="text">Đăng nhập để tiếp tục sử dụng hệ thống đặt vé máy bay của Nhóm 01.</p>
+        <div class="info">
+          <div class="information">
+            <img src="images/location.png" class="icon" alt="" />
+            <p>Nhóm 01 - OOP - K17</p>
+          </div>
+          <div class="information">
+            <img src="images/email.png" class="icon" alt="" />
+            <p><a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="github-link" target="_blank">Github Nhóm 01</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form id="loginForm">
+          <h3 class="title">Đăng nhập</h3>
+
+          <div class="input-container">
+            <label for="username">Email</label>
+            <input type="email" id="username" name="email" class="input" placeholder=" " required />
+          </div>
+
+          <div class="input-container">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password" class="input" placeholder=" " required />
+          </div>
+
+          <a href="#" style="font-size: 14px; color: var(--text-light); margin-bottom: 10px; display: inline-block;">Quên mật khẩu?</a>
+          <input type="submit" class="btn" value="Đăng nhập" />
+          <a href="register.html" class="sign" style="margin-top: 10px; display: inline-block; font-size: 14px;">Chưa có tài khoản? Đăng ký</a>
+
+          <div id="error-message" style="color: red; margin-top: 10px;"></div>
+          <div id="loading-indicator" style="display: none; margin-top: 10px;">Đang đăng nhập...</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Về chúng tôi</h3>
+        <p>Hệ thống đặt vé máy bay được phát triển bởi nhóm sinh viên Đại học Phenikaa (2025).</p>
+      </div>
+      <div class="footer-col-2">
+        <a href="#" class="logo"><i class="fas fa-plane"></i> Nhóm 01</a>
+      </div>
+      <div class="footer-col-3">
+        <h3>Liên kết hữu ích</h3>
+        <ul>
+          <li>Ưu đãi</li>
+          <li>Bài viết</li>
+          <li>Chính sách hoàn tiền</li>
+          <li>Đối tác</li>
+        </ul>
+      </div>
+      <div class="footer-col-4">
+        <h3>Theo dõi chúng tôi</h3>
+        <ul>
+          <li><i class="fab fa-facebook"></i> Facebook</li>
+          <li><i class="fab fa-twitter"></i> Twitter</li>
+          <li><i class="fab fa-instagram"></i> Instagram</li>
+          <li><i class="fab fa-youtube"></i> Youtube</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <p class="copyright">Copyright 2023 - Nhóm 01-OOP</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const formData = {
+        email: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      };
+
+      const errorMessage = document.getElementById('error-message');
+      const loadingIndicator = document.getElementById('loading-indicator');
+
+      errorMessage.textContent = '';
+      loadingIndicator.style.display = 'block';
+
+      fetch('http://localhost:8080/api/v1/auth/authenticate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+        .then(response => {
+          if (!response.ok) throw new Error('Login failed');
+          return response.json();
+        })
+        .then(data => {
+          const jwtToken = data.token;
+          localStorage.setItem('jwtToken', jwtToken);
+          redirectToProtectedPage(formData);
+        })
+        .catch(error => {
+          errorMessage.textContent = 'Đăng nhập thất bại. Vui lòng kiểm tra thông tin.';
+          console.error('Error:', error.message);
+        })
+        .finally(() => {
+          loadingIndicator.style.display = 'none';
+        });
+    }
+
+    function redirectToProtectedPage(formData) {
+      const jwtToken = localStorage.getItem('jwtToken');
+      if (jwtToken) {
+        fetch('http://localhost:8080/api/v1/demo-controller/index', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${jwtToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+          .then(response => {
+            if (response.ok) return response.text();
+            console.error('Error:', response.status, response.statusText);
+          })
+          .then(htmlContent => {
+            window.history.pushState({}, '', '/api/v1/demo-controller');
+            document.body.innerHTML = htmlContent;
+          })
+          .catch(error => {
+            console.error('Error:', error.message);
+          });
+      } else {
+        window.location.href = 'http://localhost:8080/api/v1/auth/login';
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
+
+  </script>
+</body>
+</html>

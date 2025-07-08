@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>✈️ Xây dựng hệ thống đặt vé máy bay</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+<header class="header">
+  <a href="#" class="logo"><i class="fas fa-plane"></i> Nhóm 01</a>
+  <nav class="navbar">
+    <a href="index.html">Trang chủ</a>
+    <a href="#book-form">Đăng nhập</a>
+    <a href="contact.html">Đăng ký</a>
+  </nav>
+  <a href="http://localhost:8080/api/v1/auth/login">
+    <img src="./img/avatar.png" th:src="@{/images/avatar.svg}" width="30" height="30" alt="avatar" />
+  </a>
+</header>
+
+<section class="home" id="home">
+  <div class="home-slider">
+    <div class="slide">
+      <div class="box">
+        <div class="content">
+          <h3>Fly with us</h3>
+          <p>Connecting people, places, and cultures.</p>
+          <a href="#book-form" class="btn">Book now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <h1 class="heading">
+    <span>B</span><span>o</span><span>o</span><span>k</span>
+    <span class="space"></span>
+    <span>N</span><span>o</span><span>w</span>
+  </h1>
+</section>
+
+<section class="book-form" id="book-form">
+  <form id="bookingForm">
+    <div class="inputBox">
+      <span><i class="fa-solid fa-plane-departure"></i> From</span>
+      <input type="text" placeholder="Place name" id="bstart">
+    </div>
+    <div class="inputBox">
+      <span><i class="fa-solid fa-plane-arrival"></i> To</span>
+      <input type="text" placeholder="Place name" id="bEnd">
+    </div>
+    <div class="inputBox">
+      <span><i class="fa-solid fa-ticket"></i> Count</span>
+      <input type="number" placeholder="passengers" id="numOfSeat">
+    </div>
+    <button type="button" id="btnclick" class="btn-2">Check Price</button>
+    <a href="payment.html" class="btn-2" style="visibility: hidden" id="bookNowbtn">Book Now</a>
+  </form>
+</section>
+
+<div class="covid"><br><br></div>
+
+<footer class="footer">
+  <div class="row">
+    <div class="footer-col-1">
+      <h3>Download Our App</h3>
+      <p>Download App for Android and iOS mobile phone.</p>
+      <div class="app-logo">
+        <img src="/images/play-store.png" th:src="@{/images/play-store.png}" alt="play-store">
+        <img src="/images/app-store.png" th:src="@{/images/app-store.png}" alt="app-store">
+      </div>
+    </div>
+    <div class="footer-col-2">
+      <a href="#" class="logo"><i class="fas fa-plane"></i> Nhóm 01</a>
+    </div>
+    <div class="footer-col-3">
+      <h3>Useful Links</h3>
+      <ul>
+        <li>Coupons</li>
+        <li>Blog Post</li>
+        <li>Return Policy</li>
+        <li>Join Affiliate</li>
+      </ul>
+    </div>
+    <div class="footer-col-4">
+      <h3>Follow us</h3>
+      <ul>
+        <li><i class="fa-brands fa-facebook"></i> Facebook</li>
+        <li><i class="fa-brands fa-twitter"></i> Twitter</li>
+        <li><i class="fa-brands fa-instagram"></i> Instagram</li>
+        <li><i class="fa-brands fa-youtube"></i> Youtube</li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <p class="copyright">Copyright 2023 - Nhóm 01-OOP</p>
+</footer>
+
+<script>
+function checkPrice() {
+  const formData = {
+    bstart: document.getElementById('bstart').value,
+    bend: document.getElementById('bEnd').value,
+    bnumofseat: document.getElementById('numOfSeat').value
+  };
+
+  const jwtToken = localStorage.getItem('jwtToken');
+  if (!jwtToken) return window.location.href = 'http://localhost:8080/api/v1/auth/login';
+
+  fetch('http://localhost:8080/api/v1/demo-controller/checkPrice', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to check price');
+      return response.json();
+    })
+    .then(data => {
+      alert('Giá chuyến bay: ' + data.price);
+      document.getElementById('bookNowbtn').style.visibility = 'visible';
+    })
+    .catch(error => console.error('Error:', error.message));
+}
+
+document.getElementById('btnclick').addEventListener('click', function (e) {
+  e.preventDefault();
+  checkPrice();
+});
+</script>
+</body>
+</html>

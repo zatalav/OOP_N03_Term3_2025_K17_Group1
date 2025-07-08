@@ -1,0 +1,80 @@
+/* Reset & Base */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.container {
+  background: #00aced;
+  margin: 60px auto;
+  padding: 30px 40px;
+  border-radius: 10px;
+  max-width: 600px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #FFD700;
+}
+
+h1 i, h2 i {
+  color: #00aced;
+  margin-right: 8px;
+}
+
+.flight-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.flight-details i {
+  color: #87CEFA;
+  margin-right: 6px;
+}
+
+.ticket-selection {
+  margin-top: 30px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+select, input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px;
+  background-color: #33eacb;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button i {
+  margin-right: 6px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

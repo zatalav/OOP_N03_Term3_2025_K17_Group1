@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✈️ Xây dựng hệ thống đặt vé máy bay</title>
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="contact.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo"><i class="fas fa-plane"></i> Nhóm 01</a>
+    <nav class="navbar" id="MenuItems">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="index.html">Đăng ký</a></li>
+      <li><a href="contact.html">Đăng nhập</a></li>
+      <a href="login.html" class="login">
+        <img src="./img/avatar.png" alt="avatar" width="30" height="30" />
+      </a>
+    </nav>
+    <img src="./img/menu.png" class="menu-icon" onclick="menutoggle()" />
+  </header>
+
+  <!-- Contact Section -->
+  <div class="contact">
+    <span class="big-circle"></span>
+    <div class="form">
+      <div class="contact-info">
+        <h3 class="title">Liên hệ với chúng tôi</h3>
+        <p class="text">Hệ thống đặt vé máy bay do nhóm 01 phát triển cho môn OOP.</p>
+        <div class="info">
+          <div class="information">
+            <img src="images/location.png" class="icon" alt="" />
+            <p>Nhóm 01 - OOP - K17</p>
+          </div>
+          <div class="information">
+            <img src="images/email.png" class="icon" alt="" />
+            <p>
+              <a href="https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1" class="github-link" target="_blank">Github Nhóm 01</a>
+            </p>
+          </div>
+          <div class="information">
+            <img src="images/phone.png" class="icon" alt="" />
+            <p>SĐT: 0.123.456.789</p>
+          </div>
+        </div>
+        <div class="social-media">
+          <p>Kết nối với chúng tôi:</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <span class="circle one"></span>
+        <span class="circle two"></span>
+
+        <form action="index.html" autocomplete="off">
+          <h3 class="title">Gửi tin nhắn</h3>
+
+          <div class="input-container">
+            <input type="text" name="name" class="input" placeholder=" " required />
+            <span>Họ tên</span>
+          </div>
+          <div class="input-container">
+            <input type="email" name="email" class="input" placeholder=" " required />
+            <span>Email</span>
+          </div>
+          <div class="input-container">
+            <input type="tel" name="phone" class="input" placeholder=" " required />
+            <span>Điện thoại</span>
+          </div>
+          <div class="input-container textarea">
+            <textarea name="message" class="input" placeholder=" " required></textarea>
+            <span>Nội dung</span>
+          </div>
+          <input type="submit" value="Gửi" class="btn" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Về chúng tôi</h3>
+        <p>Hệ thống đặt vé máy bay được phát triển bởi nhóm sinh viên Đại học Phenikaa (2025).</p>
+      </div>
+      <div class="footer-col-2">
+        <a href="#" class="logo"><i class="fas fa-plane"></i> Nhóm 01</a>
+      </div>
+      <div class="footer-col-3">
+        <h3>Liên kết hữu ích</h3>
+        <ul>
+          <li>Ưu đãi</li>
+          <li>Bài viết</li>
+          <li>Chính sách hoàn tiền</li>
+          <li>Đối tác</li>
+        </ul>
+      </div>
+      <div class="footer-col-4">
+        <h3>Theo dõi chúng tôi</h3>
+        <ul>
+          <li><i class="fab fa-facebook"></i> Facebook</li>
+          <li><i class="fab fa-twitter"></i> Twitter</li>
+          <li><i class="fab fa-instagram"></i> Instagram</li>
+          <li><i class="fab fa-youtube"></i> Youtube</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <p class="copyright">Copyright 2023 - Nhóm 01-OOP</p>
+  </div>
+</body>
+</html>

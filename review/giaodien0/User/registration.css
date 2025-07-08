@@ -1,0 +1,179 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f8ff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 50px;
+  background-color: #0099cc;
+  color: #fff;
+}
+
+.header .logo {
+  font-size: 22px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar li {
+  display: inline;
+  margin-left: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.menu-icon {
+  display: none;
+}
+
+/* Form Section */
+.log {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  background: #e9f0fb;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.img {
+  flex: 1;
+  padding: 30px;
+}
+
+.img img {
+  width: 100%;
+}
+
+.login-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.login-content form {
+  width: 100%;
+}
+
+.login-content .title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #003580;
+  font-size: 24px;
+}
+
+.input-div {
+  position: relative;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.input-div .i {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px 0 0 5px;
+}
+
+.input-div .div {
+  flex: 1;
+}
+
+.input-div input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 16px;
+  border-radius: 0 5px 5px 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #35f33f;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #002050;
+}
+
+/* Footer */
+.footer {
+  background: #7d8607;
+  color: white;
+  padding: 30px 50px;
+}
+
+.footer .row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer h3 {
+  margin-bottom: 15px;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer .logo {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer .app-logo img {
+  width: 120px;
+  margin-right: 10px;
+}
+
+.footer hr {
+  margin: 20px 0;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer .copyright {
+  text-align: center;
+  font-size: 14px;
+}

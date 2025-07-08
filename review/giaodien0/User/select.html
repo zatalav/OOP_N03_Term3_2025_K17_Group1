@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chọn chuyến bay</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="select.css">
+</head>
+<body style="background-image: url('../../static/images/selectpage01.jpeg')">
+  <div class="container">
+    <h1><i class="fas fa-plane-departure"></i> Chọn chuyến bay của bạn</h1>
+    <form id="flight-chooser-form" action="ticket.html" method="get">
+      
+      <div class="flight-option">
+        <label>
+          <input type="radio" name="flight" value="flight1">
+          <i class="fas fa-plane" style="color: #007bff; margin-right: 8px;"></i>
+          <span class="flight-name">Chuyến bay A</span> -
+          <span class="flight-route">Tuyến đường A</span> -
+          <span class="flight-time"><i class="fas fa-clock"></i> 10:00 sáng</span>
+        </label>
+      </div>
+      
+      <div class="flight-option">
+        <label>
+          <input type="radio" name="flight" value="flight2">
+          <i class="fas fa-plane" style="color: #007bff; margin-right: 8px;"></i>
+          <span class="flight-name">Chuyến bay B</span> -
+          <span class="flight-route">Tuyến đường B</span> -
+          <span class="flight-time"><i class="fas fa-clock"></i> 11:00 sáng</span>
+        </label>
+      </div>
+
+      <!-- Thêm nhiều chuyến bay nếu cần -->
+
+      <button class="buttonsub" type="submit">
+        <i class="fas fa-check-circle"></i> Chọn chuyến bay
+      </button>
+    </form>
+  </div>
+
+  <script src="../../static/js/select.js"></script>
+</body>
+</html>
