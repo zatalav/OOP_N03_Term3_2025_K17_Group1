@@ -352,9 +352,13 @@ Các mối quan hệ mới:
 - Sơ đồ đầu tiên giúp xây dựng hệ thống cơ bản, phục vụ chức năng đặt vé và quản lý khách hàng.
 - Sơ đồ thứ hai mở rộng hệ thống theo hướng có thể **báo cáo, thống kê**, và **phân quyền truy cập** rõ ràng hơn.
 
-## 📚 License
+## 💐 Lời tri ân
 
-Dự án được phát triển cho mục tiêu học tập tại Đại học Phenikaa. Không sử dụng thương mại nếu không có sự cho phép.
+Nhóm chúng em xin gửi lời **cảm ơn chân thành** tới **Cô Nguyễn Lệ Thu** đã tận tình hướng dẫn, hỗ trợ và truyền cảm hứng trong suốt quá trình thực hiện dự án.
+
+Thông qua dự án này, nhóm không chỉ được rèn luyện kỹ năng lập trình với **Java – Spring Boot**, mà còn học hỏi cách làm việc nhóm, tư duy thiết kế hệ thống phần mềm và ứng dụng công nghệ vào thực tế.
+
+> 🌟 _“Chúng em kính chúc Cô luôn mạnh khỏe, hạnh phúc và tiếp tục truyền cảm hứng học tập cho sinh viên trong các học phần tiếp theo.”_
 
 ## ✅ Kết luận
 
@@ -362,3 +366,7 @@ Dự án được phát triển cho mục tiêu học tập tại Đại học P
 - ✅ Thiết kế theo mô hình chuẩn MVC, phân lớp rõ ràng
 - ✅ Giao diện thân thiện, có thể demo thực tế qua DevTunnel
 - ✅ Sẵn sàng mở rộng REST API, phân quyền, cloud storage, tích hợp thanh toán
+
+## 📚 License
+
+Dự án được phát triển cho mục tiêu học tập tại Đại học Phenikaa. Không sử dụng thương mại nếu không có sự cho phép.
