@@ -236,11 +236,14 @@ springBoot-main/
 | Giao diện & Biểu đồ                                                                              |
 | ------------------------------------------------------------------------------------------------ |
 | ![Sơ đồ lớp UML](img/sodolopUML.png)                                                             |
-| ![Sơ đồ Activity](img/SodoActivity.png)                                                          |
-| ![Sơ đồ Activity thêm](img/SodoActivitythem.png)                                                 |
-| ![Sơ đồ Activity sửa](img/SodoActivitysua.png)                                                   |
-| ![Sơ đồ Activity xóa](img/SodoActivityxoa.png)                                                   |
-| ![Sơ đồ Activity tìm kiếm](img/SodoActivitytimkiem.png)                                          |
+| ![Sơ đồ Activity đăng nhập](img/SodoActivity.png)                                                |
+| ![Sơ đồ Activity chuyến bay thêm](img/SodoActivitythem.png)                                      |
+| ![Sơ đồ Activity chuyến bay sửa](img/SodoActivitysua.png)                                        |
+| ![Sơ đồ Activity chuyến bay xóa](img/SodoActivityxoa.png)                                        |
+| ![Sơ đồ Activity chuyến bay tìm kiếm](img/SodoActivitytimkiem.png)                               |
+| ![Sơ đồ Activity khách hàng thêm](img/Activitykhthem.png)                                        |
+| ![Sơ đồ Activity khách hàng sửa](img/Activitykhsua.png)                                          |
+| ![Sơ đồ Activity khách hàng xóa](img/Activitykhxoa.png)                                          |
 | ![Try-catch-finally](review/thunghiem/src/main/java/com/example/veapp/img/try-catch-example.png) |
 | ![UI quản lý vé](review/thunghiem/src/main/java/com/example/veapp/img/UI_quanlyve.png)           |
 | ![Sơ đồ quan hệ ERD](img/SodoERD.png)                                                            |
