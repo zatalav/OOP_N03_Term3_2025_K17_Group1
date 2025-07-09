@@ -369,4 +369,7 @@ Thông qua dự án này, nhóm không chỉ được rèn luyện kỹ năng l�
 
 ## 📚 License
 
-Dự án được phát triển cho mục tiêu học tập tại Đại học Phenikaa. Không sử dụng thương mại nếu không có sự cho phép.
+Dự án được phát triển với mục tiêu học tập tại **Đại học Phenikaa**.  
+**Không sử dụng cho mục đích thương mại** nếu không có sự cho phép từ nhóm phát triển.
+
+📩 Mọi thắc mắc, vui lòng liên hệ qua email: [23010772@st.phenikaa-uni.edu.vn](mailto:23010772@st.phenikaa-uni.edu.vn)
