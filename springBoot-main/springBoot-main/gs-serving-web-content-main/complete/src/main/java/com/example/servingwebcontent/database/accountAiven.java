@@ -1,12 +1,12 @@
 package com.example.servingwebcontent.database;
 
-import com.example.servingwebcontent.module.adminLogin;
+import com.example.servingwebcontent.module.accountLogin;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 
 @Repository
-public class adminAiven {
+public class accountAiven {
 
     private Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://avnadmin:AVNS_exSUp-vLmtG417vPPN7@mysql-144ff22b-st-cdf0.c.aivencloud.com:24071/defaultdb?ssl-mode=REQUIRED";
@@ -15,23 +15,23 @@ public class adminAiven {
         return DriverManager.getConnection(url, user, password);
     }
 
-    // ✅ Kiểm tra thông tin đăng nhập admin từ bảng riêng, có thêm maVe
-    public adminLogin selectByEmailAndPassword(String email, String password) {
-        adminLogin admin = null;
+    // ✅ Kiểm tra thông tin đăng nhập account từ bảng riêng, có thêm maVe
+    public accountLogin selectByEmailAndPassword(String email, String password) {
+        accountLogin account = null;
         try (Connection conn = getConnection()) {
-            String sql = "SELECT email, password, maKhachHang FROM admin WHERE email = ? AND password = ?";
+            String sql = "SELECT email, password, maKhachHang FROM account WHERE email = ? AND password = ?";
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     String maKhachHang = rs.getString("maKhachHang");
-                    admin = new adminLogin(email, password, maKhachHang);
+                    account = new accountLogin(email, password, maKhachHang);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return admin;
+        return account;
     }
 }

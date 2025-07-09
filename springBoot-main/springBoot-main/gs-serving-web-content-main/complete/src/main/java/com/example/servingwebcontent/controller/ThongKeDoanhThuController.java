@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -18,32 +17,13 @@ public class ThongKeDoanhThuController {
     private ThongKeDoanhThuService thongKeService;
 
     @GetMapping("")
-    public String hienThiDoanhThu(Model model,
-            @RequestParam(name = "thang", required = false) Integer thang,
-            @RequestParam(name = "nam", required = false) Integer nam) {
+    public String hienThiTongDoanhThu(Model model) {
+        List<ThongKeDoanhThu> revenueList = thongKeService.layTatCaThongKe(); // ✅ HÀM NÀY
 
-        LocalDate now = LocalDate.now();
-        int currentMonth = (thang != null) ? thang : now.getMonthValue();
-        int currentYear = (nam != null) ? nam : now.getYear();
+        double tong = revenueList.stream().mapToDouble(ThongKeDoanhThu::getTongTien).sum();
 
-        List<ThongKeDoanhThu> doanhThuList = thongKeService.layThongKeChiTietTheoThangNam(currentMonth, currentYear);
-
-        // ✅ Tính tổng doanh thu: cộng theo từng vé đã bán dựa vào loại vé
-        double revenueTotal = doanhThuList.stream().mapToDouble(item -> {
-            String loai = item.getLoaive().toLowerCase().replaceAll("\\s+", "");
-            if (loai.contains("thuong") || loai.contains("thường"))
-                return item.getGiaVe();
-            if (loai.contains("vip"))
-                return item.getGiaVeVip();
-            if (loai.contains("hangnhat") || loai.contains("hạngnhất"))
-                return item.getGiaVeHangNhat();
-            return 0;
-        }).sum();
-
-        model.addAttribute("revenueMonth", currentMonth);
-        model.addAttribute("revenueYear", currentYear);
-        model.addAttribute("revenueTotal", revenueTotal);
-
-        return "Admin/revenue";
+        model.addAttribute("revenueList", revenueList);
+        model.addAttribute("revenueTotal", tong);
+        return "Admin/revenue"; // ✅ đúng file HTML
     }
 }
