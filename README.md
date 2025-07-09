@@ -220,11 +220,11 @@ springBoot-main/
 
 ## 👨‍💻 Nhóm thực hiện
 
-| MSSV     | Họ và Tên                 | Vai trò chi tiết                                                          |
-| -------- | ------------------------- | ------------------------------------------------------------------------- |
-| 23010772 | **Lê Đức Duy**            | Phụ trách chức năng quản lý **Vé**, thiết kế giao diện chính, viết README |
-| 23010123 | **Lê Mạnh Hùng**          | Xây dựng chức năng **Chuyến bay**, xử lý logic và giao diện liên quan     |
-| 23016112 | **Nguyễn Thị Khánh Linh** | Triển khai chức năng **Khách hàng**, kiểm thử, validate dữ liệu đầu vào   |
+| MSSV     | Họ và Tên                 | Vai trò chi tiết                                                                               |
+| -------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| 23010772 | **Lê Đức Duy**            | Phụ trách chức năng quản lý **Vé**, thiết kế giao diện chính, viết README, phát triển phần mềm |
+| 23010123 | **Lê Mạnh Hùng**          | Xây dựng chức năng **Chuyến bay**, xử lý logic và giao diện liên quan, phát triển phần mềm     |
+| 23016112 | **Nguyễn Thị Khánh Linh** | Triển khai chức năng **Khách hàng**, kiểm thử, validate dữ liệu đầu vào, phát triển phần mềm   |
 
 📍 Trường: **Đại học Phenikaa**  
 📫 GitHub nhóm: [https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1](https://github.com/zatalav/OOP_N03_Term3_2025_K17_Group1)
