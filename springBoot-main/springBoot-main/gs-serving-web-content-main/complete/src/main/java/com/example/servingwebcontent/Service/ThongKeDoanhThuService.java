@@ -13,11 +13,8 @@ public class ThongKeDoanhThuService {
     @Autowired
     private ThongKeDoanhThuAiven thongKeDoanhThuAiven;
 
-    public List<ThongKeDoanhThu> layDanhSachDoanhThuTheoThangNam(int thang, int nam) {
-        return thongKeDoanhThuAiven.getThongKeTheoThangNam(thang, nam);
-    }
-
-    public List<ThongKeDoanhThu> layThongKeChiTietTheoThangNam(int thang, int nam) {
-        return thongKeDoanhThuAiven.getThongKeTheoThangNam(thang, nam);
+    // ✅ Trả về danh sách doanh thu theo từng tháng/năm (không cần truyền tham số)
+    public List<ThongKeDoanhThu> layTatCaThongKe() {
+        return thongKeDoanhThuAiven.getThongKeTongTheoThangNam();
     }
 }

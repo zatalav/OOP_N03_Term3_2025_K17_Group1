@@ -2,7 +2,7 @@
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập Admin</title>
+    <title>Đăng nhập Account</title>
     <link rel="stylesheet" th:href="@{/css/demo.css}">
     <link rel="stylesheet" th:href="@{/css/select.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,9 +23,9 @@
 </head>
 <body>
 <div class="login-card">
-    <h3 class="text-center">Đăng nhập Admin</h3>
+    <h3 class="text-center">Đăng nhập Account</h3>
     
-    <form th:action="@{/admin/adminLogin}" method="post" th:object="${adminLogin}">
+    <form th:action="@{/admin/accountLogin}" method="post" th:object="${accountLogin}">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" th:field="*{email}" required>

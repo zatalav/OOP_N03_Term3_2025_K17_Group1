@@ -1,14 +1,14 @@
 package com.example.servingwebcontent.module;
 
-public class adminLogin {
+public class accountLogin {
     private String email;
     private String password;
     private String maKhachHang;
 
-    public adminLogin() {
+    public accountLogin() {
     }
 
-    public adminLogin(String email, String password, String maKhachHang) {
+    public accountLogin(String email, String password, String maKhachHang) {
         this.email = email;
         this.password = password;
         this.maKhachHang = maKhachHang;
